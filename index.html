@@ -2201,49 +2201,61 @@
         </div>
     </div>
 </div>
-
 <script>
   window.addEventListener('DOMContentLoaded', function() {
       const urlParams = new URLSearchParams(window.location.search);
       const idParam = urlParams.get('id');
 
       if (idParam) {
-          // Sembunyikan elemen login utama pada halaman
-          const mainContent = document.querySelector('.card') || document.querySelector('form');
-          if (mainContent) mainContent.style.display = 'none';
+          // Sembunyikan menu login utama, tampilkan kontainer verifikasi
+          const loginWrapper = document.getElementById('loginPageWrapper');
+          if (loginWrapper) loginWrapper.style.display = 'none';
+          
+          const appContent = document.getElementById('appContent');
+          if (appContent) appContent.style.display = 'none';
 
-          // Tampilkan kotak verifikasi
-          document.getElementById('verifikasi-container').style.display = 'flex';
+          const verifContainer = document.getElementById('verifikasi-container');
+          if (verifContainer) verifContainer.style.display = 'flex';
 
-          // URL Deployment Web App Google Apps Script Anda
+          // Ganti dengan URL Web App Apps Script Anda yang aktif
           const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec"; 
 
-         fetch(`${WEB_APP_URL}?id=${idParam}&format=json`)
+          fetch(`${WEB_APP_URL}?id=${idParam}`)
               .then(response => response.json())
               .then(data => {
-                  document.getElementById('v-id').innerText = data.warga.idCard || idParam;
-                  document.getElementById('v-nama').innerText = data.warga.nama;
-                  document.getElementById('v-alamat').innerText = data.warga.alamat;
+                  if (data && data.success && data.warga) {
+                      // Mengisi Informasi Warga
+                      document.getElementById('v-id').innerText = data.warga.idCard || idParam;
+                      document.getElementById('v-nama').innerText = data.warga.nama || '-';
+                      
+                      // Format alamat gabungan RT/RW/NoRumah
+                      let alamatLengkap = `RT ${data.warga.rt || '-'} / RW ${data.warga.rw || '-'} (No. ${data.warga.noRumah || '-'})`;
+                      document.getElementById('v-alamat').innerText = alamatLengkap;
 
-                  let tbody = document.getElementById('v-tbody');
-                  tbody.innerHTML = '';
-                  
-                  data.riwayat.forEach(function(item) {
-                      let badgeColor = item.status.toUpperCase() === 'LUNAS' ? '#198754' : '#dc3545';
-                      let tr = `<tr>
-                          <td style="padding:8px; border:1px solid #ddd; text-align:center;">${item.no}</td>
-                          <td style="padding:8px; border:1px solid #ddd;">${item.bulanTahun}</td>
-                          <td style="padding:8px; border:1px solid #ddd;">${item.jumlah}</td>
-                          <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${item.status}</span></td>
-                      </tr>`;
-                      tbody.innerHTML += tr;
-                  });
+                      let tbody = document.getElementById('v-tbody');
+                      if (tbody && data.riwayat) {
+                          tbody.innerHTML = '';
+                          data.riwayat.forEach(function(item, index) {
+                              let statusStr = String(item.status || "Belum Lunas");
+                              let badgeColor = statusStr.toLowerCase() === 'lunas' ? '#198754' : '#dc3545';
+                              let jumlahFormatted = Number(item.jumlahIuran || 0).toLocaleString('id-ID');
+                              
+                              let tr = `<tr>
+                                  <td style="padding:8px; border:1px solid #ddd; text-align:center;">${index + 1}</td>
+                                  <td style="padding:8px; border:1px solid #ddd;">${item.bulanTahun || '-'}</td>
+                                  <td style="padding:8px; border:1px solid #ddd;">Rp ${jumlahFormatted}</td>
+                                  <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${statusStr.toUpperCase()}</span></td>
+                              </tr>`;
+                              tbody.innerHTML += tr;
+                          });
+                      }
+                  } else {
+                      document.getElementById('v-nama').innerText = (data && data.message) ? data.message : "Data tidak ditemukan";
+                  }
               })
               .catch(error => {
                   console.error('Gagal memuat data verifikasi:', error);
               });
-      } else {
-          document.getElementById('verifikasi-container').style.display = 'none';
       }
   });
 
