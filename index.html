@@ -2205,30 +2205,28 @@
   window.addEventListener('DOMContentLoaded', function() {
       const urlParams = new URLSearchParams(window.location.search);
       const idParam = urlParams.get('id');
+      const verifContainer = document.getElementById('verifikasi-container');
 
       if (idParam) {
-          // Sembunyikan menu login utama, tampilkan kontainer verifikasi
+          // JIKA ADA PARAMETER ID: Sembunyikan login, tampilkan kotak verifikasi
           const loginWrapper = document.getElementById('loginPageWrapper');
           if (loginWrapper) loginWrapper.style.display = 'none';
           
           const appContent = document.getElementById('appContent');
           if (appContent) appContent.style.display = 'none';
 
-          const verifContainer = document.getElementById('verifikasi-container');
           if (verifContainer) verifContainer.style.display = 'flex';
 
-          // Ganti dengan URL Web App Apps Script Anda yang aktif
+          // Ganti dengan URL Web App Google Apps Script Anda yang aktif
           const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec"; 
 
           fetch(`${WEB_APP_URL}?id=${idParam}`)
               .then(response => response.json())
               .then(data => {
                   if (data && data.success && data.warga) {
-                      // Mengisi Informasi Warga
                       document.getElementById('v-id').innerText = data.warga.idCard || idParam;
                       document.getElementById('v-nama').innerText = data.warga.nama || '-';
                       
-                      // Format alamat gabungan RT/RW/NoRumah
                       let alamatLengkap = `RT ${data.warga.rt || '-'} / RW ${data.warga.rw || '-'} (No. ${data.warga.noRumah || '-'})`;
                       document.getElementById('v-alamat').innerText = alamatLengkap;
 
@@ -2256,6 +2254,9 @@
               .catch(error => {
                   console.error('Gagal memuat data verifikasi:', error);
               });
+      } else {
+          // JIKA TIDAK ADA PARAMETER ID: Pastikan kotak verifikasi benar-benar disembunyikan
+          if (verifContainer) verifContainer.style.display = 'none';
       }
   });
 
