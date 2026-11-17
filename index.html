@@ -415,12 +415,13 @@
       </div>
 
       <!-- Halaman Menu Id Card Pengurus -->
-<div id="menu-idcard" class="menu-section d-none">
+    <div id="menu-idcard" class="menu-section d-none">
     <div class="d-flex justify-content-between align-items-center mb-3 px-1 flex-wrap gap-2 no-print">
-        <h6 class="fw-bold mb-0 text-success fs-6"><i class="fa-solid fa-id-card me-2"></i>Pencetakan ID Card Pengurus</h6>
-        <div class="d-flex gap-2 align-items-center">
-            <button class="btn btn-outline-secondary btn-sm py-1 px-2" style="font-size: 0.75rem;" onclick="muatDataIdCard()"><i class="fa-solid fa-rotate me-1"></i>Refresh</button>
-        </div>
+    <h6 class="fw-bold mb-0 text-success fs-6"><i class="fa-solid fa-id-card me-2"></i>Pencetakan ID Card Pengurus</h6>
+    <div class="d-flex gap-2 align-items-center">
+    <button class="btn btn-green btn-sm py-1 px-2" style="font-size: 0.75rem; background-color: #107b4d; color: white;" onclick="bukaModalIdCard()"><i class="fa-solid fa-plus me-1"></i>Input Data</button>
+    <button class="btn btn-outline-secondary btn-sm py-1 px-2" style="font-size: 0.75rem;" onclick="muatDataIdCard()"><i class="fa-solid fa-rotate me-1"></i>Refresh</button>
+    </div>
     </div>
     
     <!-- Tabel Data Id Card -->
@@ -2441,6 +2442,88 @@ function muatDataIdCard() {
 function cetakIdCardPetugas(idPetugas) {
     let urlTarget = window.location.origin + window.location.pathname + "?petugas=" + idPetugas;
     window.open(urlTarget, '_blank');
+}
+// Membuka Form Input ID Card Pengurus
+function bukaModalIdCard() {
+    Swal.fire({
+        title: 'Input Data ID Card Pengurus',
+        html: 
+            '<form id="formInputIdCard" style="text-align:left; font-size:12px;">' +
+                '<div class="mb-2"><label class="form-label fw-bold">Nama Lengkap</label><input type="text" id="icNama" class="form-control form-control-sm" required></div>' +
+                '<div class="mb-2"><label class="form-label fw-bold">NIK</label><input type="text" id="icNik" class="form-control form-control-sm" required></div>' +
+                '<div class="mb-2"><label class="form-label fw-bold">Alamat</label><input type="text" id="icAlamat" class="form-control form-control-sm" required></div>' +
+                '<div class="row g-2 mb-2">' +
+                    '<div class="col-4"><label class="form-label fw-bold">Kelurahan</label><input type="text" id="icKel" class="form-control form-control-sm" value="Ratu Jaya"></div>' +
+                    '<div class="col-4"><label class="form-label fw-bold">Kecamatan</label><input type="text" id="icKec" class="form-control form-control-sm" value="Cipayung"></div>' +
+                    '<div class="col-4"><label class="form-label fw-bold">Kota</label><input type="text" id="icKota" class="form-control form-control-sm" value="Depok"></div>' +
+                '</div>' +
+                '<div class="mb-2"><label class="form-label fw-bold text-success">Upload Foto Pengurus</label>' +
+                '<input type="file" id="icFileFoto" class="form-control form-control-sm" required></div>' +
+            '</form>',
+        showCancelButton: true,
+        confirmButtonText: 'Simpan Data',
+        cancelButtonText: 'Batal',
+        confirmButtonColor: '#107b4d',
+        preConfirm: function() {
+            var nama = document.getElementById('icNama').value;
+            var nik = document.getElementById('icNik').value;
+            var fileInput = document.getElementById('icFileFoto');
+            if (!nama || !nik) {
+                Swal.showValidationMessage('Nama dan NIK wajib diisi!');
+                return false;
+            }
+            return new Promise(function(resolve) {
+                var formData = {
+                    nama: nama,
+                    nik: nik,
+                    alamat: document.getElementById('icAlamat').value,
+                    kelurahan: document.getElementById('icKel').value,
+                    kecamatan: document.getElementById('icKec').value,
+                    kota: document.getElementById('icKota').value
+                };
+
+                if (fileInput && fileInput.files.length > 0) {
+                    var file = fileInput.files[0];
+                    var reader = new FileReader();
+                    reader.onload = function(evt) {
+                        var img = new Image();
+                        img.src = evt.target.result;
+                        img.onload = function() {
+                            var canvas = document.createElement('canvas');
+                            var MAX_WIDTH = 500;
+                            var scaleSize = MAX_WIDTH / img.width;
+                            canvas.width = scaleSize < 1 ? MAX_WIDTH : img.width;
+                            canvas.height = scaleSize < 1 ? img.height * scaleSize : img.height;
+                            var ctx = canvas.getContext('2d');
+                            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                            
+                            formData.fileData = canvas.toDataURL('image/jpeg', 0.8).split(',')[1];
+                            formData.fileName = file.name;
+                            formData.fileMime = 'image/jpeg';
+                            resolve(formData);
+                        };
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    resolve(formData);
+                }
+            });
+        }
+    }).then(function(result) {
+        if (result.isConfirmed) {
+            Swal.fire({ title: 'Menyimpan data pengurus...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+            google.script.run
+                .withSuccessHandler(function(res) {
+                    if (res && res.success) {
+                        Swal.fire('Berhasil!', res.message, 'success');
+                        muatDataIdCard();
+                    } else {
+                        Swal.fire('Gagal', (res ? res.message : 'Terjadi kesalahan'), 'error');
+                    }
+                })
+                .simpanDataIdCard(result.value);
+        }
+    });
 }
 </script>
 </html>
