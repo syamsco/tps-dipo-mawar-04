@@ -2173,34 +2173,44 @@
 }
   </script>
   <!-- Container Tampilan Verifikasi Riwayat Iuran -->
-<div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); z-index:9999; display:flex; justify-content:center; align-items:center;">
-    <div style="background:white; padding:25px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.15); width:100%; max-width:500px; border-top:5px solid #107b4d; font-family: Arial, sans-serif;">
-        <h3 style="text-align:center; color:#107b4d; margin-bottom:20px;">Verifikasi Riwayat Iuran</h3>
-        <p style="margin: 8px 0;"><strong>ID Card:</strong> <span id="v-id">-</span></p>
-        <p style="margin: 8px 0;"><strong>Nama Warga:</strong> <span id="v-nama">-</span></p>
-        <p style="margin: 8px 0;"><strong>Alamat:</strong> <span id="v-alamat">-</span></p>
+<div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.98); z-index:9999; justify-content:center; align-items:center; padding: 15px; box-sizing: border-box;">
+    <div style="background:white; padding:20px; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.15); width:100%; max-width:450px; border-top:5px solid #107b4d; font-family: Arial, sans-serif;">
+        <h4 style="text-align:center; color:#107b4d; margin-bottom:15px; font-size: 1.1rem; font-weight: bold;">Verifikasi Riwayat Iuran</h4>
         
-        <div style="max-height: 250px; overflow-y: auto; margin-top: 15px;">
-            <table style="width:100%; border-collapse:collapse; text-align: left;">
-                <thead>
-                    <tr style="background:#e8f5e9; color:#107b4d;">
-                        <th style="padding:10px; border:1px solid #ddd; text-align:center;">No</th>
-                        <th style="padding:10px; border:1px solid #ddd;">Bulan / Tahun</th>
-                        <th style="padding:10px; border:1px solid #ddd;">Jumlah</th>
-                        <th style="padding:10px; border:1px solid #ddd; text-align:center;">Status</th>
-                    </tr>
-                </thead>
-                <tbody id="v-tbody">
-                    <!-- Data akan dirender secara dinamis -->
-                </tbody>
-            </table>
+        <!-- Indikator Loading saat menunggu data dari Apps Script -->
+        <div id="v-loading" style="text-align:center; padding: 25px; color: #666; font-size: 0.9rem;">
+            <i class="fa-solid fa-spinner fa-spin fa-2x mb-2 text-success"></i><br>Memuat data verifikasi...
         </div>
 
-        <div style="text-align:center; margin-top:25px;">
-            <button onclick="bukaAplikasiUtama()" style="background:#107b4d; color:white; padding:12px 20px; border:none; border-radius:5px; cursor:pointer; width:100%; font-weight:bold; font-size:14px;">Buka Aplikasi Utama</button>
+        <!-- Konten Utama (Disembunyikan dulu sampai data selesai dimuat) -->
+        <div id="v-content" style="display:none;">
+            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>ID Card:</strong> <span id="v-id">-</span></p>
+            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Nama Warga:</strong> <span id="v-nama">-</span></p>
+            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Alamat:</strong> <span id="v-alamat">-</span></p>
+            
+            <div style="max-height: 220px; overflow-y: auto; margin-top: 12px; border: 1px solid #ddd; border-radius: 6px;">
+                <table style="width:100%; border-collapse:collapse; text-align: left; font-size: 0.8rem;">
+                    <thead>
+                        <tr style="background:#e8f5e9; color:#107b4d;">
+                            <th style="padding:8px; border-bottom:1px solid #ddd; text-align:center; width:12%;">No</th>
+                            <th style="padding:8px; border-bottom:1px solid #ddd; width:40%;">Bulan / Tahun</th>
+                            <th style="padding:8px; border-bottom:1px solid #ddd; width:28%;">Jumlah</th>
+                            <th style="padding:8px; border-bottom:1px solid #ddd; text-align:center; width:20%;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="v-tbody">
+                        <!-- Data dirender dinamis -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button onclick="bukaAplikasiUtama()" style="background:#107b4d; color:white; padding:10px 16px; border:none; border-radius:6px; cursor:pointer; width:100%; font-weight:bold; font-size:0.9rem;">Buka Aplikasi Utama</button>
         </div>
     </div>
 </div>
+
 <script>
   window.addEventListener('DOMContentLoaded', function() {
       const urlParams = new URLSearchParams(window.location.search);
@@ -2208,7 +2218,6 @@
       const verifContainer = document.getElementById('verifikasi-container');
 
       if (idParam) {
-          // JIKA ADA PARAMETER ID: Sembunyikan login, tampilkan kotak verifikasi
           const loginWrapper = document.getElementById('loginPageWrapper');
           if (loginWrapper) loginWrapper.style.display = 'none';
           
@@ -2217,12 +2226,15 @@
 
           if (verifContainer) verifContainer.style.display = 'flex';
 
-          // Ganti dengan URL Web App Google Apps Script Anda yang aktif
           const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec"; 
 
           fetch(`${WEB_APP_URL}?id=${idParam}`)
               .then(response => response.json())
               .then(data => {
+                  // Sembunyikan loading, tampilkan konten setelah data siap
+                  document.getElementById('v-loading').style.display = 'none';
+                  document.getElementById('v-content').style.display = 'block';
+
                   if (data && data.success && data.warga) {
                       document.getElementById('v-id').innerText = data.warga.idCard || idParam;
                       document.getElementById('v-nama').innerText = data.warga.nama || '-';
@@ -2239,23 +2251,23 @@
                               let jumlahFormatted = Number(item.jumlahIuran || 0).toLocaleString('id-ID');
                               
                               let tr = `<tr>
-                                  <td style="padding:8px; border:1px solid #ddd; text-align:center;">${index + 1}</td>
-                                  <td style="padding:8px; border:1px solid #ddd;">${item.bulanTahun || '-'}</td>
-                                  <td style="padding:8px; border:1px solid #ddd;">Rp ${jumlahFormatted}</td>
-                                  <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${statusStr.toUpperCase()}</span></td>
+                                  <td style="padding:7px; border-bottom:1px solid #eee; text-align:center;">${index + 1}</td>
+                                  <td style="padding:7px; border-bottom:1px solid #eee;">${item.bulanTahun || '-'}</td>
+                                  <td style="padding:7px; border-bottom:1px solid #eee;">Rp ${jumlahFormatted}</td>
+                                  <td style="padding:7px; border-bottom:1px solid #eee; text-align:center;"><span style="background:${badgeColor}; color:white; padding:3px 8px; border-radius:4px; font-size:10px; font-weight:bold; white-space:nowrap;">${statusStr.toUpperCase()}</span></td>
                               </tr>`;
                               tbody.innerHTML += tr;
                           });
                       }
                   } else {
-                      document.getElementById('v-nama').innerText = (data && data.message) ? data.message : "Data tidak ditemukan";
+                      document.getElementById('v-content').innerHTML = `<p class="text-center text-danger fw-bold py-3">${(data && data.message) ? data.message : "Data tidak ditemukan"}</p>`;
                   }
               })
               .catch(error => {
                   console.error('Gagal memuat data verifikasi:', error);
+                  document.getElementById('v-loading').innerHTML = '<span class="text-danger">Gagal terhubung ke server. Periksa koneksi Anda.</span>';
               });
       } else {
-          // JIKA TIDAK ADA PARAMETER ID: Pastikan kotak verifikasi benar-benar disembunyikan
           if (verifContainer) verifContainer.style.display = 'none';
       }
   });
