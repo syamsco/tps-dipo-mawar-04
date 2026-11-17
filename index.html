@@ -2315,47 +2315,70 @@
 </script>
 </body>
 <!-- Container Tampilan Verifikasi ID Card Pengurus -->
-<div id="petugas-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.98); z-index:9999; justify-content:center; align-items:center; padding: 15px; box-sizing: border-box;">
-    <div style="background:white; padding:20px; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.15); width:100%; max-width:400px; border-top:5px solid #107b4d; font-family: Arial, sans-serif; box-sizing: border-box; text-align: center;">
-        <h4 style="color:#107b4d; margin-bottom:15px; font-size: 1.1rem; font-weight: bold;">Kartu Anggota Pengurus Resmi</h4>
-        
-        <!-- Indikator Loading -->
-        <div id="p-loading" style="padding: 25px; color: #666; font-size: 0.9rem;">
-            <i class="fa-solid fa-spinner fa-spin fa-2x mb-2 text-success"></i><br>Memuat data ID Card...
-        </div>
-
-        <!-- Konten Kartu Pengurus -->
-        <div id="p-content" style="display:none; text-align: left;">
-            <!-- Foto Profil -->
-            <div style="text-align: center; margin-bottom: 15px;">
-                <img id="p-foto" src="https://via.placeholder.com/90" alt="Foto Pengurus" style="width: 95px; height: 95px; border-radius: 50%; object-fit: cover; border: 3px solid #107b4d;">
-            </div>
-
-        <div style="background: #e8f5e9; padding: 12px; border-radius: 8px; margin-bottom: 12px; border-left: 4px solid #107b4d; text-align: left;">
-        <p style="margin: 4px 0; font-size: 0.85rem;"><strong>ID Anggota:</strong> <span id="p-id">-</span></p>
-        <p style="margin: 4px 0; font-size: 0.85rem;"><strong>Nama Lengkap:</strong> <span id="p-nama">-</span></p>
-        <p style="margin: 4px 0; font-size: 0.85rem;"><strong>NIK:</strong> <span id="p-nik">-</span></p>
-        <p style="margin: 4px 0; font-size: 0.85rem;"><strong>Jabatan:</strong> <span id="p-jabatan" style="color: #107b4d; font-weight: bold;">-</span></p>
-        </div>
-
-         <!-- Di bawah Status Aktif (untuk Barcode / QR Code) -->
-        <div style="margin: 15px 0; text-align: center;">
-        <img id="p-barcode" src="" alt="Barcode QR" style="width: 100px; height: 100px; border: 1px solid #ddd; padding: 4px; border-radius: 6px; background: #fff;">
-        </div>
-            
-            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Alamat:</strong> <span id="p-alamat">-</span></p>
-            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Kelurahan:</strong> <span id="p-kelurahan">-</span></p>
-            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Kecamatan:</strong> <span id="p-kecamatan">-</span></p>
-            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Kota:</strong> <span id="p-kota">-</span></p>
-            <p style="margin: 8px 0 0 0; font-size: 0.85rem;"><strong>Status:</strong> <span style="background:#107b4d; color:white; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">PENGURUS AKTIF</span></p>
-        </div>
-
-        <div style="text-align:center; margin-top:20px;">
-            <button onclick="bukaAplikasiUtama()" style="background:#107b4d; color:white; padding:10px 16px; border:none; border-radius:6px; cursor:pointer; width:100%; font-weight:bold; font-size:0.9rem;">Buka Aplikasi Utama</button>
-        </div>
+<!-- Container Tampilan Kartu Identitas Pengurus Resmi -->
+<div id="petugas-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,23,42,0.85); z-index:9999; justify-content:center; align-items:center; padding:20px; box-sizing:border-box; font-family:'Segoe UI', Roboto, sans-serif; backdrop-filter:blur(4px);">
+  
+  <div style="width:340px; background:#ffffff; border-radius:16px; border:3px solid #0b5936; box-shadow:0 20px 40px rgba(0,0,0,0.3); overflow:hidden; text-align:center; display:flex; flex-direction:column; position:relative;">
+    
+    <!-- Header Kartu -->
+    <div style="background:linear-gradient(135deg, #0b5936 0%, #107b4d 100%); padding:16px 12px; color:#ffffff; border-bottom:4px solid #ffc107;">
+      <div style="font-size:9.5px; font-weight:700; letter-spacing:1.5px; color:#a7f3d0; text-transform:uppercase;">PEMERINTAH KOTA DEPOK</div>
+      <div style="font-size:14px; font-weight:900; letter-spacing:0.5px; color:#ffffff; margin-top:2px;">TPS DIPO MAWAR RW. 04</div>
+      <div style="font-size:8px; letter-spacing:1px; color:#ffc107; font-weight:600; margin-top:4px;">— KARTU IDENTITAS PENGURUS RESMI —</div>
     </div>
-</div>
 
+    <!-- Body Kartu -->
+    <div style="padding:16px 20px; background:#f8fafc; text-align:left;">
+      
+      <!-- Foto & Identitas Utama -->
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px; background:#ffffff; padding:10px; border-radius:10px; border:1px solid #e2e8f0; box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+        <div style="width:75px; height:90px; border-radius:6px; background:#fff; padding:2px; border:2px solid #107b4d; flex-shrink:0;">
+          <img id="p-foto" src="" style="width:100%; height:100%; object-fit:cover; border-radius:4px;" alt="Foto Petugas">
+        </div>
+        <div style="overflow:hidden;">
+          <div id="p-nama" style="font-size:12px; font-weight:900; color:#0f172a; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">-</div>
+          <div id="p-jabatan" style="font-size:9px; font-weight:800; color:#0b5936; background:#d1e7dd; display:inline-block; padding:2px 8px; border-radius:10px; margin-top:3px; text-transform:uppercase;">-</div>
+          <div style="font-size:8px; color:#64748b; margin-top:4px;"><strong>ID:</strong> <span id="p-id" style="font-family:monospace; color:#0b5936; font-weight:bold;">-</span></div>
+        </div>
+      </div>
+
+      <!-- Detail Informasi -->
+      <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:10px 12px; font-size:8.5px; color:#334155; line-height:1.5; margin-bottom:12px;">
+        <div><strong>NIK:</strong> <span id="p-nik" style="font-family:monospace;">-</span></div>
+        <div><strong>Alamat:</strong> <span id="p-alamat">-</span></div>
+        <div><strong>Wilayah:</strong> RT <span id="p-rt">-</span> / RW <span id="p-rw">-</span>, Kel. <span id="p-kelurahan">-</span></div>
+      </div>
+
+      <!-- Status & QR Code Barcode -->
+      <div style="display:flex; align-items:center; justify-content:space-between; background:#ffffff; padding:10px; border-radius:8px; border:1px solid #cbd5e1;">
+        <div>
+          <div style="background:#16a34a; color:#ffffff; padding:3px 8px; border-radius:12px; font-size:7.5px; font-weight:800; display:inline-block; margin-bottom:6px;">PENGURUS AKTIF</div>
+          <div style="font-size:7px; font-weight:800; color:#0b5936;">TERVERIFIKASI</div>
+          <div style="font-size:6px; color:#64748b;">Scan untuk validasi</div>
+        </div>
+        <div style="background:#fff; padding:3px; border:1px solid #cbd5e1; border-radius:4px;">
+          <img id="p-barcode" src="" style="width:55px; height:55px; display:block;" alt="QR Code">
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Card -->
+    <div style="background:#e2e8f0; padding:6px 12px; font-size:7.5px; color:#475569; font-weight:700; display:flex; justify-content:space-between; align-items:center; border-top:1px solid #cbd5e1;">
+      <span>TPS DIPO MAWAR RW.04</span>
+      <span>SEKRETARIAT RESMI</span>
+    </div>
+
+    <!-- Tombol Aksi di Bawah Kartu -->
+    <div style="padding:12px; background:#f1f5f9; display:flex; gap:8px; border-top:1px solid #cbd5e1;">
+      <button onclick="window.print()" style="flex:1; background:#0b5936; color:white; border:none; padding:9px; border-radius:6px; font-weight:bold; font-size:9px; cursor:pointer; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+        <i class="fas fa-print"></i> CETAK / PDF
+      </button>
+      <button onclick="bukaAplikasiUtama()" style="flex:1; background:#64748b; color:white; border:none; padding:9px; border-radius:6px; font-weight:bold; font-size:9px; cursor:pointer;">
+        TUTUP
+      </button>
+    </div>
+  </div>
+</div>
 <script>
   window.addEventListener('DOMContentLoaded', function() {
       const urlParams = new URLSearchParams(window.location.search);
