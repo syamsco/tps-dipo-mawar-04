@@ -2250,68 +2250,139 @@
     </div>
 </div>
 <script>
-  window.addEventListener('DOMContentLoaded', function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const idParam = urlParams.get('id');
-      const verifContainer = document.getElementById('verifikasi-container');
+window.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // ==========================================
+    // 1. PENANGANAN VERIFIKASI WARGA (?id=...)
+    // ==========================================
+    const idParam = urlParams.get('id');
+    const verifContainer = document.getElementById('verifikasi-container');
 
-      if (idParam) {
-          const loginWrapper = document.getElementById('loginPageWrapper');
-          if (loginWrapper) loginWrapper.style.display = 'none';
-          
-          const appContent = document.getElementById('appContent');
-          if (appContent) appContent.style.display = 'none';
+    if (idParam) {
+        const loginWrapper = document.getElementById('loginPageWrapper');
+        if (loginWrapper) loginWrapper.style.display = 'none';
+        
+        const appContent = document.getElementById('appContent');
+        if (appContent) appContent.style.display = 'none';
 
-          if (verifContainer) verifContainer.style.display = 'flex';
+        if (verifContainer) verifContainer.style.display = 'flex';
 
-          const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec"; 
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec"; 
 
-          fetch(`${WEB_APP_URL}?id=${idParam}`)
-              .then(response => response.json())
-              .then(data => {
-                  document.getElementById('v-loading').style.display = 'none';
-                  document.getElementById('v-content').style.display = 'block';
+        fetch(`${WEB_APP_URL}?id=${idParam}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('v-loading').style.display = 'none';
+                document.getElementById('v-content').style.display = 'block';
 
-                  if (data && data.success && data.warga) {
-                      document.getElementById('v-id').innerText = data.warga.idCard || idParam;
-                      document.getElementById('v-nama').innerText = data.warga.nama || '-';
-                      
-                      let alamatLengkap = `RT ${data.warga.rt || '-'} / RW ${data.warga.rw || '-'} (No. ${data.warga.noRumah || '-'})`;
-                      document.getElementById('v-alamat').innerText = alamatLengkap;
+                if (data && data.success && data.warga) {
+                    document.getElementById('v-id').innerText = data.warga.idCard || idParam;
+                    document.getElementById('v-nama').innerText = data.warga.nama || '-';
+                    
+                    let alamatLengkap = `RT ${data.warga.rt || '-'} / RW ${data.warga.rw || '-'} (No. ${data.warga.noRumah || '-'})`;
+                    document.getElementById('v-alamat').innerText = alamatLengkap;
 
-                      let tbody = document.getElementById('v-tbody');
-                      if (tbody && data.riwayat) {
-                          tbody.innerHTML = '';
-                          data.riwayat.forEach(function(item, index) {
-                              let statusStr = String(item.status || "Belum Lunas");
-                              let badgeColor = statusStr.toLowerCase() === 'lunas' ? '#198754' : '#dc3545';
-                              let jumlahFormatted = Number(item.jumlahIuran || 0).toLocaleString('id-ID');
-                              
-                              let tr = `<tr>
-                                  <td style="padding:5px 2px; border-bottom:1px solid #eee; text-align:center; vertical-align:middle;">${index + 1}</td>
-                                  <td style="padding:5px 4px; border-bottom:1px solid #eee; vertical-align:middle; word-break: break-word; font-size: 0.7rem;">${item.bulanTahun || '-'}</td>
-                                  <td style="padding:5px 4px; border-bottom:1px solid #eee; vertical-align:middle; font-size: 0.7rem; white-space: nowrap;">Rp ${jumlahFormatted}</td>
-                                  <td style="padding:5px 2px; border-bottom:1px solid #eee; text-align:center; vertical-align:middle;"><span style="background:${badgeColor}; color:white; padding:2px 4px; border-radius:3px; font-size:8.5px; font-weight:bold; white-space:nowrap; display:inline-block;">${statusStr.toUpperCase()}</span></td>
-                              </tr>`;
-                              tbody.innerHTML += tr;
-                          });
-                      }
-                  } else {
-                      document.getElementById('v-content').innerHTML = `<p style="text-align:center; color:#dc3545; font-weight:bold; padding:15px 0;">${(data && data.message) ? data.message : "Data tidak ditemukan"}</p>`;
-                  }
-              })
-              .catch(error => {
-                  console.error('Gagal memuat data verifikasi:', error);
-                  document.getElementById('v-loading').innerHTML = '<span style="color:#dc3545;">Gagal terhubung ke server. Periksa koneksi Anda.</span>';
-              });
-      } else {
-          if (verifContainer) verifContainer.style.display = 'none';
-      }
-  });
+                    let tbody = document.getElementById('v-tbody');
+                    if (tbody && data.riwayat) {
+                        tbody.innerHTML = '';
+                        data.riwayat.forEach(function(item, index) {
+                            let statusStr = String(item.status || "Belum Lunas");
+                            let badgeColor = statusStr.toLowerCase() === 'lunas' ? '#198754' : '#dc3545';
+                            let jumlahFormatted = Number(item.jumlahIuran || 0).toLocaleString('id-ID');
+                            
+                            let tr = `<tr>
+                                <td style="padding:5px 2px; border-bottom:1px solid #eee; text-align:center; vertical-align:middle;">${index + 1}</td>
+                                <td style="padding:5px 4px; border-bottom:1px solid #eee; vertical-align:middle; word-break: break-word; font-size: 0.7rem;">${item.bulanTahun || '-'}</td>
+                                <td style="padding:5px 4px; border-bottom:1px solid #eee; vertical-align:middle; font-size: 0.7rem; white-space: nowrap;">Rp ${jumlahFormatted}</td>
+                                <td style="padding:5px 2px; border-bottom:1px solid #eee; text-align:center; vertical-align:middle;"><span style="background:${badgeColor}; color:white; padding:2px 4px; border-radius:3px; font-size:8.5px; font-weight:bold; white-space:nowrap; display:inline-block;">${statusStr.toUpperCase()}</span></td>
+                            </tr>`;
+                            tbody.innerHTML += tr;
+                        });
+                    }
+                } else {
+                    document.getElementById('v-content').innerHTML = `<p style="text-align:center; color:#dc3545; font-weight:bold; padding:15px 0;">${(data && data.message) ? data.message : "Data tidak ditemukan"}</p>`;
+                }
+            })
+            .catch(error => {
+                console.error('Gagal memuat data verifikasi:', error);
+                document.getElementById('v-loading').innerHTML = '<span style="color:#dc3545;">Gagal terhubung ke server. Periksa koneksi Anda.</span>';
+            });
+    } else {
+        if (verifContainer) verifContainer.style.display = 'none';
+    }
+
+    // ==========================================
+    // 2. PENANGANAN ID CARD PETUGAS (?petugas=...)
+    // ==========================================
+    const petugasParam = urlParams.get('petugas');
+    const petugasContainer = document.getElementById('petugas-container');
+
+    if (petugasParam) {
+        const loginWrapper = document.getElementById('loginPageWrapper');
+        if (loginWrapper) loginWrapper.style.display = 'none';
+
+        const appContent = document.getElementById('appContent');
+        if (appContent) appContent.style.display = 'none';
+
+        if (petugasContainer) petugasContainer.style.display = 'flex';
+
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec";
+
+        fetch(`${WEB_APP_URL}?petugas=${petugasParam}`)
+            .then(response => response.json())
+            .then(data => {
+                let loadingEl = document.getElementById('p-loading');
+                let contentEl = document.getElementById('p-content');
+                if (loadingEl) loadingEl.style.display = 'none';
+                if (contentEl) contentEl.style.display = 'block';
+
+                if (data && data.success && data.petugas) {
+                    document.getElementById('p-id').innerText = data.petugas.id || petugasParam;
+                    document.getElementById('p-nama').innerText = data.petugas.nama || '-';
+                    document.getElementById('p-nik').innerText = data.petugas.nik || '-';
+                    document.getElementById('p-alamat').innerText = data.petugas.alamat || '-';
+                    document.getElementById('p-rt').innerText = data.petugas.rt || '-';
+                    document.getElementById('p-rw').innerText = data.petugas.rw || '-';
+                    document.getElementById('p-kelurahan').innerText = data.petugas.kelurahan || '-';
+                    document.getElementById('p-kecamatan').innerText = data.petugas.kecamatan || '-';
+                    document.getElementById('p-kota').innerText = data.petugas.kota || '-';
+                    document.getElementById('p-jabatan').innerText = data.petugas.jabatan || '-';
+                    
+                    if (data.petugas.barcode) {
+                        document.getElementById('p-barcode').src = data.petugas.barcode;
+                    }
+                    if (data.petugas.foto && data.petugas.foto.trim() !== '') {
+                        document.getElementById('p-foto').src = data.petugas.foto;
+                    }
+                } else {
+                    console.warn('Data petugas tidak ditemukan di database');
+                }
+            })
+            .catch(error => {
+                console.error('Gagal memuat data petugas:', error);
+            });
+    } else {
+        if (petugasContainer) petugasContainer.style.display = 'none';
+    }
+});
 
   function bukaAplikasiUtama() {
       window.location.href = window.location.origin + window.location.pathname;
   }
+function tutupIdCard() {
+  // Menyembunyikan kontainer kartu agar kembali ke tabel utama tanpa reload/login ulang
+  const container = document.getElementById('petugas-container');
+  if (container) {
+    container.style.display = 'none';
+  }
+  
+  // Membersihkan parameter ?petugas=... di URL agar bersih kembali
+  if (window.history.replaceState) {
+    const cleanURL = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    window.history.replaceState({path: cleanURL}, '', cleanURL);
+  }
+}
 </script>
 </body>
 <!-- Container Tampilan Verifikasi ID Card Pengurus -->
@@ -2415,6 +2486,7 @@
                       document.getElementById('p-kota').innerText = data.petugas.kota || '-';
                       document.getElementById('p-jabatan').innerText = data.petugas.jabatan || '-';
                       document.getElementById('p-barcode').src = data.petugas.barcode || '';
+
                       if (data.petugas.foto && data.petugas.foto.trim() !== '') {
                           document.getElementById('p-foto').src = data.petugas.foto;
                       }
