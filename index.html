@@ -2275,4 +2275,93 @@
   }
 </script>
 </body>
+<!-- Container Tampilan Kartu Anggota Pengurus -->
+<div id="petugas-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.98); z-index:9999; justify-content:center; align-items:center; padding: 15px; box-sizing: border-box;">
+    <div style="background:white; padding:20px; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.15); width:100%; max-width:400px; border-top:5px solid #107b4d; font-family: Arial, sans-serif; box-sizing: border-box; text-align: center;">
+        <h4 style="color:#107b4d; margin-bottom:15px; font-size: 1.1rem; font-weight: bold;">Kartu Anggota Pengurus Resmi</h4>
+        
+        <!-- Indikator Loading -->
+        <div id="p-loading" style="padding: 25px; color: #666; font-size: 0.9rem;">
+            <i class="fa-solid fa-spinner fa-spin fa-2x mb-2 text-success"></i><br>Memuat data petugas...
+        </div>
+
+        <!-- Konten Kartu Petugas -->
+        <div id="p-content" style="display:none; text-align: left;">
+            <!-- Foto Profil -->
+            <div style="text-align: center; margin-bottom: 15px;">
+                <img id="p-foto" src="https://via.placeholder.com/90" alt="Foto Petugas" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid #107b4d;">
+            </div>
+
+            <div style="background: #e8f5e9; padding: 12px; border-radius: 8px; margin-bottom: 12px; border-left: 4px solid #107b4d;">
+                <p style="margin: 4px 0; font-size: 0.85rem;"><strong>ID Petugas:</strong> <span id="p-id">-</span></p>
+                <p style="margin: 4px 0; font-size: 0.85rem;"><strong>NIK:</strong> <span id="p-nik">-</span></p>
+                <p style="margin: 4px 0; font-size: 0.85rem;"><strong>Nama Lengkap:</strong> <span id="p-nama">-</span></p>
+            </div>
+            
+            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Jabatan:</strong> <span id="p-jabatan" style="background:#107b4d; color:white; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">-</span></p>
+            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Wilayah (RT / RW):</strong> RT <span id="p-rt">-</span> / RW <span id="p-rw">-</span></p>
+            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Status Keanggotaan:</strong> <span id="p-status" style="color: #198754; font-weight: bold;">-</span></p>
+        </div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button onclick="bukaAplikasiUtama()" style="background:#107b4d; color:white; padding:10px 16px; border:none; border-radius:6px; cursor:pointer; width:100%; font-weight:bold; font-size:0.9rem;">Buka Aplikasi Utama</button>
+        </div>
+    </div>
+</div>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const petugasParam = urlParams.get('petugas');
+      const petugasContainer = document.getElementById('petugas-container');
+
+      if (petugasParam) {
+          const loginWrapper = document.getElementById('loginPageWrapper');
+          if (loginWrapper) loginWrapper.style.display = 'none';
+          
+          const appContent = document.getElementById('appContent');
+          if (appContent) appContent.style.display = 'none';
+
+          const verifContainer = document.getElementById('verifikasi-container');
+          if (verifContainer) verifContainer.style.display = 'none';
+
+          if (petugasContainer) petugasContainer.style.display = 'flex';
+
+          // Ganti URL Web App ini sesuai URL deployment Google Apps Script Anda yang aktif
+          const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec"; 
+
+          fetch(`${WEB_APP_URL}?petugas=${petugasParam}`)
+              .then(response => response.json())
+              .then(data => {
+                  document.getElementById('p-loading').style.display = 'none';
+                  document.getElementById('p-content').style.display = 'block';
+
+                  if (data && data.success && data.petugas) {
+                      document.getElementById('p-id').innerText = data.petugas.idPetugas || petugasParam;
+                      document.getElementById('p-nik').innerText = data.petugas.nik || '-';
+                      document.getElementById('p-nama').innerText = data.petugas.nama || '-';
+                      document.getElementById('p-jabatan').innerText = data.petugas.jabatan || '-';
+                      document.getElementById('p-rt').innerText = data.petugas.rt || '-';
+                      document.getElementById('p-rw').innerText = data.petugas.rw || '-';
+                      document.getElementById('p-status').innerText = data.petugas.status || 'Aktif';
+                      
+                      // Menampilkan Foto jika URL tersedia di Kolom H
+                      if (data.petugas.foto && data.petugas.foto.trim() !== '') {
+                          document.getElementById('p-foto').src = data.petugas.foto;
+                      }
+                  } else {
+                      document.getElementById('p-content').innerHTML = `<p style="text-align:center; color:#dc3545; font-weight:bold; padding:15px 0;">${(data && data.message) ? data.message : "Data petugas tidak ditemukan"}</p>`;
+                  }
+              })
+              .catch(error => {
+                  console.error('Gagal memuat data petugas:', error);
+                  document.getElementById('p-loading').innerHTML = '<span style="color:#dc3545;">Gagal terhubung ke server. Periksa koneksi Anda.</span>';
+              });
+      }
+  });
+
+  function bukaAplikasiUtama() {
+      window.location.href = window.location.origin + window.location.pathname;
+  }
+</script>
 </html>
