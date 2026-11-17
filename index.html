@@ -2331,11 +2331,17 @@
                 <img id="p-foto" src="https://via.placeholder.com/90" alt="Foto Pengurus" style="width: 95px; height: 95px; border-radius: 50%; object-fit: cover; border: 3px solid #107b4d;">
             </div>
 
-            <div style="background: #e8f5e9; padding: 12px; border-radius: 8px; margin-bottom: 12px; border-left: 4px solid #107b4d;">
-                <p style="margin: 4px 0; font-size: 0.85rem;"><strong>ID Anggota:</strong> <span id="p-id">-</span></p>
-                <p style="margin: 4px 0; font-size: 0.85rem;"><strong>Nama Lengkap:</strong> <span id="p-nama">-</span></p>
-                <p style="margin: 4px 0; font-size: 0.85rem;"><strong>NIK:</strong> <span id="p-nik">-</span></p>
-            </div>
+        <div style="background: #e8f5e9; padding: 12px; border-radius: 8px; margin-bottom: 12px; border-left: 4px solid #107b4d; text-align: left;">
+        <p style="margin: 4px 0; font-size: 0.85rem;"><strong>ID Anggota:</strong> <span id="p-id">-</span></p>
+        <p style="margin: 4px 0; font-size: 0.85rem;"><strong>Nama Lengkap:</strong> <span id="p-nama">-</span></p>
+        <p style="margin: 4px 0; font-size: 0.85rem;"><strong>NIK:</strong> <span id="p-nik">-</span></p>
+        <p style="margin: 4px 0; font-size: 0.85rem;"><strong>Jabatan:</strong> <span id="p-jabatan" style="color: #107b4d; font-weight: bold;">-</span></p>
+        </div>
+
+         <!-- Di bawah Status Aktif (untuk Barcode / QR Code) -->
+        <div style="margin: 15px 0; text-align: center;">
+        <img id="p-barcode" src="" alt="Barcode QR" style="width: 100px; height: 100px; border: 1px solid #ddd; padding: 4px; border-radius: 6px; background: #fff;">
+        </div>
             
             <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Alamat:</strong> <span id="p-alamat">-</span></p>
             <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Kelurahan:</strong> <span id="p-kelurahan">-</span></p>
@@ -2384,7 +2390,8 @@
                       document.getElementById('p-kelurahan').innerText = data.petugas.kelurahan || '-';
                       document.getElementById('p-kecamatan').innerText = data.petugas.kecamatan || '-';
                       document.getElementById('p-kota').innerText = data.petugas.kota || '-';
-                      
+                      document.getElementById('p-jabatan').innerText = data.petugas.jabatan || '-';
+                      document.getElementById('p-barcode').src = data.petugas.barcode || '';
                       if (data.petugas.foto && data.petugas.foto.trim() !== '') {
                           document.getElementById('p-foto').src = data.petugas.foto;
                       }
@@ -2405,12 +2412,12 @@
   
 // Fungsi untuk membuka pratinjau cetak kartu berdasarkan ID
 function cetakIdCardPetugas(idPetugas) {
-    let urlTarget = window.location.origin + window.location.pathname + "?petugas=" + idPetugas;
+    let urlTarget = window.location.origin + window.location.pathcetakname + "?petugas=" + idPetugas;
     window.open(urlTarget, '_blank');
 }
 // Variabel penyimpan data ID Card sementara untuk kebutuhan cetak
 var dataIdCardList = [];
-  
+
   // Variabel penyimpan data ID Card sementara untuk kebutuhan cetak
   var dataIdCardList = [];
 
