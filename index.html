@@ -2444,112 +2444,142 @@ function cetakIdCardPetugas(idPetugas) {
     window.open(urlTarget, '_blank');
 }
 function bukaModalIdCard() {
-    Swal.fire({
-        title: 'Input Data ID Card Pengurus',
-        html: 
-            '<form id="formInputIdCard" style="text-align:left; font-size:12px;">' +
-                '<div class="mb-2"><label class="form-label fw-bold">Nama Lengkap</label><input type="text" id="icNama" class="form-control form-control-sm" required></div>' +
-                '<div class="mb-2"><label class="form-label fw-bold">NIK</label><input type="text" id="icNik" class="form-control form-control-sm" required></div>' +
-                '<div class="mb-2"><label class="form-label fw-bold">Jabatan</label>' +
-                    '<select id="icJabatan" class="form-select form-select-sm">' +
-                        '<option value="OPERATOR">OPERATOR</option>' +
-                        '<option value="ADMIN">ADMIN</option>' +
-                        '<option value="COOR RT">COOR RT</option>' +
-                        '<option value="COOR UMUM">COOR UMUM</option>' +
-                        '<option value="KETUA">KETUA</option>' +
-                        '<option value="ADVISOR">ADVISOR</option>' +
-                    '</select>' +
-                '</div>' +
-                '<div class="mb-2"><label class="form-label fw-bold">Alamat</label><input type="text" id="icAlamat" class="form-control form-control-sm" required></div>' +
-                '<div class="row g-2 mb-2">' +
-                    '<div class="col-6"><label class="form-label fw-bold">RT</label>' +
-                        '<select id="icRt" class="form-select form-select-sm">' +
-                            '<option value="01">RT 01</option><option value="02">RT 02</option><option value="03">RT 03</option>' +
-                            '<option value="04">RT 04</option><option value="05">RT 05</option><option value="06">RT 06</option><option value="07">RT 07</option>' +
-                        '</select>' +
-                    '</div>' +
-                    '<div class="col-6"><label class="form-label fw-bold">RW</label>' +
-                        '<select id="icRw" class="form-select form-select-sm">' +
-                            '<option value="01">RW 01</option><option value="02">RW 02</option><option value="03">RW 03</option>' +
-                            '<option value="04" selected>RW 04</option><option value="05">RW 05</option><option value="06">RW 06</option><option value="07">RW 07</option>' +
-                        '</select>' +
-                    '</div>' +
-                '</div>' +
-                '<div class="row g-2 mb-2">' +
-                    '<div class="col-4"><label class="form-label fw-bold">Kelurahan</label><input type="text" id="icKel" class="form-control form-control-sm" value="Ratu Jaya"></div>' +
-                    '<div class="col-4"><label class="form-label fw-bold">Kecamatan</label><input type="text" id="icKec" class="form-control form-control-sm" value="Cipayung"></div>' +
-                    '<div class="col-4"><label class="form-label fw-bold">Kota</label><input type="text" id="icKota" class="form-control form-control-sm" value="Depok"></div>' +
-                '</div>' +
-                '<div class="mb-2"><label class="form-label fw-bold text-success">Upload Foto Pengurus</label>' +
-                '<input type="file" id="icFileFoto" class="form-control form-control-sm" required></div>' +
-            '</form>',
-        showCancelButton: true,
-        confirmButtonText: 'Simpan Data',
-        cancelButtonText: 'Batal',
-        confirmButtonColor: '#107b4d',
-        preConfirm: function() {
-            var nama = document.getElementById('icNama').value;
-            var nik = document.getElementById('icNik').value;
-            var fileInput = document.getElementById('icFileFoto');
-            if (!nama || !nik) {
-                Swal.showValidationMessage('Nama dan NIK wajib diisi!');
-                return false;
-            }
-            return new Promise(function(resolve) {
-                var formData = {
-                    nama: nama,
-                    nik: nik,
-                    jabatan: document.getElementById('icJabatan').value,
-                    alamat: document.getElementById('icAlamat').value,
-                    rt: document.getElementById('icRt').value,
-                    rw: document.getElementById('icRw').value,
-                    kelurahan: document.getElementById('icKel').value,
-                    kecamatan: document.getElementById('icKec').value,
-                    kota: document.getElementById('icKota').value
-                };
-
-                if (fileInput && fileInput.files.length > 0) {
-                    var file = fileInput.files[0];
-                    var reader = new FileReader();
-                    reader.onload = function(evt) {
-                        var img = new Image();
-                        img.src = evt.target.result;
-                        img.onload = function() {
-                            var canvas = document.createElement('canvas');
-                            var MAX_WIDTH = 500;
-                            var scaleSize = MAX_WIDTH / img.width;
-                            canvas.width = scaleSize < 1 ? MAX_WIDTH : img.width;
-                            canvas.height = scaleSize < 1 ? img.height * scaleSize : img.height;
-                            var ctx = canvas.getContext('2d');
-                            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                            
-                            formData.fileData = canvas.toDataURL('image/jpeg', 0.8).split(',')[1];
-                            formData.fileName = file.name;
-                            formData.fileMime = 'image/jpeg';
-                            resolve(formData);
-                        };
-                    };
-                    reader.readAsDataURL(file);
-                } else {
-                    resolve(formData);
-                }
+    Swal.fire({ title: 'Memuat data petugas...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+    
+    google.script.run.withSuccessHandler(function(listPetugas) {
+        var optionsHtml = '<option value="">-- Pilih Petugas / Pengurus --</option>';
+        if (listPetugas && listPetugas.length > 0) {
+            listPetugas.forEach(function(p) {
+                optionsHtml += '<option value="' + p.nama + '" data-jabatan="' + p.jabatan + '" data-alamat="' + p.alamat + '" data-rt="' + p.rt + '" data-rw="' + p.rw + '">' + p.nama + ' (' + (p.jabatan || 'Pengurus') + ')</option>';
             });
         }
-    }).then(function(result) {
-        if (result.isConfirmed) {
-            Swal.fire({ title: 'Menyimpan data pengurus...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
-            google.script.run
-                .withSuccessHandler(function(res) {
-                    if (res && res.success) {
-                        Swal.fire('Berhasil!', res.message, 'success');
-                        muatDataIdCard();
+
+        Swal.fire({
+            title: 'Input Data ID Card Pengurus',
+            html: 
+                '<form id="formInputIdCard" style="text-align:left; font-size:12px;">' +
+                    '<div class="mb-2"><label class="form-label fw-bold">Pilih Petugas</label>' +
+                        '<select id="icSelectPetugas" class="form-select form-select-sm" onchange="pilihPetugasOtomatis(this)">' + optionsHtml + '</select>' +
+                    '</div>' +
+                    '<div class="mb-2"><label class="form-label fw-bold">Nama Lengkap</label><input type="text" id="icNama" class="form-control form-control-sm" required></div>' +
+                    '<div class="mb-2"><label class="form-label fw-bold">NIK KTP</label><input type="text" id="icNik" class="form-control form-control-sm" required placeholder="Masukkan NIK KTP"></div>' +
+                    '<div class="mb-2"><label class="form-label fw-bold">Jabatan</label>' +
+                        '<select id="icJabatan" class="form-select form-select-sm">' +
+                            '<option value="OPERATOR">OPERATOR</option>' +
+                            '<option value="ADMIN">ADMIN</option>' +
+                            '<option value="COOR RT">COOR RT</option>' +
+                            '<option value="COOR UMUM">COOR UMUM</option>' +
+                            '<option value="KETUA">KETUA</option>' +
+                            '<option value="ADVISOR">ADVISOR</option>' +
+                        '</select>' +
+                    '</div>' +
+                    '<div class="mb-2"><label class="form-label fw-bold">Alamat</label><input type="text" id="icAlamat" class="form-control form-control-sm" required></div>' +
+                    '<div class="row g-2 mb-2">' +
+                        '<div class="col-6"><label class="form-label fw-bold">RT</label>' +
+                            '<select id="icRt" class="form-select form-select-sm">' +
+                                '<option value="01">RT 01</option><option value="02">RT 02</option><option value="03">RT 03</option>' +
+                                '<option value="04">RT 04</option><option value="05">RT 05</option><option value="06">RT 06</option><option value="07">RT 07</option>' +
+                            '</select>' +
+                        '</div>' +
+                        '<div class="col-6"><label class="form-label fw-bold">RW</label>' +
+                            '<select id="icRw" class="form-select form-select-sm">' +
+                                '<option value="01">RW 01</option><option value="02">RW 02</option><option value="03">RW 03</option>' +
+                                '<option value="04" selected>RW 04</option><option value="05">RW 05</option><option value="06">RW 06</option><option value="07">RW 07</option>' +
+                            '</select>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="row g-2 mb-2">' +
+                        '<div class="col-4"><label class="form-label fw-bold">Kelurahan</label><input type="text" id="icKel" class="form-control form-control-sm" value="Ratu Jaya"></div>' +
+                        '<div class="col-4"><label class="form-label fw-bold">Kecamatan</label><input type="text" id="icKec" class="form-control form-control-sm" value="Cipayung"></div>' +
+                        '<div class="col-4"><label class="form-label fw-bold">Kota</label><input type="text" id="icKota" class="form-control form-control-sm" value="Depok"></div>' +
+                    '</div>' +
+                    '<div class="mb-2"><label class="form-label fw-bold text-success">Upload Foto Pengurus</label>' +
+                    '<input type="file" id="icFileFoto" class="form-control form-control-sm" required></div>' +
+                '</form>',
+            showCancelButton: true,
+            confirmButtonText: 'Simpan Data',
+            cancelButtonText: 'Batal',
+            confirmButtonColor: '#107b4d',
+            preConfirm: function() {
+                var nama = document.getElementById('icNama').value;
+                var nik = document.getElementById('icNik').value;
+                var fileInput = document.getElementById('icFileFoto');
+                if (!nama || !nik) {
+                    Swal.showValidationMessage('Nama dan NIK wajib diisi!');
+                    return false;
+                }
+                return new Promise(function(resolve) {
+                    var formData = {
+                        nama: nama,
+                        nik: nik,
+                        jabatan: document.getElementById('icJabatan').value,
+                        alamat: document.getElementById('icAlamat').value,
+                        rt: document.getElementById('icRt').value,
+                        rw: document.getElementById('icRw').value,
+                        kelurahan: document.getElementById('icKel').value,
+                        kecamatan: document.getElementById('icKec').value,
+                        kota: document.getElementById('icKota').value
+                    };
+
+                    if (fileInput && fileInput.files.length > 0) {
+                        var file = fileInput.files[0];
+                        var reader = new FileReader();
+                        reader.onload = function(evt) {
+                            var img = new Image();
+                            img.src = evt.target.result;
+                            img.onload = function() {
+                                var canvas = document.createElement('canvas');
+                                var MAX_WIDTH = 500;
+                                var scaleSize = MAX_WIDTH / img.width;
+                                canvas.width = scaleSize < 1 ? MAX_WIDTH : img.width;
+                                canvas.height = scaleSize < 1 ? img.height * scaleSize : img.height;
+                                var ctx = canvas.getContext('2d');
+                                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                                
+                                formData.fileData = canvas.toDataURL('image/jpeg', 0.8).split(',')[1];
+                                formData.fileName = file.name;
+                                formData.fileMime = 'image/jpeg';
+                                resolve(formData);
+                            };
+                        };
+                        reader.readAsDataURL(file);
                     } else {
-                        Swal.fire('Gagal', (res ? res.message : 'Terjadi kesalahan'), 'error');
+                        resolve(formData);
                     }
-                })
-                .simpanDataIdCard(result.value);
-        }
-    });
+                });
+            }
+        }).then(function(result) {
+            if (result.isConfirmed) {
+                Swal.fire({ title: 'Menyimpan data pengurus...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+                google.script.run
+                    .withSuccessHandler(function(res) {
+                        if (res && res.success) {
+                            Swal.fire('Berhasil!', res.message, 'success');
+                            muatDataIdCard();
+                        } else {
+                            Swal.fire('Gagal', (res ? res.message : 'Terjadi kesalahan'), 'error');
+                        }
+                    })
+                    .simpanDataIdCard(result.value);
+            }
+        });
+    }).getDataIdCard(); // Fallback jikagetListPetugas belum ada
+}
+
+// Fungsi pendukung untuk Auto-Fill form dari pilihan dropdown Petugas
+function pilihPetugasOtomatis(selectEl) {
+    var opt = selectEl.options[selectEl.selectedIndex];
+    if (opt.value) {
+        document.getElementById('icNama').value = opt.value;
+        var jabatan = opt.getAttribute('data-jabatan');
+        if (jabatan) document.getElementById('icJabatan').value = jabatan;
+        var alamat = opt.getAttribute('data-alamat');
+        if (alamat) document.getElementById('icAlamat').value = alamat;
+        var rt = opt.getAttribute('data-rt');
+        if (rt) document.getElementById('icRt').value = rt;
+        var rw = opt.getAttribute('data-rw');
+        if (rw) document.getElementById('icRw').value = rw;
+    }
 }
 </script>
 </html>
