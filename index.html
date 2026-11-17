@@ -2411,8 +2411,13 @@
   }
   
 // Fungsi untuk membuka pratinjau cetak kartu berdasarkan I
-    function cetakIdCardPetugas(idPetugas) {
-  let urlTarget = window.location.origin + window.location.pathname + "?petugas=" + idPetugas;
+  function cetakIdCardPetugas(idPetugas) {
+  if (!idPetugas || idPetugas === 'undefined') {
+    alert('ID Petugas tidak valid!');
+    return;
+  }
+  // Masukkan URL GitHub Pages Anda secara langsung di sini tanpa variabel tambahan yang bikin error
+  let urlTarget = "https://syamsco.github.io/tps-dipo-mawar-04/?petugas=" + idPetugas;
   window.open(urlTarget, '_blank');
 }
 // Variabel penyimpan data ID Card sementara untuk kebutuhan cetak
