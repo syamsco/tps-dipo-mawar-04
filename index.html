@@ -2416,8 +2416,11 @@
     alert('ID Petugas tidak valid!');
     return;
   }
-  // Masukkan URL GitHub Pages Anda secara langsung di sini tanpa variabel tambahan yang bikin error
-  let urlTarget = "https://syamsco.github.io/tps-dipo-mawar-04/?petugas=" + idPetugas;
+  
+  // Ambil URL dasar saat ini (misal: https://syamsco.github.io/tps-dipo-mawar-04/)
+  let baseURL = window.location.href.split('?')[0];
+  let urlTarget = baseURL + "?petugas=" + idPetugas;
+  
   window.open(urlTarget, '_blank');
 }
 // Variabel penyimpan data ID Card sementara untuk kebutuhan cetak
