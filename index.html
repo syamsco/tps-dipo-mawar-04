@@ -2410,16 +2410,15 @@ function cetakIdCardPetugas(idPetugas) {
 }
 // Variabel penyimpan data ID Card sementara untuk kebutuhan cetak
 var dataIdCardList = [];
-
 // 1. Fungsi menampilkan data ke tabel Pencetakan ID Card Pengurus
 function muatDataIdCard() {
-    var tbody = document.getElementById('tbodyIdCard'); // Sesuaikan jika ID tbody Anda berbeda
+    var tbody = document.getElementById('tbodyIdCard');
     if (!tbody) return;
     tbody.innerHTML = '<tr><td colspan="7" class="text-center py-3">Memuat data pengurus...</td></tr>';
 
     google.script.run
         .withSuccessHandler(function(data) {
-            dataIdCardList = Array.isArray(data) ? data : [];
+            var dataIdCardList = Array.isArray(data) ? data : [];
             if (dataIdCardList.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="7" class="text-center py-3 text-muted">Belum ada data ID Card pengurus.</td></tr>';
                 return;
@@ -2446,18 +2445,6 @@ function muatDataIdCard() {
         })
         .getDataIdCard();
 }
-
-// 2. Fungsi membuka form Input Data ID Card (Auto-fill dari Petugas, Alamat manual)
-function bukaModalIdCard() {
-    Swal.fire({ title: 'Memuat data petugas...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
-    
-    google.script.run.withSuccessHandler(function(listPetugas) {
-        var optionsHtml = '<option value="">-- Pilih Petugas / Pengurus --</option>';
-        if (Array.isArray(listPetugas) && listPetugas.length > 0) {
-            listPetugas.forEach(function(p) {
-                optionsHtml += '<option value="' + p.nama + '" data-jabatan="' + p.jabatan + '" data-rt="' + p.rt + '" data-rw="' + p.rw + '">' + p.nama + (p.jabatan ? ' (' + p.jabatan + ')' : '') + '</option>';
-            });
-        }
 
         Swal.fire({
             title: 'Input Data ID Card Pengurus',
