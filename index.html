@@ -2183,19 +2183,14 @@
         </div>
 
         <!-- Konten Utama (Disembunyikan dulu sampai data selesai dimuat) -->
-        <div id="v-content" style="display:none;">
-            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>ID Card:</strong> <span id="v-id">-</span></p>
-            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Nama Warga:</strong> <span id="v-nama">-</span></p>
-            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Alamat:</strong> <span id="v-alamat">-</span></p>
-            
-            <div style="max-height: 220px; overflow-y: auto; margin-top: 12px; border: 1px solid #ddd; border-radius: 6px;">
-                <table style="width:100%; border-collapse:collapse; text-align: left; font-size: 0.75rem; table-layout: fixed;">
+        <div style="max-height: 220px; overflow-y: auto; margin-top: 12px; border: 1px solid #ddd; border-radius: 6px; width: 100%;">
+                <table style="width:100%; border-collapse:collapse; text-align: left; font-size: 0.72rem; table-layout: fixed;">
                     <thead>
                         <tr style="background:#e8f5e9; color:#107b4d;">
-                            <th style="padding:7px 4px; border-bottom:1px solid #ddd; text-align:center; width:12%;">No</th>
-                            <th style="padding:7px 4px; border-bottom:1px solid #ddd; width:38%;">Bulan / Tahun</th>
-                            <th style="padding:7px 4px; border-bottom:1px solid #ddd; width:30%;">Jumlah</th>
-                            <th style="padding:7px 4px; border-bottom:1px solid #ddd; text-align:center; width:20%;">Status</th>
+                            <th style="padding:6px 2px; border-bottom:1px solid #ddd; text-align:center; width:10%;">No</th>
+                            <th style="padding:6px 4px; border-bottom:1px solid #ddd; width:38%;">Bulan / Tahun</th>
+                            <th style="padding:6px 4px; border-bottom:1px solid #ddd; width:32%;">Jumlah</th>
+                            <th style="padding:6px 2px; border-bottom:1px solid #ddd; text-align:center; width:20%;">Status</th>
                         </tr>
                     </thead>
                     <tbody id="v-tbody">
@@ -2251,12 +2246,11 @@
                               let jumlahFormatted = Number(item.jumlahIuran || 0).toLocaleString('id-ID');
                               
                               let tr = `<tr>
-                              <td style="padding:6px 4px; border-bottom:1px solid #eee; text-align:center; vertical-align:middle;">${index + 1}</td>
-                              <td style="padding:6px 4px; border-bottom:1px solid #eee; vertical-align:middle; word-break: break-word;">${item.bulanTahun || '-'}</td>
-                              <td style="padding:6px 4px; border-bottom:1px solid #eee; vertical-align:middle; white-space:nowrap;">Rp ${jumlahFormatted}</td>
-                              <td style="padding:6px 4px; border-bottom:1px solid #eee; text-align:center; vertical-align:middle;"><span style="background:${badgeColor}; color:white; padding:3px 6px; border-radius:4px; font-size:9.5px; font-weight:bold; white-space:nowrap; display:inline-block;">${statusStr.toUpperCase()}</span></td>
+                              <td style="padding:5px 2px; border-bottom:1px solid #eee; text-align:center; vertical-align:middle;">${index + 1}</td>
+                              <td style="padding:5px 4px; border-bottom:1px solid #eee; vertical-align:middle; word-break: break-word; font-size: 0.7rem;">${item.bulanTahun || '-'}</td>
+                              <td style="padding:5px 4px; border-bottom:1px solid #eee; vertical-align:middle; font-size: 0.7rem; white-space: nowrap;">Rp ${jumlahFormatted}</td>
+                              <td style="padding:5px 2px; border-bottom:1px solid #eee; text-align:center; vertical-align:middle;"><span style="background:${badgeColor}; color:white; padding:2px 4px; border-radius:3px; font-size:8.5px; font-weight:bold; white-space:nowrap; display:inline-block;">${statusStr.toUpperCase()}</span></td>
                               </tr>`;
-                              tbody.innerHTML += tr;
                           });
                       }
                   } else {
