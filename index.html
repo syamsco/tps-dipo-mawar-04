@@ -243,7 +243,13 @@
     </div>
     <i class="fa-solid fa-chevron-right text-light fs-6"></i>
   </div>
-
+   <div class="menu-card-item" onclick="openDetailMenu('menu-idcard'); muatDataIdCard();" style="background: rgba(16, 123, 77, 0.45); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+    <div class="d-flex align-items-center gap-3">
+      <div style="width: 46px; height: 46px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"><i class="fa-solid fa-id-card" style="color: #107b4d;"></i></div>
+      <div><h6 class="fw-bold mb-0 text-white" style="font-size: 0.93rem;">ID CARD PENGURUS</h6><small style="color: #f8f9fa; font-size: 0.75rem;">Manajemen & Pencetakan Kartu Pengurus</small></div>
+    </div>
+    <i class="fa-solid fa-chevron-right text-light fs-6"></i>
+  </div>
   <div class="menu-card-item" onclick="openDetailMenu('menuTransaksi')" style="background: rgba(220, 53, 69, 0.45); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
     <div class="d-flex align-items-center gap-3">
       <div style="width: 46px; height: 46px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"><i class="fa-solid fa-truck-fast" style="color: #dc3545;"></i></div>
@@ -407,6 +413,38 @@
           </div>
         </div>
       </div>
+
+      <!-- Halaman Menu Id Card Pengurus -->
+<div id="menu-idcard" class="menu-section d-none">
+    <div class="d-flex justify-content-between align-items-center mb-3 px-1 flex-wrap gap-2 no-print">
+        <h6 class="fw-bold mb-0 text-success fs-6"><i class="fa-solid fa-id-card me-2"></i>Pencetakan ID Card Pengurus</h6>
+        <div class="d-flex gap-2 align-items-center">
+            <button class="btn btn-outline-secondary btn-sm py-1 px-2" style="font-size: 0.75rem;" onclick="muatDataIdCard()"><i class="fa-solid fa-rotate me-1"></i>Refresh</button>
+        </div>
+    </div>
+    
+    <!-- Tabel Data Id Card -->
+    <div class="table-responsive bg-white p-3 rounded shadow-sm">
+        <table class="table table-striped table-hover align-middle" style="font-size: 0.85rem;">
+            <thead style="background-color: #e8f5e9; color: #107b4d;">
+                <tr>
+                    <th>No</th>
+                    <th>ID</th>
+                    <th>Nama Lengkap</th>
+                    <th>NIK</th>
+                    <th>Alamat</th>
+                    <th>Kelurahan / Kecamatan</th>
+                    <th>Cetak Kartu</th>
+                </tr>
+            </thead>
+            <tbody id="tabel-idcard-body">
+                <tr>
+                    <td colspan="7" style="text-align: center; color: #666; padding: 20px;">Memuat data...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
       <div id="menuPetugas" class="menu-section d-none">
         <div class="row row-5cols mb-2 no-print">
@@ -783,7 +821,7 @@
       if (sectionId === 'menuTransaksi') titleEl.innerText = "Status TPS - TPA";
       if (sectionId === 'menuContactCenter') titleEl.innerText = "Contact Center & Pengurus TPS";
       if (sectionId === 'menuBayarIuran') titleEl.innerText = "Manajemen Pembayaran Iuran Warga";
-
+      if (sectionId === 'menu-idcard') titleEl.innerText = "Pencetakan ID Card Pengurus"; // <-- Tambahkan baris ini
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -2275,32 +2313,34 @@
   }
 </script>
 </body>
-<!-- Container Tampilan Kartu Anggota Pengurus -->
+<!-- Container Tampilan Verifikasi ID Card Pengurus -->
 <div id="petugas-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.98); z-index:9999; justify-content:center; align-items:center; padding: 15px; box-sizing: border-box;">
     <div style="background:white; padding:20px; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.15); width:100%; max-width:400px; border-top:5px solid #107b4d; font-family: Arial, sans-serif; box-sizing: border-box; text-align: center;">
         <h4 style="color:#107b4d; margin-bottom:15px; font-size: 1.1rem; font-weight: bold;">Kartu Anggota Pengurus Resmi</h4>
         
         <!-- Indikator Loading -->
         <div id="p-loading" style="padding: 25px; color: #666; font-size: 0.9rem;">
-            <i class="fa-solid fa-spinner fa-spin fa-2x mb-2 text-success"></i><br>Memuat data petugas...
+            <i class="fa-solid fa-spinner fa-spin fa-2x mb-2 text-success"></i><br>Memuat data ID Card...
         </div>
 
-        <!-- Konten Kartu Petugas -->
+        <!-- Konten Kartu Pengurus -->
         <div id="p-content" style="display:none; text-align: left;">
             <!-- Foto Profil -->
             <div style="text-align: center; margin-bottom: 15px;">
-                <img id="p-foto" src="https://via.placeholder.com/90" alt="Foto Petugas" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid #107b4d;">
+                <img id="p-foto" src="https://via.placeholder.com/90" alt="Foto Pengurus" style="width: 95px; height: 95px; border-radius: 50%; object-fit: cover; border: 3px solid #107b4d;">
             </div>
 
             <div style="background: #e8f5e9; padding: 12px; border-radius: 8px; margin-bottom: 12px; border-left: 4px solid #107b4d;">
-                <p style="margin: 4px 0; font-size: 0.85rem;"><strong>ID Petugas:</strong> <span id="p-id">-</span></p>
-                <p style="margin: 4px 0; font-size: 0.85rem;"><strong>NIK:</strong> <span id="p-nik">-</span></p>
+                <p style="margin: 4px 0; font-size: 0.85rem;"><strong>ID Anggota:</strong> <span id="p-id">-</span></p>
                 <p style="margin: 4px 0; font-size: 0.85rem;"><strong>Nama Lengkap:</strong> <span id="p-nama">-</span></p>
+                <p style="margin: 4px 0; font-size: 0.85rem;"><strong>NIK:</strong> <span id="p-nik">-</span></p>
             </div>
             
-            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Jabatan:</strong> <span id="p-jabatan" style="background:#107b4d; color:white; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">-</span></p>
-            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Wilayah (RT / RW):</strong> RT <span id="p-rt">-</span> / RW <span id="p-rw">-</span></p>
-            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Status Keanggotaan:</strong> <span id="p-status" style="color: #198754; font-weight: bold;">-</span></p>
+            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Alamat:</strong> <span id="p-alamat">-</span></p>
+            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Kelurahan:</strong> <span id="p-kelurahan">-</span></p>
+            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Kecamatan:</strong> <span id="p-kecamatan">-</span></p>
+            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Kota:</strong> <span id="p-kota">-</span></p>
+            <p style="margin: 8px 0 0 0; font-size: 0.85rem;"><strong>Status:</strong> <span style="background:#107b4d; color:white; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">PENGURUS AKTIF</span></p>
         </div>
 
         <div style="text-align:center; margin-top:20px;">
@@ -2327,7 +2367,6 @@
 
           if (petugasContainer) petugasContainer.style.display = 'flex';
 
-          // Ganti URL Web App ini sesuai URL deployment Google Apps Script Anda yang aktif
           const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec"; 
 
           fetch(`${WEB_APP_URL}?petugas=${petugasParam}`)
@@ -2337,24 +2376,23 @@
                   document.getElementById('p-content').style.display = 'block';
 
                   if (data && data.success && data.petugas) {
-                      document.getElementById('p-id').innerText = data.petugas.idPetugas || petugasParam;
-                      document.getElementById('p-nik').innerText = data.petugas.nik || '-';
+                      document.getElementById('p-id').innerText = data.petugas.id || petugasParam;
                       document.getElementById('p-nama').innerText = data.petugas.nama || '-';
-                      document.getElementById('p-jabatan').innerText = data.petugas.jabatan || '-';
-                      document.getElementById('p-rt').innerText = data.petugas.rt || '-';
-                      document.getElementById('p-rw').innerText = data.petugas.rw || '-';
-                      document.getElementById('p-status').innerText = data.petugas.status || 'Aktif';
+                      document.getElementById('p-nik').innerText = data.petugas.nik || '-';
+                      document.getElementById('p-alamat').innerText = data.petugas.alamat || '-';
+                      document.getElementById('p-kelurahan').innerText = data.petugas.kelurahan || '-';
+                      document.getElementById('p-kecamatan').innerText = data.petugas.kecamatan || '-';
+                      document.getElementById('p-kota').innerText = data.petugas.kota || '-';
                       
-                      // Menampilkan Foto jika URL tersedia di Kolom H
                       if (data.petugas.foto && data.petugas.foto.trim() !== '') {
                           document.getElementById('p-foto').src = data.petugas.foto;
                       }
                   } else {
-                      document.getElementById('p-content').innerHTML = `<p style="text-align:center; color:#dc3545; font-weight:bold; padding:15px 0;">${(data && data.message) ? data.message : "Data petugas tidak ditemukan"}</p>`;
+                      document.getElementById('p-content').innerHTML = `<p style="text-align:center; color:#dc3545; font-weight:bold; padding:15px 0;">${(data && data.message) ? data.message : "Data ID Card tidak ditemukan"}</p>`;
                   }
               })
               .catch(error => {
-                  console.error('Gagal memuat data petugas:', error);
+                  console.error('Gagal memuat data ID Card:', error);
                   document.getElementById('p-loading').innerHTML = '<span style="color:#dc3545;">Gagal terhubung ke server. Periksa koneksi Anda.</span>';
               });
       }
@@ -2363,5 +2401,46 @@
   function bukaAplikasiUtama() {
       window.location.href = window.location.origin + window.location.pathname;
   }
+  // Fungsi untuk memuat data dari sheet Id Card ke dalam tabel
+function muatDataIdCard() {
+    google.script.run
+        .withSuccessHandler(function(data) {
+            let tbody = document.getElementById('tabel-idcard-body');
+            tbody.innerHTML = '';
+            
+            if (!data || data.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#666; padding:20px;">Belum ada data Id Card.</td></tr>`;
+                return;
+            }
+            
+            data.forEach((row, index) => {
+                let tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td><strong>${row.id || ''}</strong></td>
+                    <td>${row.nama || ''}</td>
+                    <td>${row.nik || ''}</td>
+                    <td>${row.alamat || ''}</td>
+                    <td>${row.kelurahan || ''}, ${row.kecamatan || ''}</td>
+                    <td>
+                        <button onclick="cetakIdCardPetugas('${row.id}')" class="btn btn-success btn-sm" style="background-color: #107b4d; border: none; font-size: 0.8rem;">
+                            <i class="fa-solid fa-print"></i> Cetak Kartu
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        })
+        .withFailureHandler(function(err) {
+            console.error("Gagal memuat data Id Card:", err);
+        })
+        .getDataIdCard();
+}
+
+// Fungsi untuk membuka pratinjau cetak kartu berdasarkan ID
+function cetakIdCardPetugas(idPetugas) {
+    let urlTarget = window.location.origin + window.location.pathname + "?petugas=" + idPetugas;
+    window.open(urlTarget, '_blank');
+}
 </script>
 </html>
