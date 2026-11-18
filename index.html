@@ -260,7 +260,9 @@
     <i class="fa-solid fa-chevron-right text-light fs-6"></i>
   </div>
 </div>
-</div>
+   </div>
+      </div>
+    </div>
     <div class="container-fluid py-2 px-2">
       <div id="btnBackHeader" class="d-none mb-3 no-print bg-white p-2 rounded shadow-sm d-flex justify-content-between align-items-center">
         <button class="btn btn-outline-success btn-sm fw-bold px-3 py-1" onclick="backToHub()">
@@ -405,6 +407,7 @@
           </div>
         </div>
       </div>
+
       <div id="menuPetugas" class="menu-section d-none">
         <div class="row row-5cols mb-2 no-print">
           <div><div class="stat-card-mini rt1"><div class="stat-mini-title">1. OPERATOR</div><div class="stat-mini-value text-success" id="cardPtgOperator">0</div></div></div>
@@ -661,6 +664,7 @@
       </div>
     </div>
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
@@ -2106,6 +2110,7 @@
 
   if (keyword !== "") {
     contacts = contacts.filter(function(c) {
+      // Menyesuaikan dengan berbagai kemungkinan nama kolom header di Google Sheets
       var nama = String(c["Nama"] || c["Nama Lengkap"] || c["col_1"] || "").toLowerCase();
       var jabatan = String(c["Jabatan"] || c["col_2"] || "").toLowerCase();
       var wilayah = String(c["Wilayah"] || c["col_3"] || "").toLowerCase();
@@ -2120,12 +2125,14 @@
 
   container.innerHTML = contacts.map(function(c) {
     var rowIndex = c.rowIndex || "";
+    // Menangkap berbagai variasi nama kolom dari Google Sheets
     var nama = c["Nama"] || c["Nama Lengkap"] || c["col_1"] || "-";
     var jabatan = c["Jabatan"] || c["col_2"] || "-";
     var wilayah = c["Wilayah"] || c["col_3"] || "-";
     var rawHp = String(c["No HP"] || c["NoHP"] || c["No. HP"] || c["col_4"] || "").replace(/[^0-9]/g, '');
     var status = c["Status"] || c["col_5"] || "Aktif";
     
+    // Penanganan URL Foto yang aman dari Google Drive / Link Eksternal
     var fotoUrl = c["URL Foto"] || c["UrlFoto"] || c["urlFoto"] || c["FotoUrl"] || c["col_6"] || "";
     if (fotoUrl && fotoUrl.indexOf("drive.google.com") !== -1) {
       var fileIdMatch = fotoUrl.match(/\/d\/([a-zA-Z0-9_-]+)/) || fotoUrl.match(/id=([a-zA-Z0-9_-]+)/);
@@ -2165,9 +2172,8 @@
   }).join('');
 }
   </script>
-
   <!-- Container Tampilan Verifikasi Riwayat Iuran -->
-  <div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); z-index:9999; justify-content:center; align-items:center;">
+<div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); z-index:9999; display:flex; justify-content:center; align-items:center;">
     <div style="background:white; padding:25px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.15); width:100%; max-width:500px; border-top:5px solid #107b4d; font-family: Arial, sans-serif;">
         <h3 style="text-align:center; color:#107b4d; margin-bottom:20px;">Verifikasi Riwayat Iuran</h3>
         <p style="margin: 8px 0;"><strong>ID Card:</strong> <span id="v-id">-</span></p>
@@ -2194,67 +2200,69 @@
             <button onclick="bukaAplikasiUtama()" style="background:#107b4d; color:white; padding:12px 20px; border:none; border-radius:5px; cursor:pointer; width:100%; font-weight:bold; font-size:14px;">Buka Aplikasi Utama</button>
         </div>
     </div>
-  </div>
+</div>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const idParam = urlParams.get('id');
+      const verifContainer = document.getElementById('verifikasi-container');
 
-  <script>
-    window.addEventListener('DOMContentLoaded', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const idParam = urlParams.get('id');
-        const verifContainer = document.getElementById('verifikasi-container');
+      if (idParam) {
+          // JIKA ADA PARAMETER ID: Sembunyikan login, tampilkan kotak verifikasi
+          const loginWrapper = document.getElementById('loginPageWrapper');
+          if (loginWrapper) loginWrapper.style.display = 'none';
+          
+          const appContent = document.getElementById('appContent');
+          if (appContent) appContent.style.display = 'none';
 
-        if (idParam) {
-            const loginWrapper = document.getElementById('loginPageWrapper');
-            if (loginWrapper) loginWrapper.style.display = 'none';
-            
-            const appContent = document.getElementById('appContent');
-            if (appContent) appContent.style.display = 'none';
+          if (verifContainer) verifContainer.style.display = 'flex';
 
-            if (verifContainer) verifContainer.style.display = 'flex';
+          // Ganti dengan URL Web App Google Apps Script Anda yang aktif
+          const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec"; 
 
-            const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec"; 
+          fetch(`${WEB_APP_URL}?id=${idParam}`)
+              .then(response => response.json())
+              .then(data => {
+                  if (data && data.success && data.warga) {
+                      document.getElementById('v-id').innerText = data.warga.idCard || idParam;
+                      document.getElementById('v-nama').innerText = data.warga.nama || '-';
+                      
+                      let alamatLengkap = `RT ${data.warga.rt || '-'} / RW ${data.warga.rw || '-'} (No. ${data.warga.noRumah || '-'})`;
+                      document.getElementById('v-alamat').innerText = alamatLengkap;
 
-            fetch(`${WEB_APP_URL}?id=${idParam}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data && data.success && data.warga) {
-                        document.getElementById('v-id').innerText = data.warga.idCard || idParam;
-                        document.getElementById('v-nama').innerText = data.warga.nama || '-';
-                        
-                        let alamatLengkap = `RT ${data.warga.rt || '-'} / RW ${data.warga.rw || '-'} (No. ${data.warga.noRumah || '-'})`;
-                        document.getElementById('v-alamat').innerText = alamatLengkap;
+                      let tbody = document.getElementById('v-tbody');
+                      if (tbody && data.riwayat) {
+                          tbody.innerHTML = '';
+                          data.riwayat.forEach(function(item, index) {
+                              let statusStr = String(item.status || "Belum Lunas");
+                              let badgeColor = statusStr.toLowerCase() === 'lunas' ? '#198754' : '#dc3545';
+                              let jumlahFormatted = Number(item.jumlahIuran || 0).toLocaleString('id-ID');
+                              
+                              let tr = `<tr>
+                                  <td style="padding:8px; border:1px solid #ddd; text-align:center;">${index + 1}</td>
+                                  <td style="padding:8px; border:1px solid #ddd;">${item.bulanTahun || '-'}</td>
+                                  <td style="padding:8px; border:1px solid #ddd;">Rp ${jumlahFormatted}</td>
+                                  <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${statusStr.toUpperCase()}</span></td>
+                              </tr>`;
+                              tbody.innerHTML += tr;
+                          });
+                      }
+                  } else {
+                      document.getElementById('v-nama').innerText = (data && data.message) ? data.message : "Data tidak ditemukan";
+                  }
+              })
+              .catch(error => {
+                  console.error('Gagal memuat data verifikasi:', error);
+              });
+      } else {
+          // JIKA TIDAK ADA PARAMETER ID: Pastikan kotak verifikasi benar-benar disembunyikan
+          if (verifContainer) verifContainer.style.display = 'none';
+      }
+  });
 
-                        let tbody = document.getElementById('v-tbody');
-                        if (tbody && data.riwayat) {
-                            tbody.innerHTML = '';
-                            data.riwayat.forEach(function(item, index) {
-                                let statusStr = String(item.status || "Belum Lunas");
-                                let badgeColor = statusStr.toLowerCase() === 'lunas' ? '#198754' : '#dc3545';
-                                let jumlahFormatted = Number(item.jumlahIuran || 0).toLocaleString('id-ID');
-                                
-                                let tr = `<tr>
-                                    <td style="padding:8px; border:1px solid #ddd; text-align:center;">${index + 1}</td>
-                                    <td style="padding:8px; border:1px solid #ddd;">${item.bulanTahun || '-'}</td>
-                                    <td style="padding:8px; border:1px solid #ddd;">Rp ${jumlahFormatted}</td>
-                                    <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${statusStr.toUpperCase()}</span></td>
-                                </tr>`;
-                                tbody.innerHTML += tr;
-                            });
-                        }
-                    } else {
-                        document.getElementById('v-nama').innerText = (data && data.message) ? data.message : "Data tidak ditemukan";
-                    }
-                })
-                .catch(error => {
-                    console.error('Gagal memuat data verifikasi:', error);
-                });
-        } else {
-            if (verifContainer) verifContainer.style.display = 'none';
-        }
-    });
-
-    function bukaAplikasiUtama() {
-        window.location.href = window.location.origin + window.location.pathname;
-    }
-  </script>
+  function bukaAplikasiUtama() {
+      window.location.href = window.location.origin + window.location.pathname;
+  }
+</script>
 </body>
 </html>
