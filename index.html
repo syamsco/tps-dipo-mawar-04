@@ -2128,7 +2128,7 @@
     
     var fotoUrl = c["URL Foto"] || c["UrlFoto"] || c["urlFoto"] || c["FotoUrl"] || c["col_6"] || "";
     if (fotoUrl && fotoUrl.indexOf("drive.google.com") !== -1) {
-      var fileIdMatch = fotoUrl.match(/\/d\/([a-zA-Z0-9_-]+/) || fotoUrl.match(/id=([a-zA-Z0-9_-]+)/);
+      var fileIdMatch = fotoUrl.match(/\/d\/([a-zA-Z0-9_-]+)/) || fotoUrl.match(/id=([a-zA-Z0-9_-]+)/);
       if (fileIdMatch) {
         fotoUrl = "https://lh3.googleusercontent.com/d/" + fileIdMatch[1];
       }
