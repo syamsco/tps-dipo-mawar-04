@@ -2777,6 +2777,35 @@ function cetakKartuIdCard(idx) {
     var baseURL = window.location.href.split('?')[0];
     window.open(baseURL + "?petugas=" + item.id, '_blank');
 }
+window.muatDataIdCard = function() {
+  var tbody = document.getElementById('tbodyIdCard');
+  if (!tbody) return;
+  tbody.innerHTML = '<tr><td colspan="7" class="text-center py-3 text-muted">Memuat data pengurus...</td></tr>';
+  if (typeof google !== 'undefined' && google.script && google.script.run) {
+    google.script.run
+      .withSuccessHandler(function(data) {
+        window.dataIdCardList = Array.isArray(data) ? data : [];
+        if (typeof renderIdCardTabel === 'function') renderIdCardTabel();
+      })
+      .withFailureHandler(function(err) {
+        tbody.innerHTML = '<tr><td colspan="7" class="text-center text-danger py-3">Gagal memuat data: ' + err + '</td></tr>';
+      })
+      .getDataIdCard();
+  }
+};
+
+window.bukaModalIdCard = function() {
+  if (typeof bukaModalIdCardCustom === 'function') {
+    bukaModalIdCardCustom();
+  } else if (typeof Swal !== 'undefined') {
+    Swal.fire({
+      title: 'Form ID Card Pengurus',
+      text: 'Silakan gunakan tombol Input Data untuk memasukkan data pengurus.',
+      icon: 'info',
+      confirmButtonColor: '#107b4d'
+    });
+  }
+};    
 </script>
 </body>
 </html>
