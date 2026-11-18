@@ -243,13 +243,7 @@
     </div>
     <i class="fa-solid fa-chevron-right text-light fs-6"></i>
   </div>
-   <div class="menu-card-item" onclick="openDetailMenu('menu-idcard'); muatDataIdCard();" style="background: rgba(16, 123, 77, 0.45); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
-    <div class="d-flex align-items-center gap-3">
-      <div style="width: 46px; height: 46px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"><i class="fa-solid fa-id-card" style="color: #107b4d;"></i></div>
-      <div><h6 class="fw-bold mb-0 text-white" style="font-size: 0.93rem;">ID CARD PENGURUS</h6><small style="color: #f8f9fa; font-size: 0.75rem;">Manajemen & Pencetakan Kartu Pengurus</small></div>
-    </div>
-    <i class="fa-solid fa-chevron-right text-light fs-6"></i>
-  </div>
+
   <div class="menu-card-item" onclick="openDetailMenu('menuTransaksi')" style="background: rgba(220, 53, 69, 0.45); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
     <div class="d-flex align-items-center gap-3">
       <div style="width: 46px; height: 46px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"><i class="fa-solid fa-truck-fast" style="color: #dc3545;"></i></div>
@@ -266,9 +260,7 @@
     <i class="fa-solid fa-chevron-right text-light fs-6"></i>
   </div>
 </div>
-   </div>
-      </div>
-    </div>
+</div>
     <div class="container-fluid py-2 px-2">
       <div id="btnBackHeader" class="d-none mb-3 no-print bg-white p-2 rounded shadow-sm d-flex justify-content-between align-items-center">
         <button class="btn btn-outline-success btn-sm fw-bold px-3 py-1" onclick="backToHub()">
@@ -413,40 +405,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Halaman Menu Id Card Pengurus -->
-    <div id="menu-idcard" class="menu-section d-none">
-    <div class="d-flex justify-content-between align-items-center mb-3 px-1 flex-wrap gap-2 no-print">
-    <h6 class="fw-bold mb-0 text-success fs-6"><i class="fa-solid fa-id-card me-2"></i>Pencetakan ID Card Pengurus</h6>
-    <div class="d-flex gap-2 align-items-center">
-    <button class="btn btn-green btn-sm py-1 px-2" style="font-size: 0.75rem; background-color: #107b4d; color: white;" onclick="bukaModalIdCard()"><i class="fa-solid fa-plus me-1"></i>Input Data</button>
-    <button class="btn btn-outline-secondary btn-sm py-1 px-2" style="font-size: 0.75rem;" onclick="muatDataIdCard()"><i class="fa-solid fa-rotate me-1"></i>Refresh</button>
-    </div>
-    </div>
-    
-    <!-- Tabel Data Id Card -->
-    <div class="table-responsive bg-white p-3 rounded shadow-sm">
-        <table class="table table-striped table-hover align-middle" style="font-size: 0.85rem;">
-            <thead style="background-color: #e8f5e9; color: #107b4d;">
-                <tr>
-                    <th>No</th>
-                    <th>ID</th>
-                    <th>Nama Lengkap</th>
-                    <th>NIK</th>
-                    <th>Alamat</th>
-                    <th>Kelurahan / Kecamatan</th>
-                    <th>Cetak Kartu</th>
-                </tr>
-            </thead>
-           <tbody id="tbodyIdCard">
-                <tr>
-                    <td colspan="7" style="text-align: center; color: #666; padding: 20px;">Memuat data...</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
       <div id="menuPetugas" class="menu-section d-none">
         <div class="row row-5cols mb-2 no-print">
           <div><div class="stat-card-mini rt1"><div class="stat-mini-title">1. OPERATOR</div><div class="stat-mini-value text-success" id="cardPtgOperator">0</div></div></div>
@@ -703,7 +661,6 @@
       </div>
     </div>
   </div>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
@@ -822,7 +779,7 @@
       if (sectionId === 'menuTransaksi') titleEl.innerText = "Status TPS - TPA";
       if (sectionId === 'menuContactCenter') titleEl.innerText = "Contact Center & Pengurus TPS";
       if (sectionId === 'menuBayarIuran') titleEl.innerText = "Manajemen Pembayaran Iuran Warga";
-      if (sectionId === 'menu-idcard') titleEl.innerText = "Pencetakan ID Card Pengurus"; // <-- Tambahkan baris ini
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -1129,130 +1086,6 @@
         }
       });
     }
-    // 2. Fungsi membuka form Input Data ID Card (Auto-fill dari Petugas, Alamat manual)
-  function bukaModalIdCard() {
-      Swal.fire({ title: 'Memuat data petugas...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
-      
-      google.script.run.withSuccessHandler(function(listPetugas) {
-          var optionsHtml = '<option value="">-- Pilih Petugas / Pengurus --</option>';
-          if (Array.isArray(listPetugas) && listPetugas.length > 0) {
-              listPetugas.forEach(function(p) {
-                  optionsHtml += '<option value="' + p.nama + '" data-jabatan="' + p.jabatan + '" data-rt="' + p.rt + '" data-rw="' + p.rw + '">' + p.nama + (p.jabatan ? ' (' + p.jabatan + ')' : '') + '</option>';
-              });
-          }
-
-          Swal.fire({
-              title: 'Input Data ID Card Pengurus',
-              html: 
-                  '<form id="formInputIdCard" style="text-align:left; font-size:12px;">' +
-                      '<div class="mb-2"><label class="form-label fw-bold text-success">Tarik Data Petugas (Auto-Fill)</label>' +
-                          '<select id="icSelectPetugas" class="form-select form-select-sm" onchange="pilihPetugasOtomatis(this)">' + optionsHtml + '</select>' +
-                      '</div>' +
-                      '<div class="mb-2"><label class="form-label fw-bold">Nama Lengkap</label><input type="text" id="icNama" class="form-control form-control-sm" required></div>' +
-                      '<div class="mb-2"><label class="form-label fw-bold">NIK KTP</label><input type="text" id="icNik" class="form-control form-control-sm" required placeholder="Masukkan 16 digit NIK KTP"></div>' +
-                      '<div class="mb-2"><label class="form-label fw-bold">Jabatan</label>' +
-                          '<select id="icJabatan" class="form-select form-select-sm">' +
-                              '<option value="OPERATOR">OPERATOR</option>' +
-                              '<option value="ADMIN">ADMIN</option>' +
-                              '<option value="COOR RT">COOR RT</option>' +
-                              '<option value="COOR UMUM">COOR UMUM</option>' +
-                              '<option value="KETUA">KETUA</option>' +
-                              '<option value="ADVISOR">ADVISOR</option>' +
-                          '</select>' +
-                      '</div>' +
-                      '<div class="mb-2"><label class="form-label fw-bold">Alamat Lengkap (Isi Manual)</label><input type="text" id="icAlamat" class="form-control form-control-sm" placeholder="Contoh: Gg. Ramli 2 No. 111" required></div>' +
-                      '<div class="row g-2 mb-2">' +
-                          '<div class="col-6"><label class="form-label fw-bold">RT</label>' +
-                              '<select id="icRt" class="form-select form-select-sm">' +
-                                  '<option value="01">RT 01</option><option value="02">RT 02</option><option value="03">RT 03</option>' +
-                                  '<option value="04">RT 04</option><option value="05">RT 05</option><option value="06">RT 06</option><option value="07">RT 07</option>' +
-                              '</select>' +
-                          '</div>' +
-                          '<div class="col-6"><label class="form-label fw-bold">RW</label>' +
-                              '<select id="icRw" class="form-select form-select-sm">' +
-                                  '<option value="01">RW 01</option><option value="02">RW 02</option><option value="03">RW 03</option>' +
-                                  '<option value="04" selected>RW 04</option><option value="05">RW 05</option><option value="06">RW 06</option><option value="07">RW 07</option>' +
-                              '</select>' +
-                          '</div>' +
-                      '</div>' +
-                      '<div class="row g-2 mb-2">' +
-                          '<div class="col-4"><label class="form-label fw-bold">Kelurahan</label><input type="text" id="icKel" class="form-control form-control-sm" value="Ratu Jaya"></div>' +
-                          '<div class="col-4"><label class="form-label fw-bold">Kecamatan</label><input type="text" id="icKec" class="form-control form-control-sm" value="Cipayung"></div>' +
-                          '<div class="col-4"><label class="form-label fw-bold">Kota</label><input type="text" id="icKota" class="form-control form-control-sm" value="Depok"></div>' +
-                      '</div>' +
-                      '<div class="mb-2"><label class="form-label fw-bold text-success">Upload Foto Pengurus</label>' +
-                      '<input type="file" id="icFileFoto" class="form-control form-control-sm" accept="image/*" required></div>' +
-                  '</form>',
-              showCancelButton: true,
-              confirmButtonText: 'Simpan Data',
-              cancelButtonText: 'Batal',
-              confirmButtonColor: '#107b4d',
-              preConfirm: function() {
-                  var nama = document.getElementById('icNama').value;
-                  var nik = document.getElementById('icNik').value;
-                  var alamat = document.getElementById('icAlamat').value;
-                  var fileInput = document.getElementById('icFileFoto');
-                  if (!nama || !nik || !alamat) {
-                      Swal.showValidationMessage('Nama, NIK, dan Alamat wajib diisi!');
-                      return false;
-                  }
-                  return new Promise(function(resolve) {
-                      var formData = {
-                          nama: nama,
-                          nik: nik,
-                          jabatan: document.getElementById('icJabatan').value,
-                          alamat: alamat,
-                          rt: document.getElementById('icRt').value,
-                          rw: document.getElementById('icRw').value,
-                          kelurahan: document.getElementById('icKel').value,
-                          kecamatan: document.getElementById('icKec').value,
-                          kota: document.getElementById('icKota').value
-                      };
-
-                      if (fileInput && fileInput.files.length > 0) {
-                          var file = fileInput.files[0];
-                          var reader = new FileReader();
-                          reader.onload = function(evt) {
-                              var img = new Image();
-                              img.src = evt.target.result;
-                              img.onload = function() {
-                                  var canvas = document.createElement('canvas');
-                                  var MAX_WIDTH = 500;
-                                  var scaleSize = MAX_WIDTH / img.width;
-                                  canvas.width = scaleSize < 1 ? MAX_WIDTH : img.width;
-                                  canvas.height = scaleSize < 1 ? img.height * scaleSize : img.height;
-                                  var ctx = canvas.getContext('2d');
-                                  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                                  
-                                  formData.fileData = canvas.toDataURL('image/jpeg', 0.8).split(',')[1];
-                                  formData.fileName = file.name;
-                                  formData.fileMime = 'image/jpeg';
-                                  resolve(formData);
-                              };
-                          };
-                          reader.readAsDataURL(file);
-                      } else {
-                          resolve(formData);
-                      }
-                  });
-              }
-          }).then(function(result) {
-              if (result.isConfirmed) {
-                  Swal.fire({ title: 'Menyimpan data pengurus...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
-                  google.script.run
-                      .withSuccessHandler(function(res) {
-                          if (res && res.success) {
-                              Swal.fire('Berhasil!', res.message, 'success');
-                              muatDataIdCard();
-                          } else {
-                              Swal.fire('Gagal', (res ? res.message : 'Terjadi kesalahan'), 'error');
-                          }
-                      })
-                      .simpanDataIdCard(result.value);
-              }
-          });
-      }).getListPetugasForIdCard();
-  }
 
     function bukaFormKartuIuran() {
       Swal.fire({
@@ -2072,8 +1905,8 @@
 
       var displayPhoto = (fotoUrl && fotoUrl.trim() !== '') ? fotoUrl : 'https://ui-avatars.com/api/?name=' + encodeURIComponent(nama) + '&background=107b4d&color=ffffff&bold=true&size=128';
       var logoUrl = "https://lh3.googleusercontent.com/d/1fRso7wL4d0YVMxWpo7a1RgL4ZJrJOgf8";
-      var githubPagesUrl = "https://syamsco.github.io/tps-dipo-mawar-04/";
-      var qrText = encodeURIComponent(githubPagesUrl + "?id=" + idWarga);
+      var webAppUrl = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec";
+      var qrText = encodeURIComponent(webAppUrl + "?id=" + idWarga);
       var qrCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=" + qrText;   
 
       var fotoDriveContact = "https://drive.google.com/file/d/1mOlaZ9rpoUJ1fqXJaUBu-t_d80ghjkff/view?usp=drive_link";
@@ -2273,7 +2106,6 @@
 
   if (keyword !== "") {
     contacts = contacts.filter(function(c) {
-      // Menyesuaikan dengan berbagai kemungkinan nama kolom header di Google Sheets
       var nama = String(c["Nama"] || c["Nama Lengkap"] || c["col_1"] || "").toLowerCase();
       var jabatan = String(c["Jabatan"] || c["col_2"] || "").toLowerCase();
       var wilayah = String(c["Wilayah"] || c["col_3"] || "").toLowerCase();
@@ -2288,17 +2120,15 @@
 
   container.innerHTML = contacts.map(function(c) {
     var rowIndex = c.rowIndex || "";
-    // Menangkap berbagai variasi nama kolom dari Google Sheets
     var nama = c["Nama"] || c["Nama Lengkap"] || c["col_1"] || "-";
     var jabatan = c["Jabatan"] || c["col_2"] || "-";
     var wilayah = c["Wilayah"] || c["col_3"] || "-";
     var rawHp = String(c["No HP"] || c["NoHP"] || c["No. HP"] || c["col_4"] || "").replace(/[^0-9]/g, '');
     var status = c["Status"] || c["col_5"] || "Aktif";
     
-    // Penanganan URL Foto yang aman dari Google Drive / Link Eksternal
     var fotoUrl = c["URL Foto"] || c["UrlFoto"] || c["urlFoto"] || c["FotoUrl"] || c["col_6"] || "";
     if (fotoUrl && fotoUrl.indexOf("drive.google.com") !== -1) {
-      var fileIdMatch = fotoUrl.match(/\/d\/([a-zA-Z0-9_-]+)/) || fotoUrl.match(/id=([a-zA-Z0-9_-]+)/);
+      var fileIdMatch = fotoUrl.match(/\/d\/([a-zA-Z0-9_-]+/) || fotoUrl.match(/id=([a-zA-Z0-9_-]+)/);
       if (fileIdMatch) {
         fotoUrl = "https://lh3.googleusercontent.com/d/" + fileIdMatch[1];
       }
@@ -2335,378 +2165,96 @@
   }).join('');
 }
   </script>
+
   <!-- Container Tampilan Verifikasi Riwayat Iuran -->
-<div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.98); z-index:9999; justify-content:center; align-items:center; padding: 15px; box-sizing: border-box;">
-    <div style="background:white; padding:20px; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.15); width:100%; max-width:450px; border-top:5px solid #107b4d; font-family: Arial, sans-serif; box-sizing: border-box;">
-        <h4 style="text-align:center; color:#107b4d; margin-bottom:15px; font-size: 1.1rem; font-weight: bold;">Verifikasi Riwayat Iuran</h4>
+  <div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); z-index:9999; justify-content:center; align-items:center;">
+    <div style="background:white; padding:25px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.15); width:100%; max-width:500px; border-top:5px solid #107b4d; font-family: Arial, sans-serif;">
+        <h3 style="text-align:center; color:#107b4d; margin-bottom:20px;">Verifikasi Riwayat Iuran</h3>
+        <p style="margin: 8px 0;"><strong>ID Card:</strong> <span id="v-id">-</span></p>
+        <p style="margin: 8px 0;"><strong>Nama Warga:</strong> <span id="v-nama">-</span></p>
+        <p style="margin: 8px 0;"><strong>Alamat:</strong> <span id="v-alamat">-</span></p>
         
-        <!-- Indikator Loading -->
-        <div id="v-loading" style="text-align:center; padding: 25px; color: #666; font-size: 0.9rem;">
-            <i class="fa-solid fa-spinner fa-spin fa-2x mb-2 text-success"></i><br>Memuat data verifikasi...
+        <div style="max-height: 250px; overflow-y: auto; margin-top: 15px;">
+            <table style="width:100%; border-collapse:collapse; text-align: left;">
+                <thead>
+                    <tr style="background:#e8f5e9; color:#107b4d;">
+                        <th style="padding:10px; border:1px solid #ddd; text-align:center;">No</th>
+                        <th style="padding:10px; border:1px solid #ddd;">Bulan / Tahun</th>
+                        <th style="padding:10px; border:1px solid #ddd;">Jumlah</th>
+                        <th style="padding:10px; border:1px solid #ddd; text-align:center;">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="v-tbody">
+                    <!-- Data akan dirender secara dinamis -->
+                </tbody>
+            </table>
         </div>
 
-        <!-- Konten Utama -->
-        <div id="v-content" style="display:none;">
-            <p style="margin: 5px 0; font-size: 0.85rem;"><strong>ID Card:</strong> <span id="v-id">-</span></p>
-            <p style="margin: 5px 0; font-size: 0.85rem;"><strong>Nama Warga:</strong> <span id="v-nama">-</span></p>
-            <p style="margin: 5px 0; font-size: 0.85rem;"><strong>Alamat:</strong> <span id="v-alamat">-</span></p>
-            
-            <div style="margin-top: 10px; border: 1px solid #ddd; border-radius: 6px; width: 100%; background: #fff; overflow: hidden;">
-                <table style="width:100%; border-collapse:collapse; text-align: left; font-size: 0.72rem; table-layout: fixed;">
-                    <thead>
-                        <tr style="background:#e8f5e9; color:#107b4d;">
-                            <th style="padding:6px 2px; border-bottom:1px solid #ddd; text-align:center; width:12%;">No</th>
-                            <th style="padding:6px 4px; border-bottom:1px solid #ddd; width:38%;">Bulan / Tahun</th>
-                            <th style="padding:6px 4px; border-bottom:1px solid #ddd; width:30%;">Jumlah</th>
-                            <th style="padding:6px 2px; border-bottom:1px solid #ddd; text-align:center; width:20%;">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="v-tbody">
-                        <!-- Data dirender dinamis -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div style="text-align:center; margin-top:15px;">
-            <button onclick="bukaAplikasiUtama()" style="background:#107b4d; color:white; padding:10px 16px; border:none; border-radius:6px; cursor:pointer; width:100%; font-weight:bold; font-size:0.9rem;">Buka Aplikasi Utama</button>
+        <div style="text-align:center; margin-top:25px;">
+            <button onclick="bukaAplikasiUtama()" style="background:#107b4d; color:white; padding:12px 20px; border:none; border-radius:5px; cursor:pointer; width:100%; font-weight:bold; font-size:14px;">Buka Aplikasi Utama</button>
         </div>
     </div>
-</div>
-<script>
-  window.addEventListener('DOMContentLoaded', function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec"; 
+  </div>
 
-    // ==========================================
-    // 1. PENANGANAN VERIFIKASI WARGA (?id=...)
-    // ==========================================
-    const idParam = urlParams.get('id');
-    const verifContainer = document.getElementById('verifikasi-container');
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const idParam = urlParams.get('id');
+        const verifContainer = document.getElementById('verifikasi-container');
 
-    if (idParam) {
-        const loginWrapper = document.getElementById('loginPageWrapper');
-        if (loginWrapper) loginWrapper.style.display = 'none';
-        
-        const appContent = document.getElementById('appContent');
-        if (appContent) appContent.style.display = 'none';
-
-        if (verifContainer) verifContainer.style.display = 'flex';
-
-        fetch(`${WEB_APP_URL}?id=${idParam}`)
-            .then(response => response.json())
-            .then(data => {
-                let vLoading = document.getElementById('v-loading');
-                let vContent = document.getElementById('v-content');
-                if (vLoading) vLoading.style.display = 'none';
-                if (vContent) vContent.style.display = 'block';
-
-                if (data && data.success && data.warga) {
-                    document.getElementById('v-id').innerText = data.warga.idCard || idParam;
-                    document.getElementById('v-nama').innerText = data.warga.nama || '-';
-                    
-                    let alamatLengkap = `RT ${data.warga.rt || '-'} / RW ${data.warga.rw || '-'} (No. ${data.warga.noRumah || '-'})`;
-                    document.getElementById('v-alamat').innerText = alamatLengkap;
-
-                    let tbody = document.getElementById('v-tbody');
-                    if (tbody && data.riwayat) {
-                        tbody.innerHTML = '';
-                        data.riwayat.forEach(function(item, index) {
-                            let statusStr = String(item.status || "Belum Lunas");
-                            let badgeColor = statusStr.toLowerCase() === 'lunas' ? '#198754' : '#dc3545';
-                            let jumlahFormatted = Number(item.jumlahIuran || 0).toLocaleString('id-ID');
-                            
-                            let tr = `<tr>
-                                <td style="padding:5px 2px; border-bottom:1px solid #eee; text-align:center; vertical-align:middle;">${index + 1}</td>
-                                <td style="padding:5px 4px; border-bottom:1px solid #eee; vertical-align:middle; word-break: break-word; font-size: 0.7rem;">${item.bulanTahun || '-'}</td>
-                                <td style="padding:5px 4px; border-bottom:1px solid #eee; vertical-align:middle; font-size: 0.7rem; white-space: nowrap;">Rp ${jumlahFormatted}</td>
-                                <td style="padding:5px 2px; border-bottom:1px solid #eee; text-align:center; vertical-align:middle;"><span style="background:${badgeColor}; color:white; padding:2px 4px; border-radius:3px; font-size:8.5px; font-weight:bold; white-space:nowrap; display:inline-block;">${statusStr.toUpperCase()}</span></td>
-                            </tr>`;
-                            tbody.innerHTML += tr;
-                        });
-                    }
-                } else {
-                    if (vContent) {
-                        vContent.innerHTML = `<p style="text-align:center; color:#dc3545; font-weight:bold; padding:15px 0;">${(data && data.message) ? data.message : "Data tidak ditemukan"}</p>`;
-                    }
-                }
-            })
-            .catch(error => {
-                console.error('Gagal memuat data verifikasi:', error);
-                let vLoading = document.getElementById('v-loading');
-                if (vLoading) vLoading.innerHTML = '<span style="color:#dc3545;">Gagal terhubung ke server. Periksa koneksi Anda.</span>';
-            });
-    } else {
-        if (verifContainer) verifContainer.style.display = 'none';
-    }
-
-    // ==========================================
-    // 2. PENANGANAN ID CARD PETUGAS (?petugas=...)
-    // ==========================================
-    const petugasParam = urlParams.get('petugas');
-    const petugasContainer = document.getElementById('petugas-container');
-
-    if (petugasParam) {
-        const loginWrapper = document.getElementById('loginPageWrapper');
-        if (loginWrapper) loginWrapper.style.display = 'none';
-
-        const appContent = document.getElementById('appContent');
-        if (appContent) appContent.style.display = 'none';
-
-        if (petugasContainer) petugasContainer.style.display = 'flex';
-
-        fetch(`${WEB_APP_URL}?petugas=${petugasParam}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.success && data.petugas) {
-                    document.getElementById('p-id').innerText = data.petugas.id || petugasParam;
-                    document.getElementById('p-nama').innerText = data.petugas.nama || '-';
-                    document.getElementById('p-nik').innerText = data.petugas.nik || '-';
-                    document.getElementById('p-alamat').innerText = data.petugas.alamat || '-';
-                    document.getElementById('p-rt').innerText = data.petugas.rt || '-';
-                    document.getElementById('p-rw').innerText = data.petugas.rw || '-';
-                    document.getElementById('p-kelurahan').innerText = data.petugas.kelurahan || '-';
-                    document.getElementById('p-jabatan').innerText = data.petugas.jabatan || '-';
-                    
-                    if (data.petugas.barcode) {
-                        document.getElementById('p-barcode').src = data.petugas.barcode;
-                    }
-                    if (data.petugas.foto && data.petugas.foto.trim() !== '') {
-                        document.getElementById('p-foto').src = data.petugas.foto;
-                    }
-                } else {
-                    console.warn('Data petugas tidak ditemukan di database');
-                }
-            })
-            .catch(error => {
-                console.error('Gagal memuat data petugas:', error);
-            });
-    } else {
-        if (petugasContainer) petugasContainer.style.display = 'none';
-    }
-});
-
-  function bukaAplikasiUtama() {
-      window.location.href = window.location.origin + window.location.pathname;
-  }
-</script>
-</body>
-<!-- Container Tampilan Verifikasi ID Card Pengurus -->
-<div id="petugas-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.98); z-index:9999; justify-content:center; align-items:center; padding: 15px; box-sizing: border-box;">
-    <div style="background:white; padding:20px; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.15); width:100%; max-width:400px; border-top:5px solid #107b4d; font-family: Arial, sans-serif; box-sizing: border-box; text-align: center;">
-        <h4 style="color:#107b4d; margin-bottom:15px; font-size: 1.1rem; font-weight: bold;">Kartu Anggota Pengurus Resmi</h4>
-        
-        <!-- Indikator Loading -->
-        <div id="p-loading" style="padding: 25px; color: #666; font-size: 0.9rem;">
-            <i class="fa-solid fa-spinner fa-spin fa-2x mb-2 text-success"></i><br>Memuat data ID Card...
-        </div>
-
-        <!-- Konten Kartu Pengurus -->
-        <div id="p-content" style="display:none; text-align: left;">
-            <!-- Foto Profil -->
-            <div style="text-align: center; margin-bottom: 15px;">
-                <img id="p-foto" src="https://via.placeholder.com/90" alt="Foto Pengurus" style="width: 95px; height: 95px; border-radius: 50%; object-fit: cover; border: 3px solid #107b4d;">
-            </div>
-
-            <div style="background: #e8f5e9; padding: 12px; border-radius: 8px; margin-bottom: 12px; border-left: 4px solid #107b4d;">
-                <p style="margin: 4px 0; font-size: 0.85rem;"><strong>ID Anggota:</strong> <span id="p-id">-</span></p>
-                <p style="margin: 4px 0; font-size: 0.85rem;"><strong>Nama Lengkap:</strong> <span id="p-nama">-</span></p>
-                <p style="margin: 4px 0; font-size: 0.85rem;"><strong>NIK:</strong> <span id="p-nik">-</span></p>
-            </div>
+        if (idParam) {
+            const loginWrapper = document.getElementById('loginPageWrapper');
+            if (loginWrapper) loginWrapper.style.display = 'none';
             
-            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Alamat:</strong> <span id="p-alamat">-</span></p>
-            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Kelurahan:</strong> <span id="p-kelurahan">-</span></p>
-            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Kecamatan:</strong> <span id="p-kecamatan">-</span></p>
-            <p style="margin: 6px 0; font-size: 0.85rem;"><strong>Kota:</strong> <span id="p-kota">-</span></p>
-            <p style="margin: 8px 0 0 0; font-size: 0.85rem;"><strong>Status:</strong> <span style="background:#107b4d; color:white; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">PENGURUS AKTIF</span></p>
-        </div>
+            const appContent = document.getElementById('appContent');
+            if (appContent) appContent.style.display = 'none';
 
-        <div style="text-align:center; margin-top:20px;">
-            <button onclick="bukaAplikasiUtama()" style="background:#107b4d; color:white; padding:10px 16px; border:none; border-radius:6px; cursor:pointer; width:100%; font-weight:bold; font-size:0.9rem;">Buka Aplikasi Utama</button>
-        </div>
-    </div>
-</div>
+            if (verifContainer) verifContainer.style.display = 'flex';
 
-<script>
-// Fungsi untuk membuka pratinjau cetak kartu berdasarkan ID
-function cetakIdCardPetugas(idPetugas) {
-    let urlTarget = window.location.origin + window.location.pathname + "?petugas=" + idPetugas;
-    window.open(urlTarget, '_blank');
-}
-// Variabel penyimpan data ID Card sementara untuk kebutuhan cetak
-var dataIdCardList = [];
-// 1. Fungsi menampilkan data ke tabel Pencetakan ID Card Pengurus
-function muatDataIdCard() {
-    var tbody = document.getElementById('tbodyIdCard');
-    if (!tbody) return;
-    tbody.innerHTML = '<tr><td colspan="7" class="text-center py-3">Memuat data pengurus...</td></tr>';
+            const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec"; 
 
-    google.script.run
-        .withSuccessHandler(function(data) {
-            var dataIdCardList = Array.isArray(data) ? data : [];
-            if (dataIdCardList.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" class="text-center py-3 text-muted">Belum ada data ID Card pengurus.</td></tr>';
-                return;
-            }
+            fetch(`${WEB_APP_URL}?id=${idParam}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.success && data.warga) {
+                        document.getElementById('v-id').innerText = data.warga.idCard || idParam;
+                        document.getElementById('v-nama').innerText = data.warga.nama || '-';
+                        
+                        let alamatLengkap = `RT ${data.warga.rt || '-'} / RW ${data.warga.rw || '-'} (No. ${data.warga.noRumah || '-'})`;
+                        document.getElementById('v-alamat').innerText = alamatLengkap;
 
-            var html = '';
-            dataIdCardList.forEach(function(item, idx) {
-                var rtFmt = item.rt ? ("0" + item.rt).slice(-2) : "-";
-                var rwFmt = item.rw ? ("0" + item.rw).slice(-2) : "-";
-                html += '<tr>' +
-                    '<td>' + (idx + 1) + '</td>' +
-                    '<td class="fw-bold text-success">' + item.id + '</td>' +
-                    '<td><div class="fw-bold">' + item.nama + '</div><small class="text-muted">' + (item.jabatan || '-') + '</small></td>' +
-                    '<td>' + item.nik + '</td>' +
-                    '<td>' + (item.alamat || '-') + ' (RT. ' + rtFmt + ' / RW. ' + rwFmt + ')</td>' +
-                    '<td>' + (item.kelurahan || '-') + ', ' + (item.kecamatan || '-') + '</td>' +
-                    '<td><button class="btn btn-sm btn-success" onclick="cetakKartuIdCard(' + idx + ')"><i class="bi bi-printer"></i> Cetak Kartu</button></td>' +
-                '</tr>';
-            });
-            tbody.innerHTML = html;
-        })
-        .withFailureHandler(function(err) {
-            tbody.innerHTML = '<tr><td colspan="7" class="text-center text-danger py-3">Gagal memuat data: ' + err + '</td></tr>';
-        })
-        .getDataIdCard();
-}
-
-        Swal.fire({
-            title: 'Input Data ID Card Pengurus',
-            html: 
-                '<form id="formInputIdCard" style="text-align:left; font-size:12px;">' +
-                    '<div class="mb-2"><label class="form-label fw-bold text-success">Tarik Data Petugas (Auto-Fill)</label>' +
-                        '<select id="icSelectPetugas" class="form-select form-select-sm" onchange="pilihPetugasOtomatis(this)">' + optionsHtml + '</select>' +
-                    '</div>' +
-                    '<div class="mb-2"><label class="form-label fw-bold">Nama Lengkap</label><input type="text" id="icNama" class="form-control form-control-sm" required></div>' +
-                    '<div class="mb-2"><label class="form-label fw-bold">NIK KTP</label><input type="text" id="icNik" class="form-control form-control-sm" required placeholder="Masukkan 16 digit NIK KTP"></div>' +
-                    '<div class="mb-2"><label class="form-label fw-bold">Jabatan</label>' +
-                        '<select id="icJabatan" class="form-select form-select-sm">' +
-                            '<option value="OPERATOR">OPERATOR</option>' +
-                            '<option value="ADMIN">ADMIN</option>' +
-                            '<option value="COOR RT">COOR RT</option>' +
-                            '<option value="COOR UMUM">COOR UMUM</option>' +
-                            '<option value="KETUA">KETUA</option>' +
-                            '<option value="ADVISOR">ADVISOR</option>' +
-                        '</select>' +
-                    '</div>' +
-                    '<div class="mb-2"><label class="form-label fw-bold">Alamat Lengkap (Isi Manual)</label><input type="text" id="icAlamat" class="form-control form-control-sm" placeholder="Contoh: Jl. Dipo Mawar No. 10" required></div>' +
-                    '<div class="row g-2 mb-2">' +
-                        '<div class="col-6"><label class="form-label fw-bold">RT</label>' +
-                            '<select id="icRt" class="form-select form-select-sm">' +
-                                '<option value="01">RT 01</option><option value="02">RT 02</option><option value="03">RT 03</option>' +
-                                '<option value="04">RT 04</option><option value="05">RT 05</option><option value="06">RT 06</option><option value="07">RT 07</option>' +
-                            '</select>' +
-                        '</div>' +
-                        '<div class="col-6"><label class="form-label fw-bold">RW</label>' +
-                            '<select id="icRw" class="form-select form-select-sm">' +
-                                '<option value="01">RW 01</option><option value="02">RW 02</option><option value="03">RW 03</option>' +
-                                '<option value="04" selected>RW 04</option><option value="05">RW 05</option><option value="06">RW 06</option><option value="07">RW 07</option>' +
-                            '</select>' +
-                        '</div>' +
-                    '</div>' +
-                    '<div class="row g-2 mb-2">' +
-                        '<div class="col-4"><label class="form-label fw-bold">Kelurahan</label><input type="text" id="icKel" class="form-control form-control-sm" value="Ratu Jaya"></div>' +
-                        '<div class="col-4"><label class="form-label fw-bold">Kecamatan</label><input type="text" id="icKec" class="form-control form-control-sm" value="Cipayung"></div>' +
-                        '<div class="col-4"><label class="form-label fw-bold">Kota</label><input type="text" id="icKota" class="form-control form-control-sm" value="Depok"></div>' +
-                    '</div>' +
-                    '<div class="mb-2"><label class="form-label fw-bold text-success">Upload Foto Pengurus</label>' +
-                    '<input type="file" id="icFileFoto" class="form-control form-control-sm" accept="image/*" required></div>' +
-                '</form>',
-            showCancelButton: true,
-            confirmButtonText: 'Simpan Data',
-            cancelButtonText: 'Batal',
-            confirmButtonColor: '#107b4d',
-            preConfirm: function() {
-                var nama = document.getElementById('icNama').value;
-                var nik = document.getElementById('icNik').value;
-                var alamat = document.getElementById('icAlamat').value;
-                var fileInput = document.getElementById('icFileFoto');
-                if (!nama || !nik || !alamat) {
-                    Swal.showValidationMessage('Nama, NIK, dan Alamat wajib diisi!');
-                    return false;
-                }
-                return new Promise(function(resolve) {
-                    var formData = {
-                        nama: nama,
-                        nik: nik,
-                        jabatan: document.getElementById('icJabatan').value,
-                        alamat: alamat,
-                        rt: document.getElementById('icRt').value,
-                        rw: document.getElementById('icRw').value,
-                        kelurahan: document.getElementById('icKel').value,
-                        kecamatan: document.getElementById('icKec').value,
-                        kota: document.getElementById('icKota').value
-                    };
-
-                    if (fileInput && fileInput.files.length > 0) {
-                        var file = fileInput.files[0];
-                        var reader = new FileReader();
-                        reader.onload = function(evt) {
-                            var img = new Image();
-                            img.src = evt.target.result;
-                            img.onload = function() {
-                                var canvas = document.createElement('canvas');
-                                var MAX_WIDTH = 500;
-                                var scaleSize = MAX_WIDTH / img.width;
-                                canvas.width = scaleSize < 1 ? MAX_WIDTH : img.width;
-                                canvas.height = scaleSize < 1 ? img.height * scaleSize : img.height;
-                                var ctx = canvas.getContext('2d');
-                                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        let tbody = document.getElementById('v-tbody');
+                        if (tbody && data.riwayat) {
+                            tbody.innerHTML = '';
+                            data.riwayat.forEach(function(item, index) {
+                                let statusStr = String(item.status || "Belum Lunas");
+                                let badgeColor = statusStr.toLowerCase() === 'lunas' ? '#198754' : '#dc3545';
+                                let jumlahFormatted = Number(item.jumlahIuran || 0).toLocaleString('id-ID');
                                 
-                                formData.fileData = canvas.toDataURL('image/jpeg', 0.8).split(',')[1];
-                                formData.fileName = file.name;
-                                formData.fileMime = 'image/jpeg';
-                                resolve(formData);
-                            };
-                        };
-                        reader.readAsDataURL(file);
+                                let tr = `<tr>
+                                    <td style="padding:8px; border:1px solid #ddd; text-align:center;">${index + 1}</td>
+                                    <td style="padding:8px; border:1px solid #ddd;">${item.bulanTahun || '-'}</td>
+                                    <td style="padding:8px; border:1px solid #ddd;">Rp ${jumlahFormatted}</td>
+                                    <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${statusStr.toUpperCase()}</span></td>
+                                </tr>`;
+                                tbody.innerHTML += tr;
+                            });
+                        }
                     } else {
-                        resolve(formData);
+                        document.getElementById('v-nama').innerText = (data && data.message) ? data.message : "Data tidak ditemukan";
                     }
+                })
+                .catch(error => {
+                    console.error('Gagal memuat data verifikasi:', error);
                 });
-            }
-        }).then(function(result) {
-              if (result.isConfirmed) {
-                  Swal.fire({ title: 'Menyimpan data pengurus...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
-                  google.script.run
-                      .withSuccessHandler(function(res) {
-                          if (res && res.success) {
-                              Swal.fire('Berhasil!', res.message, 'success');
-                              muatDataIdCard();
-                          } else {
-                              Swal.fire('Gagal', (res ? res.message : 'Terjadi kesalahan'), 'error');
-                          }
-                      })
-                      .simpanDataIdCard(result.value);
-              }
-          });
+        } else {
+            if (verifContainer) verifContainer.style.display = 'none';
+        }
+    });
 
-// 3. Fungsi Auto-Fill saat nama petugas dipilih (Alamat dibiarkan kosong untuk diisi manual)
-function pilihPetugasOtomatis(selectEl) {
-    var opt = selectEl.options[selectEl.selectedIndex];
-    if (opt.value) {
-        document.getElementById('icNama').value = opt.value;
-        
-        var jabatan = (opt.getAttribute('data-jabatan') || "").toUpperCase().trim();
-        if (jabatan) {
-            document.getElementById('icJabatan').value = jabatan;
-        }
-        
-        // Alamat sengaja dikosongkan agar diisi manual
-        document.getElementById('icAlamat').value = "";
-        
-        var rtRaw = (opt.getAttribute('data-rt') || "").replace(/\D/g, '');
-        if (rtRaw) {
-            document.getElementById('icRt').value = ("0" + rtRaw).slice(-2);
-        }
-        
-        var rwRaw = (opt.getAttribute('data-rw') || "").replace(/\D/g, '');
-        if (rwRaw) {
-            document.getElementById('icRw').value = ("0" + rwRaw).slice(-2);
-        }
+    function bukaAplikasiUtama() {
+        window.location.href = window.location.origin + window.location.pathname;
     }
-}
-
-</script>
+  </script>
+</body>
 </html>
