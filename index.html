@@ -2387,73 +2387,76 @@ function tutupIdCard() {
 }
 </script>
 </body>
-<!-- Container Tampilan Kartu Identitas Pengurus Resmi -->
+<!-- Container Tampilan Kartu Identitas Pengurus (Portrait / Vertikal Standar ATM/KTP) -->
 <div id="petugas-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,23,42,0.85); z-index:9999; justify-content:center; align-items:center; padding:20px; box-sizing:border-box; font-family:'Segoe UI', Roboto, sans-serif; backdrop-filter:blur(4px);">
   
-  <!-- 1. SISIPKAN ELEMEN LOADING DI SINI -->
-  <div id="p-loading" style="background:white; padding:20px; border-radius:12px; text-align:center; font-weight:bold; color:#0b5936; box-shadow:0 4px 15px rgba(0,0,0,0.2);">
-    <i class="fas fa-spinner fa-spin fa-2x mb-2"></i><br>Memuat data ID Card...
+  <div id="p-loading" style="background:white; padding:25px 35px; border-radius:12px; text-align:center; font-weight:bold; color:#0b5936; box-shadow:0 10px 25px rgba(0,0,0,0.3);">
+    <i class="fas fa-spinner fa-spin fa-2x" style="margin-bottom:10px;"></i><br>Memuat ID Card Pengurus...
   </div>
 
-  <!-- 2. TAMBAHKAN id="p-content" PADA KARTU UTAMA (DI-SET display:none AWALNYA) -->
-  <div id="p-content" style="display:none; width:340px; background:#ffffff; border-radius:16px; border:3px solid #0b5936; box-shadow:0 20px 40px rgba(0,0,0,0.3); overflow:hidden; text-align:center; flex-direction:column; position:relative;">
+  <div id="p-content" style="display:none; width:320px; height:510px; background:#ffffff; border-radius:14px; border:2px solid #0b5936; box-shadow:0 15px 35px rgba(0,0,0,0.4); overflow:hidden; text-align:center; flex-direction:column; position:relative; box-sizing:border-box;">
     
-    <!-- Header Kartu -->
-    <div style="background:linear-gradient(135deg, #0b5936 0%, #107b4d 100%); padding:16px 12px; color:#ffffff; border-bottom:4px solid #ffc107;">
-      <div style="font-size:9.5px; font-weight:700; letter-spacing:1.5px; color:#a7f3d0; text-transform:uppercase;">PEMERINTAH KOTA DEPOK</div>
-      <div style="font-size:14px; font-weight:900; letter-spacing:0.5px; color:#ffffff; margin-top:2px;">TPS DIPO MAWAR RW. 04</div>
-      <div style="font-size:8px; letter-spacing:1px; color:#ffc107; font-weight:600; margin-top:4px;">— KARTU IDENTITAS PENGURUS RESMI —</div>
+    <!-- Header Instansi dengan Logo Daur Ulang -->
+    <div style="background:linear-gradient(135deg, #0b5936 0%, #107b4d 100%); padding:12px 10px; color:#ffffff; border-bottom:4px solid #ffc107; display:flex; align-items:center; justify-content:space-between;">
+      <div style="text-align:left;">
+        <div style="font-size:8.5px; font-weight:700; letter-spacing:1px; color:#a7f3d0; text-transform:uppercase;">PEMERINTAH KOTA DEPOK</div>
+        <div style="font-size:12px; font-weight:900; letter-spacing:0.5px; color:#ffffff; margin-top:1px;">TPS DIPO MAWAR RW. 04</div>
+        <div style="font-size:7px; letter-spacing:0.8px; color:#ffc107; font-weight:600; margin-top:2px;">— KARTU IDENTITAS PENGURUS —</div>
+      </div>
+      <div style="width:34px; height:34px; background:white; border-radius:50%; padding:3px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.2);">
+        <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/267b.png" style="width:100%; height:100%; object-fit:contain;" alt="Logo Daur Ulang">
+      </div>
     </div>
+
     <!-- Body Kartu -->
-    <div style="padding:16px 20px; background:#f8fafc; text-align:left;">
+    <div style="padding:12px 16px; background:#f8fafc; flex:1; display:flex; flex-direction:column; justify-content:space-between; text-align:left;">
       
       <!-- Foto & Identitas Utama -->
-      <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px; background:#ffffff; padding:10px; border-radius:10px; border:1px solid #e2e8f0; box-shadow:0 2px 6px rgba(0,0,0,0.04);">
-        <div style="width:75px; height:90px; border-radius:6px; background:#fff; padding:2px; border:2px solid #107b4d; flex-shrink:0;">
-          <img id="p-foto" src="" style="width:100%; height:100%; object-fit:cover; border-radius:4px;" alt="Foto Petugas">
+      <div style="text-align:center;">
+        <div style="width:85px; height:105px; margin:0 auto 6px auto; border-radius:8px; background:#ffffff; padding:2px; border:2px solid #0b5936; box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+          <img id="p-foto" src="" style="width:100%; height:100%; object-fit:cover; border-radius:6px;" alt="Foto Petugas">
         </div>
-        <div style="overflow:hidden;">
-          <div id="p-nama" style="font-size:12px; font-weight:900; color:#0f172a; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">-</div>
-          <div id="p-jabatan" style="font-size:9px; font-weight:800; color:#0b5936; background:#d1e7dd; display:inline-block; padding:2px 8px; border-radius:10px; margin-top:3px; text-transform:uppercase;">-</div>
-          <div style="font-size:8px; color:#64748b; margin-top:4px;"><strong>ID:</strong> <span id="p-id" style="font-family:monospace; color:#0b5936; font-weight:bold;">-</span></div>
-        </div>
+        <div id="p-nama" style="font-size:12.5px; font-weight:900; color:#0f172a; text-transform:uppercase; letter-spacing:0.3px; line-height:1.2;">-</div>
+        <div id="p-jabatan" style="font-size:8px; font-weight:800; color:#0b5936; background:#d1e7dd; display:inline-block; padding:2px 8px; border-radius:10px; margin-top:3px; text-transform:uppercase; border:1px solid #badbcc;">-</div>
       </div>
 
-      <!-- Detail Informasi -->
-      <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:10px 12px; font-size:8.5px; color:#334155; line-height:1.5; margin-bottom:12px;">
-        <div><strong>NIK:</strong> <span id="p-nik" style="font-family:monospace;">-</span></div>
+      <!-- Detail Informasi (Alamat Rata Kiri / Left-Aligned) -->
+      <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:8px 10px; font-size:7.5px; color:#334155; line-height:1.4; text-align:left;">
+        <div style="margin-bottom:2px;"><strong>ID:</strong> <span id="p-id" style="font-family:monospace; color:#0b5936; font-weight:bold;">-</span></div>
+        <div style="margin-bottom:2px;"><strong>NIK:</strong> <span id="p-nik" style="font-family:monospace;">-</span></div>
         <div><strong>Alamat:</strong> <span id="p-alamat">-</span></div>
-        <div><strong>Wilayah:</strong> RT <span id="p-rt">-</span> / RW <span id="p-rw">-</span>, Kel. <span id="p-kelurahan">-</span></div>
       </div>
 
-      <!-- Status & QR Code Barcode -->
-      <div style="display:flex; align-items:center; justify-content:space-between; background:#ffffff; padding:10px; border-radius:8px; border:1px solid #cbd5e1;">
+      <!-- Status & QR Code Otomatis -->
+      <div style="display:flex; align-items:center; justify-content:space-between; background:#ffffff; padding:6px 10px; border-radius:8px; border:1px solid #cbd5e1;">
         <div>
-          <div style="background:#16a34a; color:#ffffff; padding:3px 8px; border-radius:12px; font-size:7.5px; font-weight:800; display:inline-block; margin-bottom:6px;">PENGURUS AKTIF</div>
-          <div style="font-size:7px; font-weight:800; color:#0b5936;">TERVERIFIKASI</div>
-          <div style="font-size:6px; color:#64748b;">Scan untuk validasi</div>
+          <div style="background:#16a34a; color:#ffffff; padding:2px 6px; border-radius:10px; font-size:6.5px; font-weight:800; display:inline-block; margin-bottom:3px;">PENGURUS AKTIF</div>
+          <div style="font-size:6px; font-weight:800; color:#0b5936; text-transform:uppercase;">TERVERIFIKASI</div>
+          <div style="font-size:5.5px; color:#64748b;">Scan untuk validasi</div>
         </div>
-        <div style="background:#fff; padding:3px; border:1px solid #cbd5e1; border-radius:4px;">
-          <img id="p-barcode" src="" style="width:55px; height:55px; display:block;" alt="QR Code">
+        <div style="background:#ffffff; padding:2px; border:1px solid #cbd5e1; border-radius:4px;">
+          <img id="p-barcode" src="" style="width:46px; height:46px; display:block;" alt="QR Code">
         </div>
       </div>
+
     </div>
 
-    <!-- Footer Card -->
-    <div style="background:#e2e8f0; padding:6px 12px; font-size:7.5px; color:#475569; font-weight:700; display:flex; justify-content:space-between; align-items:center; border-top:1px solid #cbd5e1;">
+    <!-- Footer Strip Bawah -->
+    <div style="background:#e2e8f0; padding:4px 10px; font-size:6.5px; color:#475569; font-weight:700; display:flex; justify-content:space-between; align-items:center; border-top:1px solid #cbd5e1;">
       <span>TPS DIPO MAWAR RW.04</span>
       <span>SEKRETARIAT RESMI</span>
     </div>
 
-    <!-- Tombol Aksi di Bawah Kartu -->
-    <div style="padding:12px; background:#f1f5f9; display:flex; gap:8px; border-top:1px solid #cbd5e1;">
-      <button onclick="window.print()" style="flex:1; background:#0b5936; color:white; border:none; padding:9px; border-radius:6px; font-weight:bold; font-size:9px; cursor:pointer; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+    <!-- Tombol Aksi -->
+    <div style="padding:8px 12px; background:#f1f5f9; display:flex; gap:8px; border-top:1px solid #cbd5e1;">
+      <button onclick="window.print()" style="flex:1; background:#0b5936; color:white; border:none; padding:8px; border-radius:6px; font-weight:bold; font-size:9px; cursor:pointer; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
         <i class="fas fa-print"></i> CETAK / PDF
       </button>
-      <button onclick="bukaAplikasiUtama()" style="flex:1; background:#64748b; color:white; border:none; padding:9px; border-radius:6px; font-weight:bold; font-size:9px; cursor:pointer;">
+      <button onclick="bukaAplikasiUtama()" style="flex:1; background:#64748b; color:white; border:none; padding:8px; border-radius:6px; font-weight:bold; font-size:9px; cursor:pointer;">
         TUTUP
       </button>
     </div>
+
   </div>
 </div>
 <script>
@@ -2519,7 +2522,7 @@ function tutupIdCard() {
         if (verifContainer) verifContainer.style.display = 'none';
     }
 
-    // ==========================================
+  // ==========================================
     // 2. PENANGANAN ID CARD PETUGAS (?petugas=...)
     // ==========================================
     const petugasParam = urlParams.get('petugas');
@@ -2546,23 +2549,20 @@ function tutupIdCard() {
                 let contentEl = document.getElementById('p-content');
                 
                 if (loadingEl) loadingEl.style.display = 'none';
-                if (contentEl) contentEl.style.display = 'flex'; // Menggunakan flex sesuai struktur container kartu
+                if (contentEl) contentEl.style.display = 'flex';
 
                 if (data && data.success && data.petugas) {
-                    document.getElementById('p-id').innerText = data.petugas.id || petugasParam;
+                    let idPetugas = data.petugas.id || petugasParam;
+                    document.getElementById('p-id').innerText = idPetugas;
                     document.getElementById('p-nama').innerText = data.petugas.nama || '-';
                     document.getElementById('p-nik').innerText = data.petugas.nik || '-';
                     document.getElementById('p-alamat').innerText = data.petugas.alamat || '-';
-                    document.getElementById('p-rt').innerText = data.petugas.rt || '-';
-                    document.getElementById('p-rw').innerText = data.petugas.rw || '-';
-                    document.getElementById('p-kelurahan').innerText = data.petugas.kelurahan || '-';
-                    document.getElementById('p-kecamatan').innerText = data.petugas.kecamatan || '-';
-                    document.getElementById('p-kota').innerText = data.petugas.kota || '-';
                     document.getElementById('p-jabatan').innerText = data.petugas.jabatan || '-';
                     
-                    if (data.petugas.barcode) {
-                        document.getElementById('p-barcode').src = data.petugas.barcode;
-                    }
+                    // Generate QR Code otomatis berdasarkan ID Petugas
+                    let currentUrl = window.location.origin + window.location.pathname + "?petugas=" + encodeURIComponent(idPetugas);
+                    document.getElementById('p-barcode').src = "https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=" + encodeURIComponent(currentUrl);
+
                     if (data.petugas.foto && data.petugas.foto.trim() !== '') {
                         document.getElementById('p-foto').src = data.petugas.foto;
                     } else {
@@ -2584,7 +2584,6 @@ function tutupIdCard() {
     } else {
         if (petugasContainer) petugasContainer.style.display = 'none';
     }
-});
   function bukaAplikasiUtama() {
       window.location.href = window.location.origin + window.location.pathname;
   }
