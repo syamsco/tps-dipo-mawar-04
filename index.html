@@ -212,63 +212,61 @@
         </div>
          
          <div class="mx-auto" style="max-width: 430px;">
-          <div class="menu-card-item" onclick="openDetailMenu('menuWarga')" style="background: rgba(108, 117, 125, 0.45); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
-            <div class="d-flex align-items-center gap-3">
-              <div style="width: 46px; height: 46px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"><i class="fa-solid fa-id-badge" style="color: #6c757d;"></i></div>
-              <div><h6 class="fw-bold mb-0 text-white" style="font-size: 0.93rem;">DATA WARGA</h6><small style="color: #f8f9fa; font-size: 0.75rem;">Kelola Pendataan Warga RT 01 - RT 07</small></div>
-            </div>
-            <i class="fa-solid fa-chevron-right text-light fs-6"></i>
-          </div>
+  <div class="menu-card-item" onclick="openDetailMenu('menuWarga')" style="background: rgba(108, 117, 125, 0.45); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+    <div class="d-flex align-items-center gap-3">
+      <div style="width: 46px; height: 46px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"><i class="fa-solid fa-id-badge" style="color: #6c757d;"></i></div>
+      <div><h6 class="fw-bold mb-0 text-white" style="font-size: 0.93rem;">DATA WARGA</h6><small style="color: #f8f9fa; font-size: 0.75rem;">Kelola Pendataan Warga RT 01 - RT 07</small></div>
+    </div>
+    <i class="fa-solid fa-chevron-right text-light fs-6"></i>
+  </div>
 
-          <div class="menu-card-item" onclick="openDetailMenu('menuKartuIuran')" style="background: rgba(13, 110, 253, 0.45); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
-            <div class="d-flex align-items-center gap-3">
-              <div style="width: 46px; height: 46px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"><i class="fa-solid fa-address-card" style="color: #0d6efd;"></i></div>
-              <div><h6 class="fw-bold mb-0 text-white" style="font-size: 0.93rem;">KARTU IURAN WARGA</h6><small style="color: #f8f9fa; font-size: 0.75rem;">Cetak Kartu Fisik & Tabel Ceklis (2026-2027)</small></div>
-            </div>
-            <i class="fa-solid fa-chevron-right text-light fs-6"></i>
-          </div>
+  <div class="menu-card-item" onclick="openDetailMenu('menuKartuIuran')" style="background: rgba(13, 110, 253, 0.45); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+    <div class="d-flex align-items-center gap-3">
+      <div style="width: 46px; height: 46px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"><i class="fa-solid fa-address-card" style="color: #0d6efd;"></i></div>
+      <div><h6 class="fw-bold mb-0 text-white" style="font-size: 0.93rem;">KARTU IURAN WARGA</h6><small style="color: #f8f9fa; font-size: 0.75rem;">Cetak Kartu Fisik & Tabel Ceklis (2026-2027)</small></div>
+    </div>
+    <i class="fa-solid fa-chevron-right text-light fs-6"></i>
+  </div>
 
-          <div class="menu-card-item" onclick="openDetailMenu('menuBayarIuran'); loadDataBayarIuran();" style="background: rgba(255, 193, 7, 0.45); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
-            <div class="d-flex align-items-center gap-3">
-              <div style="width: 46px; height: 46px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"><i class="fa-solid fa-wallet" style="color: #d99b00;"></i></div>
-              <div><h6 class="fw-bold mb-0 text-white" style="font-size: 0.93rem;">BAYAR IURAN</h6><small style="color: #f8f9fa; font-size: 0.75rem;">Manajemen Status & Pembayaran Iuran Warga</small></div>
-            </div>
-            <i class="fa-solid fa-chevron-right text-light fs-6"></i>
-          </div>
+  <div class="menu-card-item" onclick="openDetailMenu('menuBayarIuran'); loadDataBayarIuran();" style="background: rgba(255, 193, 7, 0.45); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+    <div class="d-flex align-items-center gap-3">
+      <div style="width: 46px; height: 46px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"><i class="fa-solid fa-wallet" style="color: #d99b00;"></i></div>
+      <div><h6 class="fw-bold mb-0 text-white" style="font-size: 0.93rem;">BAYAR IURAN</h6><small style="color: #f8f9fa; font-size: 0.75rem;">Manajemen Status & Pembayaran Iuran Warga</small></div>
+    </div>
+    <i class="fa-solid fa-chevron-right text-light fs-6"></i>
+  </div>
 
-          <div class="menu-card-item" onclick="openDetailMenu('menuPetugas')" style="background: rgba(255, 152, 0, 0.45); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
-            <div class="d-flex align-items-center gap-3">
-              <div style="width: 46px; height: 46px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"><i class="fa-solid fa-users-gear" style="color: #e67e22;"></i></div>
-              <div><h6 class="fw-bold mb-0 text-white" style="font-size: 0.93rem;">PETUGAS TPS</h6><small style="color: #f8f9fa; font-size: 0.75rem;">Struktur Pengurus & Operator</small></div>
-            </div>
-            <i class="fa-solid fa-chevron-right text-light fs-6"></i>
-          </div>
+  <div class="menu-card-item" onclick="openDetailMenu('menuPetugas')" style="background: rgba(255, 152, 0, 0.45); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+    <div class="d-flex align-items-center gap-3">
+      <div style="width: 46px; height: 46px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"><i class="fa-solid fa-users-gear" style="color: #e67e22;"></i></div>
+      <div><h6 class="fw-bold mb-0 text-white" style="font-size: 0.93rem;">PETUGAS TPS</h6><small style="color: #f8f9fa; font-size: 0.75rem;">Struktur Pengurus & Operator</small></div>
+    </div>
+    <i class="fa-solid fa-chevron-right text-light fs-6"></i>
+  </div>
+   <div class="menu-card-item" onclick="openDetailMenu('menu-idcard'); muatDataIdCard();" style="background: rgba(16, 123, 77, 0.45); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+    <div class="d-flex align-items-center gap-3">
+      <div style="width: 46px; height: 46px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"><i class="fa-solid fa-id-card" style="color: #107b4d;"></i></div>
+      <div><h6 class="fw-bold mb-0 text-white" style="font-size: 0.93rem;">ID CARD PENGURUS</h6><small style="color: #f8f9fa; font-size: 0.75rem;">Manajemen & Pencetakan Kartu Pengurus</small></div>
+    </div>
+    <i class="fa-solid fa-chevron-right text-light fs-6"></i>
+  </div>
+  <div class="menu-card-item" onclick="openDetailMenu('menuTransaksi')" style="background: rgba(220, 53, 69, 0.45); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+    <div class="d-flex align-items-center gap-3">
+      <div style="width: 46px; height: 46px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"><i class="fa-solid fa-truck-fast" style="color: #dc3545;"></i></div>
+      <div><h6 class="fw-bold mb-0 text-white" style="font-size: 0.93rem;">STATUS TPS - TPA</h6><small style="color: #f8f9fa; font-size: 0.75rem;">Laporan Pencatatan Iuran & DLHK</small></div>
+    </div>
+    <i class="fa-solid fa-chevron-right text-light fs-6"></i>
+  </div>
 
-          <div class="menu-card-item" onclick="openDetailMenu('menu-idcard'); muatDataIdCard();" style="background: rgba(16, 123, 77, 0.45); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
-            <div class="d-flex align-items-center gap-3">
-              <div style="width: 46px; height: 46px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"><i class="fa-solid fa-id-card" style="color: #107b4d;"></i></div>
-              <div><h6 class="fw-bold mb-0 text-white" style="font-size: 0.93rem;">ID CARD PENGURUS</h6><small style="color: #f8f9fa; font-size: 0.75rem;">Manajemen & Pencetakan Kartu Pengurus</small></div>
-            </div>
-            <i class="fa-solid fa-chevron-right text-light fs-6"></i>
-          </div>
-
-          <div class="menu-card-item" onclick="openDetailMenu('menuTransaksi')" style="background: rgba(220, 53, 69, 0.45); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
-            <div class="d-flex align-items-center gap-3">
-              <div style="width: 46px; height: 46px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"><i class="fa-solid fa-truck-fast" style="color: #dc3545;"></i></div>
-              <div><h6 class="fw-bold mb-0 text-white" style="font-size: 0.93rem;">STATUS TPS - TPA</h6><small style="color: #f8f9fa; font-size: 0.75rem;">Laporan Pencatatan Iuran & DLHK</small></div>
-            </div>
-            <i class="fa-solid fa-chevron-right text-light fs-6"></i>
-          </div>
-
-          <div class="menu-card-item" onclick="openDetailMenu('menuContactCenter')" style="background: rgba(32, 201, 151, 0.45); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
-            <div class="d-flex align-items-center gap-3">
-              <div style="width: 46px; height: 46px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"><i class="fa-solid fa-headset" style="color: #059669;"></i></div>
-              <div><h6 class="fw-bold mb-0 text-white" style="font-size: 0.93rem;">CONTACT CENTER</h6><small style="color: #f8f9fa; font-size: 0.75rem;">Direktori Pengurus & Integrasi WhatsApp</small></div>
-            </div>
-            <i class="fa-solid fa-chevron-right text-light fs-6"></i>
-          </div>
-        </div>
-
+  <div class="menu-card-item" onclick="openDetailMenu('menuContactCenter')" style="background: rgba(32, 201, 151, 0.45); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+    <div class="d-flex align-items-center gap-3">
+      <div style="width: 46px; height: 46px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"><i class="fa-solid fa-headset" style="color: #059669;"></i></div>
+      <div><h6 class="fw-bold mb-0 text-white" style="font-size: 0.93rem;">CONTACT CENTER</h6><small style="color: #f8f9fa; font-size: 0.75rem;">Direktori Pengurus & Integrasi WhatsApp</small></div>
+    </div>
+    <i class="fa-solid fa-chevron-right text-light fs-6"></i>
+  </div>
+</div>
+   </div>
       </div>
     </div>
     <div class="container-fluid py-2 px-2">
@@ -416,15 +414,18 @@
         </div>
       </div>
 
-      <!-- Halaman Menu Id Card Pengurus (Bersih & Tanpa Duplikasi) -->
+      <!-- Halaman Menu Id Card Pengurus -->
+    <!-- Halaman Menu Id Card Pengurus (Disamakan 100% dengan Kartu Iuran Warga) -->
       <div id="menu-idcard" class="menu-section d-none">
         <div class="d-flex justify-content-between align-items-center mb-3 px-1 flex-wrap gap-2 no-print">
           <h6 class="fw-bold mb-0 text-success fs-6"><i class="fa-solid fa-id-card me-2"></i>Pencetakan ID Card Pengurus</h6>
           <div class="d-flex gap-2 align-items-center">
+            <!-- Kolom Pencarian -->
             <div class="input-group input-group-sm" style="width: 200px;">
               <span class="input-group-text bg-success text-white py-0 px-2" style="font-size:0.7rem;"><i class="fa-solid fa-search"></i></span>
               <input type="text" class="form-control form-control-sm py-0" id="searchIdCard" onkeyup="renderIdCardTabel()" placeholder="Cari nama / ID / NIK..." style="font-size:0.72rem;">
             </div>
+            <!-- Tombol Input & Refresh -->
             <button class="btn btn-success btn-sm py-1 px-2" style="font-size: 0.75rem; background-color: #107b4d; border-color: #107b4d;" onclick="bukaModalIdCard()"><i class="fa fa-plus-circle me-1"></i>Input Data & Cetak</button>
             <button class="btn btn-outline-success btn-sm py-1 px-2" style="font-size: 0.75rem;" onclick="muatDataIdCard()"><i class="fa fa-solid fa-rotate me-1"></i>Refresh</button>
           </div>
@@ -451,6 +452,29 @@
           </div>
         </div>
       </div>
+    
+    <!-- Tabel Data Id Card -->
+<div class="table-responsive bg-white p-3 rounded shadow-sm">
+    <table class="table table-striped table-hover align-middle" style="font-size: 0.85rem;">
+    <thead style="background-color: #e8f5e9; color: #107b4d;">
+        <tr>
+            <th>No</th>
+            <th>ID</th>
+            <th>Nama Lengkap</th>
+            <th>NIK</th>
+            <th>Alamat</th>
+            <th>Kelurahan / Kecamatan</th>
+            <th>Cetak Kartu</th>
+        </tr>
+    </thead>
+   <tbody id="tbodyIdCard">
+        <tr>
+            <td colspan="7" style="text-align: center; color: #666; padding: 20px;">Memuat data...</td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+
       <div id="menuPetugas" class="menu-section d-none">
         <div class="row row-5cols mb-2 no-print">
           <div><div class="stat-card-mini rt1"><div class="stat-mini-title">1. OPERATOR</div><div class="stat-mini-value text-success" id="cardPtgOperator">0</div></div></div>
@@ -559,6 +583,7 @@
       </div>
     </div>
   </div>
+
   <!-- MODALS -->
   <div class="modal fade" id="modalTambahTransaksi" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -585,7 +610,7 @@
             <div class="mb-1"><label class="form-label mb-0">Ketua TPS</label><select class="form-select form-select-sm sel-ketuatps" id="tKetuaTps" required></select></div>
             <div class="mb-1">
               <label class="form-label mb-0 fw-bold text-success">Eviden Foto</label>
-              <input type="file" class="form-control form-control-sm" id="tFileEviden">
+               <input type="file" class="form-control form-control-sm" id="tFileEviden">
             </div>
           </div>
           <div class="modal-footer py-1"><button type="submit" class="btn btn-green btn-sm w-100 py-1" style="font-size: 0.78rem;">Simpan Transaksi</button></div>
@@ -707,98 +732,12 @@
     </div>
   </div>
 
-  <!-- Container Tampilan Verifikasi Riwayat Iuran -->
-  <div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.98); z-index:9999; justify-content:center; align-items:center; padding: 15px; box-sizing: border-box;">
-    <div style="background:white; padding:20px; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.15); width:100%; max-width:450px; border-top:5px solid #107b4d; font-family: Arial, sans-serif; box-sizing: border-box;">
-      <h4 style="text-align:center; color:#107b4d; margin-bottom:15px; font-size: 1.1rem; font-weight: bold;">Verifikasi Riwayat Iuran</h4>
-      <div id="v-loading" style="text-align:center; padding: 25px; color: #666; font-size: 0.9rem;">
-        <i class="fa-solid fa-spinner fa-spin fa-2x mb-2 text-success"></i><br>Memuat data verifikasi...
-      </div>
-      <div id="v-content" style="display:none;">
-        <p style="margin: 5px 0; font-size: 0.85rem;"><strong>ID Card:</strong> <span id="v-id">-</span></p>
-        <p style="margin: 5px 0; font-size: 0.85rem;"><strong>Nama Warga:</strong> <span id="v-nama">-</span></p>
-        <p style="margin: 5px 0; font-size: 0.85rem;"><strong>Alamat:</strong> <span id="v-alamat">-</span></p>
-        <div style="margin-top: 10px; border: 1px solid #ddd; border-radius: 6px; width: 100%; background: #fff; overflow: hidden;">
-          <table style="width:100%; border-collapse:collapse; text-align: left; font-size: 0.72rem; table-layout: fixed;">
-            <thead>
-              <tr style="background:#e8f5e9; color:#107b4d;">
-                <th style="padding:6px 2px; border-bottom:1px solid #ddd; text-align:center; width:12%;">No</th>
-                <th style="padding:6px 4px; border-bottom:1px solid #ddd; width:38%;">Bulan / Tahun</th>
-                <th style="padding:6px 4px; border-bottom:1px solid #ddd; width:30%;">Jumlah</th>
-                <th style="padding:6px 2px; border-bottom:1px solid #ddd; text-align:center; width:20%;">Status</th>
-              </tr>
-            </thead>
-            <tbody id="v-tbody"></tbody>
-          </table>
-        </div>
-      </div>
-      <div style="text-align:center; margin-top:15px;">
-        <button onclick="bukaAplikasiUtama()" style="background:#107b4d; color:white; padding:10px 16px; border:none; border-radius:6px; cursor:pointer; width:100%; font-weight:bold; font-size:0.9rem;">Buka Aplikasi Utama</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Container Tampilan Kartu Identitas Pengurus -->
-  <div id="petugas-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,23,42,0.85); z-index:9999; justify-content:center; align-items:center; padding:20px; box-sizing:border-box; font-family:'Segoe UI', Roboto, sans-serif; backdrop-filter:blur(4px);">
-    <div id="p-loading" style="background:white; padding:25px 35px; border-radius:12px; text-align:center; font-weight:bold; color:#0b5936; box-shadow:0 10px 25px rgba(0,0,0,0.3);">
-      <i class="fas fa-spinner fa-spin fa-2x" style="margin-bottom:10px;"></i><br>Memuat ID Card Pengurus...
-    </div>
-    <div id="p-content" style="display:none; width:320px; height:510px; background:#ffffff; border-radius:14px; border:2px solid #0b5936; box-shadow:0 15px 35px rgba(0,0,0,0.4); overflow:hidden; text-align:center; flex-direction:column; position:relative; box-sizing:border-box;">
-      <div style="background:linear-gradient(135deg, #0b5936 0%, #107b4d 100%); padding:12px 10px; color:#ffffff; border-bottom:4px solid #ffc107; display:flex; align-items:center; justify-content:space-between;">
-        <div style="text-align:left;">
-          <div style="font-size:8.5px; font-weight:700; letter-spacing:1px; color:#a7f3d0; text-transform:uppercase;">PEMERINTAH KOTA DEPOK</div>
-          <div style="font-size:12px; font-weight:900; letter-spacing:0.5px; color:#ffffff; margin-top:1px;">TPS DIPO MAWAR RW. 04</div>
-          <div style="font-size:7px; letter-spacing:0.8px; color:#ffc107; font-weight:600; margin-top:2px;">— KARTU IDENTITAS PENGURUS —</div>
-        </div>
-        <div style="width:34px; height:34px; background:white; border-radius:50%; padding:3px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.2);">
-          <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/267b.png" style="width:100%; height:100%; object-fit:contain;" alt="Logo Daur Ulang">
-        </div>
-      </div>
-      <div style="padding:12px 16px; background:#f8fafc; flex:1; display:flex; flex-direction:column; justify-content:space-between; text-align:left;">
-        <div style="text-align:center;">
-          <div style="width:85px; height:105px; margin:0 auto 6px auto; border-radius:8px; background:#ffffff; padding:2px; border:2px solid #0b5936; box-shadow:0 4px 10px rgba(0,0,0,0.08);">
-            <img id="p-foto" src="" style="width:100%; height:100%; object-fit:cover; border-radius:6px;" alt="Foto Petugas">
-          </div>
-          <div id="p-nama" style="font-size:12.5px; font-weight:900; color:#0f172a; text-transform:uppercase; letter-spacing:0.3px; line-height:1.2;">-</div>
-          <div id="p-jabatan" style="font-size:8px; font-weight:800; color:#0b5936; background:#d1e7dd; display:inline-block; padding:2px 8px; border-radius:10px; margin-top:3px; text-transform:uppercase; border:1px solid #badbcc;">-</div>
-        </div>
-        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:8px 10px; font-size:7.5px; color:#334155; line-height:1.4; text-align:left;">
-          <div style="margin-bottom:2px;"><strong>ID:</strong> <span id="p-id" style="font-family:monospace; color:#0b5936; font-weight:bold;">-</span></div>
-          <div style="margin-bottom:2px;"><strong>NIK:</strong> <span id="p-nik" style="font-family:monospace;">-</span></div>
-          <div><strong>Alamat:</strong> <span id="p-alamat">-</span></div>
-        </div>
-        <div style="display:flex; align-items:center; justify-content:space-between; background:#ffffff; padding:6px 10px; border-radius:8px; border:1px solid #cbd5e1;">
-          <div>
-            <div style="background:#16a34a; color:#ffffff; padding:2px 6px; border-radius:10px; font-size:6.5px; font-weight:800; display:inline-block; margin-bottom:3px;">PENGURUS AKTIF</div>
-            <div style="font-size:6px; font-weight:800; color:#0b5936; text-transform:uppercase;">TERVERIFIKASI</div>
-            <div style="font-size:5.5px; color:#64748b;">Scan untuk validasi</div>
-          </div>
-          <div style="background:#ffffff; padding:2px; border:1px solid #cbd5e1; border-radius:4px;">
-            <img id="p-barcode" src="" style="width:46px; height:46px; display:block;" alt="QR Code">
-          </div>
-        </div>
-      </div>
-      <div style="background:#e2e8f0; padding:4px 10px; font-size:6.5px; color:#475569; font-weight:700; display:flex; justify-content:space-between; align-items:center; border-top:1px solid #cbd5e1;">
-        <span>TPS DIPO MAWAR RW.04</span>
-        <span>SEKRETARIAT RESMI</span>
-      </div>
-      <div style="padding:8px 12px; background:#f1f5f9; display:flex; gap:8px; border-top:1px solid #cbd5e1;">
-        <button onclick="window.print()" style="flex:1; background:#0b5936; color:white; border:none; padding:8px; border-radius:6px; font-weight:bold; font-size:9px; cursor:pointer; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-          <i class="fas fa-print"></i> CETAK / PDF
-        </button>
-        <button onclick="tutupIdCard()" style="flex:1; background:#64748b; color:white; border:none; padding:8px; border-radius:6px; font-weight:bold; font-size:9px; cursor:pointer;">
-          TUTUP
-        </button>
-      </div>
-    </div>
-  </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     var appData = { warga: [], petugas: [], transaksi: [], contactCenter: [] };
     var currentUserRole = ""; 
     var cacheKartuIuran = [];
-    var dataIdCardList = [];
 
     document.addEventListener("DOMContentLoaded", function() {
       var today = new Date().toISOString().split('T')[0];
@@ -891,7 +830,6 @@
       populateDropdowns();
       hitungDemografi();
       loadSavedHeaderSettings();
-      if (typeof muatDataIdCard === 'function') muatDataIdCard();
     }
 
     function openDetailMenu(sectionId) {
@@ -912,7 +850,7 @@
       if (sectionId === 'menuTransaksi') titleEl.innerText = "Status TPS - TPA";
       if (sectionId === 'menuContactCenter') titleEl.innerText = "Contact Center & Pengurus TPS";
       if (sectionId === 'menuBayarIuran') titleEl.innerText = "Manajemen Pembayaran Iuran Warga";
-      if (sectionId === 'menu-idcard') titleEl.innerText = "Pencetakan ID Card Pengurus";
+      if (sectionId === 'menu-idcard') titleEl.innerText = "Pencetakan ID Card Pengurus"; // <-- Tambahkan baris ini
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -928,6 +866,43 @@
     }
 
     function cetakArea() {
+      var selectedRt = document.getElementById('filterRt').value;
+      var selectedKat = document.getElementById('filterKatagori') ? document.getElementById('filterKatagori').value : "";
+      var keyword = document.getElementById('searchNamaWarga').value.toLowerCase().trim();
+      
+      var filteredWarga = appData.warga || [];
+      if (selectedRt !== "") {
+        filteredWarga = filteredWarga.filter(function(w) { return String(w["RT"] || w["col_2"]).padStart(2, '0') === String(selectedRt).padStart(2, '0'); });
+      }
+      if (selectedKat !== "") {
+        filteredWarga = filteredWarga.filter(function(w) { return String(w["Kategori"] || w["Katagori"] || w["col_7"] || "") === selectedKat; });
+      }
+      if (keyword !== "") {
+        filteredWarga = filteredWarga.filter(function(w) { return String(w["Nama Lengkap"] || w["col_0"] || "").toLowerCase().indexOf(keyword) !== -1; });
+      }
+
+      var tbody = document.getElementById('tblWargaBody');
+      if (tbody && filteredWarga.length > 0) {
+        tbody.innerHTML = filteredWarga.map(function(w, idx) {
+          return '<tr>' +
+            '<td>' + (idx + 1) + '</td>' +
+            '<td>' + (w["Nama Lengkap"] || w["col_0"] || "-") + '</td>' +
+            '<td>RT.' + String(w["RT"] || w["col_2"]).padStart(2, '0') + ' / RW.' + (w["RW"] || w["col_3"] || "04") + ' No.' + (w["No Rumah"] || w["col_1"] || "-") + '</td>' +
+            '<td>' + (w["Kelurahan"] || w["col_4"] || "-") + '</td>' +
+            '<td>' + (w["Kategori"] || w["Katagori"] || w["col_7"] || "-") + '</td>' +
+            '<td>' + (w["Status"] || w["col_8"] || "-") + '</td>' +
+            '<td>' + (w["Operator"] || w["col_5"] || "-") + '</td>' +
+            '<td>' + (w["Coordinator RT"] || w["col_6"] || "-") + '</td>' +
+            '<td>' + (w["Admin"] || "-") + '</td>' +
+          '</tr>';
+        }).join('');
+      }
+
+      var totalFooterEl = document.getElementById('printTotalFooter');
+      if (totalFooterEl) {
+        totalFooterEl.innerText = filteredWarga.length;
+      }
+
       window.print();
     }
 
@@ -946,11 +921,12 @@
       });
 
       var total = c1 + c2 + c3 + c4 + c5 + c7;
+
       var setElText = function(id, val) { var el = document.getElementById(id); if (el) el.innerText = val; };
-      
       setElText('countRt1', c1); setElText('countRt2', c2); setElText('countRt3', c3);
       setElText('countRt4', c4); setElText('countRt5', c5); setElText('countRt7', c7);
       setElText('countTotal', total); setElText('printTotalFooter', total);
+
       setElText('cardWargaTotal', total);
       setElText('cardWargaRt1', c1); setElText('cardWargaRt2', c2); setElText('cardWargaRt3', c3);
       setElText('cardWargaRt4', c4); setElText('cardWargaRt5', c5); setElText('cardWargaRt7', c7);
@@ -972,8 +948,9 @@
       
       hitungDemografi();
       var totalFooterEl = document.getElementById('printTotalFooter');
-      if (totalFooterEl) totalFooterEl.innerText = filteredWarga.length;
-
+      if (totalFooterEl) {
+        totalFooterEl.innerText = filteredWarga.length;
+      }
       if (!filteredWarga.length) {
         tbody.innerHTML = '<tr><td colspan="10" class="text-center text-muted py-2">Tidak ada data warga.</td></tr>';
         return;
@@ -1034,6 +1011,7 @@
           var alamat = String(w.Alamat || w.alamat || "").toLowerCase();
           var noRumah = String(w.NoRumah || w["No Rumah"] || "").toLowerCase();
           var rt = String(w.RT || "").toLowerCase();
+
           return nama.includes(keyword) || idCard.includes(keyword) || alamat.includes(keyword) || noRumah.includes(keyword) || rt.includes(keyword);
         });
 
@@ -1042,9 +1020,14 @@
           return;
         }
 
-        tbody.innerHTML = filtered.map(function(w, index) {
+        var html = '';
+        filtered.forEach(function(w, index) {
           var wJson = encodeURIComponent(JSON.stringify(w));
-          return '<tr>' +
+          var actionButtons = 
+            '<button class="btn btn-warning btn-sm py-0 px-1 me-1" style="font-size:0.68rem;" onclick="editKartuIuran(\'' + wJson + '\')"><i class="fa fa-pen-to-square"></i> Edit</button>' +
+            '<button class="btn btn-danger btn-sm py-0 px-1" style="font-size:0.68rem;" onclick="hapusKartuIuran(\'' + (w.ID || w.id || '') + '\', \'' + (w.Nama || w.nama || '') + '\')"><i class="fa fa-trash"></i> Delete</button>';
+
+          html += '<tr>' +
             '<td class="text-center">' + (index + 1) + '</td>' +
             '<td class="text-center fw-bold" style="color:#0f5132;">' + (w.ID || w.id || '-') + '</td>' +
             '<td class="fw-bold">' + (w.Nama || w.nama || '-') + '</td>' +
@@ -1055,13 +1038,1031 @@
                 '<i class="fa fa-print me-1"></i> Cetak Kartu' +
               '</button>' +
             '</td>' +
-            '<td class="no-print text-center">' +
-              '<button class="btn btn-warning btn-sm py-0 px-1 me-1" style="font-size:0.68rem;" onclick="editKartuIuran(\'' + wJson + '\')"><i class="fa fa-pen-to-square"></i> Edit</button>' +
-              '<button class="btn btn-danger btn-sm py-0 px-1" style="font-size:0.68rem;" onclick="hapusKartuIuran(\'' + (w.ID || w.id || '') + '\', \'' + (w.Nama || w.nama || '') + '\')"><i class="fa fa-trash"></i> Delete</button>' +
-            '</td>' +
-          '</tr>';
-        }).join('');
+            '<td class="no-print text-center">' + actionButtons + '</td>' +
+            '</tr>';
+        });
+        tbody.innerHTML = html;
       }).getDataKartuIuran();
+    }
+
+    function editKartuIuran(wJson) {
+      if (!cekAkses('edit')) return;
+      var w = {};
+      try {
+        w = typeof wJson === 'string' ? JSON.parse(decodeURIComponent(wJson)) : wJson;
+      } catch(e) { w = {}; }
+
+      Swal.fire({
+        title: 'Edit Data Kartu Iuran',
+        html: 
+          '<form id="formEditKartu" style="text-align:left; font-size:12px;">' +
+            '<input type="hidden" id="editId" value="' + (w.ID || '') + '">' +
+            '<div class="mb-2"><label class="form-label fw-bold">Nama Lengkap Warga</label><input type="text" id="editNama" class="form-control form-control-sm" value="' + (w.Nama || '') + '" required></div>' +
+            '<div class="mb-2"><label class="form-label fw-bold">Alamat (RT/RW)</label><input type="text" id="editAlamat" class="form-control form-control-sm" value="' + (w.Alamat || '') + '"></div>' +
+            '<div class="mb-2"><label class="form-label fw-bold">No. Rumah</label><input type="text" id="editNoRumah" class="form-control form-control-sm" value="' + (w.NoRumah || '') + '"></div>' +
+            '<div class="row g-2 mb-2">' +
+              '<div class="col-4"><label class="form-label fw-bold">Kelurahan</label><input type="text" id="editKel" class="form-control form-control-sm" value="' + (w.Kelurahan || 'Ratu Jaya') + '"></div>' +
+              '<div class="col-4"><label class="form-label fw-bold">Kecamatan</label><input type="text" id="editKec" class="form-control form-control-sm" value="' + (w.Kecamatan || 'Cipayung') + '"></div>' +
+              '<div class="col-4"><label class="form-label fw-bold">Kota</label><input type="text" id="editKota" class="form-control form-control-sm" value="' + (w.Kota || 'Depok') + '"></div>' +
+            '</div>' +
+            '<div class="mb-2"><label class="form-label fw-bold text-success">Ganti Foto Warga (Opsional)</label>' +
+            '<input type="file" id="editFileFoto" class="form-control form-control-sm"></div>' +
+          '</form>',
+        showCancelButton: true,
+        confirmButtonText: 'Simpan Perubahan',
+        cancelButtonText: 'Batal',
+        confirmButtonColor: '#107b4d',
+        preConfirm: function() {
+          return new Promise(function(resolve) {
+            var fileInput = document.getElementById('editFileFoto');
+            var formData = {
+              id: document.getElementById('editId').value,
+              nama: document.getElementById('editNama').value,
+              alamat: document.getElementById('editAlamat').value,
+              noRumah: document.getElementById('editNoRumah').value,
+              kelurahan: document.getElementById('editKel').value,
+              kecamatan: document.getElementById('editKec').value,
+              kota: document.getElementById('editKota').value
+            };
+
+            if (fileInput && fileInput.files.length > 0) {
+              var file = fileInput.files[0];
+              var reader = new FileReader();
+              reader.onload = function(evt) {
+                var img = new Image();
+                img.src = evt.target.result;
+                img.onload = function() {
+                  var canvas = document.createElement('canvas');
+                  var MAX_WIDTH = 500;
+                  var scaleSize = MAX_WIDTH / img.width;
+                  canvas.width = scaleSize < 1 ? MAX_WIDTH : img.width;
+                  canvas.height = scaleSize < 1 ? img.height * scaleSize : img.height;
+                  var ctx = canvas.getContext('2d');
+                  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                  
+                  formData.fileData = canvas.toDataURL('image/jpeg', 0.8).split(',')[1];
+                  formData.fileName = file.name;
+                  formData.fileMime = 'image/jpeg';
+                  resolve(formData);
+                };
+              };
+              reader.readAsDataURL(file);
+            } else {
+              resolve(formData);
+            }
+          });
+        }
+      }).then(function(result) {
+        if (result.isConfirmed) {
+          Swal.fire({ title: 'Memperbarui data...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+          google.script.run
+            .withSuccessHandler(function(res) {
+              if (res.success) {
+                Swal.fire('Berhasil', res.message, 'success');
+                renderKartuIuranTabel();
+              } else {
+                Swal.fire('Error', res.message, 'error');
+              }
+            })
+            .updateKartuIuranForm(result.value);
+        }
+      });
+    }
+
+    function hapusKartuIuran(idWarga, namaWarga) {
+      if (!cekAkses('delete')) return;
+      Swal.fire({
+        title: 'Hapus Kartu Iuran?',
+        text: 'Data untuk ' + namaWarga + ' (ID: ' + idWarga + ') akan dihapus permanen.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Ya, Hapus!',
+        cancelButtonText: 'Batal'
+      }).then(function(result) {
+        if (result.isConfirmed) {
+          Swal.fire({ title: 'Menghapus...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+          google.script.run
+            .withSuccessHandler(function(res) {
+              Swal.close();
+              if (res.success) {
+                Swal.fire('Terhapus!', res.message, 'success');
+                renderKartuIuranTabel();
+              } else {
+                Swal.fire('Gagal', res.message, 'error');
+              }
+            })
+            .hapusDataKartuIuran(idWarga);
+        }
+      });
+    }
+
+    function bukaFormKartuIuran() {
+      Swal.fire({
+        title: 'Input Data Kartu Iuran Warga',
+        html: 
+          '<form id="formKartuIuran" style="text-align:left; font-size:12px;">' +
+            '<div class="mb-2"><label class="form-label fw-bold">Nama Lengkap Warga</label><input type="text" id="inpNama" class="form-control form-control-sm" required></div>' +
+            '<div class="mb-2"><label class="form-label fw-bold">Alamat (Kampung / RT / RW)</label>' +
+            '<div class="row g-2">' +
+              '<div class="col-4"><select id="inpKampung" class="form-control form-control-sm"><option value="Ratu Jaya">Ratu Jaya</option><option value="Rawa Geni">Rawa Geni</option></select></div>' +
+              '<div class="col-4"><select id="inpRt" class="form-control form-control-sm"><option value="">Pilih RT</option><option value="RT. 01">RT. 01</option><option value="RT. 02">RT. 02</option><option value="RT. 03">RT. 03</option><option value="RT. 04">RT. 04</option><option value="RT. 05">RT. 05</option><option value="RT. 06">RT. 06</option><option value="RT. 07">RT. 07</option></select></div>' +
+              '<div class="col-4"><select id="inpRw" class="form-control form-control-sm"><option value="">Pilih RW</option><option value="RW. 01">RW. 01</option><option value="RW. 02">RW. 02</option><option value="RW. 03">RW. 03</option><option value="RW. 04">RW. 04</option></select></div>' +
+            '</div></div>' +
+            '<div class="mb-2"><label class="form-label fw-bold">No. Rumah</label><input type="text" id="inpNoRumah" class="form-control form-control-sm"></div>' +
+            '<div class="row g-2 mb-2">' +
+              '<div class="col-4"><label class="form-label fw-bold">Kelurahan</label><input type="text" id="inpKel" class="form-control form-control-sm" value="Ratu Jaya"></div>' +
+              '<div class="col-4"><label class="form-label fw-bold">Kecamatan</label><input type="text" id="inpKec" class="form-control form-control-sm" value="Cipayung"></div>' +
+              '<div class="col-4"><label class="form-label fw-bold">Kota</label><input type="text" id="inpKota" class="form-control form-control-sm" value="Depok"></div>' +
+            '</div>' +
+            '<div class="mb-2"><label class="form-label fw-bold text-success">Upload Foto Warga (Opsional)</label>' +
+            '<input type="file" id="inpFileFoto" class="form-control form-control-sm"></div>' +
+          '</form>',
+        showCancelButton: true,
+        confirmButtonText: 'Simpan & Preview Cetak',
+        cancelButtonText: 'Batal',
+        confirmButtonColor: '#107b4d',
+        preConfirm: function() {
+          var nama = document.getElementById('inpNama').value;
+          if (!nama) {
+            Swal.showValidationMessage('Nama wajib diisi!');
+            return false;
+          }
+          return new Promise(function(resolve) {
+            var fileInput = document.getElementById('inpFileFoto');
+            var formData = {
+              nama: nama,
+              alamat: document.getElementById('inpKampung').value + ' ' + document.getElementById('inpRt').value + ' ' + document.getElementById('inpRw').value,
+              noRumah: document.getElementById('inpNoRumah').value,
+              kelurahan: document.getElementById('inpKel').value,
+              kecamatan: document.getElementById('inpKec').value,
+              kota: document.getElementById('inpKota').value
+            };
+
+            if (fileInput && fileInput.files.length > 0) {
+              var file = fileInput.files[0];
+              var reader = new FileReader();
+              reader.onload = function(evt) {
+                var img = new Image();
+                img.src = evt.target.result;
+                img.onload = function() {
+                  var canvas = document.createElement('canvas');
+                  var MAX_WIDTH = 500;
+                  var scaleSize = MAX_WIDTH / img.width;
+                  canvas.width = scaleSize < 1 ? MAX_WIDTH : img.width;
+                  canvas.height = scaleSize < 1 ? img.height * scaleSize : img.height;
+                  var ctx = canvas.getContext('2d');
+                  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                  
+                  formData.fileData = canvas.toDataURL('image/jpeg', 0.8).split(',')[1];
+                  formData.fileName = file.name;
+                  formData.fileMime = 'image/jpeg';
+                  resolve(formData);
+                };
+              };
+              reader.readAsDataURL(file);
+            } else {
+              resolve(formData);
+            }
+          });
+        }
+      }).then(function(result) {
+        if (result.isConfirmed) {
+          Swal.fire({ title: 'Menyimpan data & foto...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+          google.script.run
+            .withSuccessHandler(function(res) {
+              if (res.success) {
+                Swal.close();
+                cetakKartuWargaDirect(encodeURIComponent(JSON.stringify(res.data)));
+                renderKartuIuranTabel();
+              } else {
+                Swal.fire('Error', res.message, 'error');
+              }
+            })
+            .simpanKartuIuranForm(result.value);
+        }
+      });
+    }
+
+    function bukaModalWarga() { document.getElementById('formWarga').reset(); document.getElementById('wIdWarga').value = ""; document.getElementById('modalWargaTitle').innerText = "Tambah Data Warga"; new bootstrap.Modal(document.getElementById('modalTambahWarga')).show(); }
+    function bukaModalPetugas() { document.getElementById('formPetugas').reset(); document.getElementById('pIdPetugas').value = ""; document.getElementById('modalPetugasTitle').innerText = "Tambah Petugas"; new bootstrap.Modal(document.getElementById('modalTambahPetugas')).show(); }
+    function bukaModalTransaksi() { document.getElementById('formTransaksi').reset(); document.getElementById('tIdTransaksi').value = ""; document.getElementById('modalTransaksiTitle').innerText = "Catat Transaksi TPA"; new bootstrap.Modal(document.getElementById('modalTambahTransaksi')).show(); }
+    
+    function bukaModalContact() { 
+      document.getElementById('formContact').reset(); 
+      document.getElementById('cRowIndex').value = "";
+      document.getElementById('cOldFotoUrl').value = "";
+      document.getElementById('modalContactTitle').innerText = "Tambah Kontak Pengurus";
+      new bootstrap.Modal(document.getElementById('modalTambahContact')).show(); 
+    }
+
+    function editContact(cJson) {
+      try {
+        var c = JSON.parse(decodeURIComponent(cJson));
+        document.getElementById('cRowIndex').value = c.rowIndex || "";
+        document.getElementById('cOldFotoUrl').value = c.fotoUrl || "";
+        document.getElementById('cNama').value = c.nama || "";
+        document.getElementById('cJabatan').value = c.jabatan || "";
+        document.getElementById('cWilayah').value = c.wilayah || "";
+        document.getElementById('cNoHp').value = c.noHp || "";
+        document.getElementById('cStatus').value = c.status || "Aktif";
+
+        document.getElementById('modalContactTitle').innerText = "Edit Kontak Pengurus";
+        new bootstrap.Modal(document.getElementById('modalTambahContact')).show();
+      } catch (err) {
+        Swal.fire("Error", "Gagal membuka data edit kontak: " + err.message, "error");
+      }
+    }
+
+    function hapusContact(rowIndex) {
+      if (!cekAkses('delete')) return;
+      Swal.fire({
+        title: 'Hapus Kontak?', text: "Data pengurus ini akan dihapus permanen dari sistem.", icon: 'warning',
+        showCancelButton: true, confirmButtonColor: '#d33', cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Ya, Hapus!', cancelButtonText: 'Batal'
+      }).then(function(result) {
+        if (result.isConfirmed) {
+          Swal.fire({ title: 'Menghapus...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+          google.script.run.withSuccessHandler(function(res) {
+            Swal.close();
+            if (res.success) { Swal.fire('Terhapus!', res.message, 'success'); loadData(); }
+            else { Swal.fire('Gagal', res.message, 'error'); }
+          }).hapusDataContact(rowIndex);
+        }
+      });
+    }
+
+    function hapusWarga(rowIndex) {
+      if (!cekAkses('delete')) return;
+      Swal.fire({
+        title: 'Hapus Data Warga?', text: "Data warga ini akan dihapus permanen.", icon: 'warning',
+        showCancelButton: true, confirmButtonColor: '#d33', cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Ya, Hapus!', cancelButtonText: 'Batal'
+      }).then(function(result) {
+        if (result.isConfirmed) {
+          Swal.fire({ title: 'Menghapus...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+          google.script.run.withSuccessHandler(function(res) {
+            Swal.close();
+            if (res.success) { Swal.fire('Terhapus!', res.message, 'success'); loadData(); }
+            else { Swal.fire('Gagal', res.message, 'error'); }
+          }).hapusDataWarga(rowIndex);
+        }
+      });
+    }
+
+    function hapusPetugas(rowIndex) {
+      if (!cekAkses('delete')) return;
+      Swal.fire({
+        title: 'Hapus Petugas?', text: "Data petugas ini akan dihapus permanen.", icon: 'warning',
+        showCancelButton: true, confirmButtonColor: '#d33', cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Ya, Hapus!', cancelButtonText: 'Batal'
+      }).then(function(result) {
+        if (result.isConfirmed) {
+          Swal.fire({ title: 'Menghapus...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+          google.script.run.withSuccessHandler(function(res) {
+            Swal.close();
+            if (res.success) { Swal.fire('Terhapus!', res.message, 'success'); loadData(); }
+            else { Swal.fire('Gagal', res.message, 'error'); }
+          }).hapusDataPetugas(rowIndex);
+        }
+      });
+    }
+
+    function hapusTransaksi(idTransaksi) {
+      if (!cekAkses('delete')) return;
+      Swal.fire({
+        title: 'Hapus Transaksi?', text: "Data transaksi TPA ini akan dihapus permanen.", icon: 'warning',
+        showCancelButton: true, confirmButtonColor: '#d33', cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Ya, Hapus!', cancelButtonText: 'Batal'
+      }).then(function(result) {
+        if (result.isConfirmed) {
+          Swal.fire({ title: 'Menghapus...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+          google.script.run.withSuccessHandler(function(res) {
+            Swal.close();
+            if (res.success) { Swal.fire('Terhapus!', res.message, 'success'); loadData(); }
+            else { Swal.fire('Gagal', res.message, 'error'); }
+          }).hapusDataTransaksi(idTransaksi);
+        }
+      });
+    }
+
+    function populateDropdowns() {
+      var allPetugas = appData.petugas || [];
+      var filterAndFill = function(className, defaultText, keyword) {
+        var filtered = allPetugas.filter(function(i) {
+          var jab = (i["Jabatan"] || i["col_4"] || "").toLowerCase();
+          return jab.indexOf(keyword.toLowerCase()) !== -1;
+        });
+        document.querySelectorAll('.' + className).forEach(function(sel) {
+          sel.innerHTML = '<option value="">-- Pilih ' + defaultText + ' --</option>' + 
+            filtered.map(function(i) { return '<option value="' + (i["Nama Lengkap"] || i["col_1"]) + '">' + (i["Nama Lengkap"] || i["col_1"]) + '</option>'; }).join('');
+        });
+      };
+      filterAndFill('sel-operator', 'Operator', 'operator');
+      filterAndFill('sel-admin', 'Admin', 'admin');
+      filterAndFill('sel-coordinator', 'Coordinator RT', 'coordinator');
+      filterAndFill('sel-coordinatorumum', 'Coordinator Umum', 'coordinator umum');
+      filterAndFill('sel-ketuatps', 'Ketua TPS', 'ketua');
+    }
+
+    function submitWarga(e) {
+      e.preventDefault();
+      var payload = {
+        rowIndex: document.getElementById('wIdWarga').value,
+        namaLengkap: document.getElementById('wNama').value, noRumah: document.getElementById('wNoRumah').value,
+        rt: document.getElementById('wRt').value, rw: document.getElementById('wRw').value,
+        kelurahan: document.getElementById('wKelurahan').value, kecamatan: document.getElementById('wKecamatan').value, kota: document.getElementById('wKota').value,
+        katagori: document.getElementById('wKatagori').value, status: document.getElementById('wStatus').value,
+        operator: document.getElementById('wOperator').value, coordinatorRt: document.getElementById('wCoor').value, admin: document.getElementById('wAdmin').value
+      };
+      Swal.fire({ title: 'Menyimpan...', didOpen: function() { Swal.showLoading(); } });
+      google.script.run.withSuccessHandler(function(res) {
+        Swal.close();
+        if (res.success) {
+          bootstrap.Modal.getInstance(document.getElementById('modalTambahWarga')).hide();
+          Swal.fire('Berhasil!', res.message, 'success'); loadData();
+        } else { Swal.fire('Peringatan', res.message, 'warning'); }
+      }).simpanDataWarga(payload);
+    }
+
+    function submitPetugas(e) {
+      e.preventDefault();
+      var payload = { 
+        rowIndex: document.getElementById('pIdPetugas').value,
+        idPetugas: document.getElementById('pIdPetugas').dataset.idVal || "",
+        namaLengkap: document.getElementById('pNama').value, rt: document.getElementById('pRt').value, rw: document.getElementById('pRw').value, jabatan: document.getElementById('pJabatan').value, status: document.getElementById('pStatus').value 
+      };
+      Swal.fire({ title: 'Menyimpan...', didOpen: function() { Swal.showLoading(); } });
+      google.script.run.withSuccessHandler(function(res) {
+        Swal.close();
+        if (res.success) {
+          bootstrap.Modal.getInstance(document.getElementById('modalTambahPetugas')).hide();
+          Swal.fire('Berhasil', res.message, 'success'); loadData();
+        } else { Swal.fire('Gagal', res.message, 'error'); }
+      }).simpanDataPetugas(payload);
+    }
+
+    function submitContact(e) {
+      e.preventDefault();
+      Swal.fire({ title: 'Menyimpan kontak...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+
+      var rowIndex = document.getElementById('cRowIndex').value;
+      var oldFotoUrl = document.getElementById('cOldFotoUrl').value;
+      var nama = document.getElementById('cNama').value;
+      var jabatan = document.getElementById('cJabatan').value;
+      var wilayah = document.getElementById('cWilayah').value;
+      var noHp = document.getElementById('cNoHp').value;
+      var status = document.getElementById('cStatus').value;
+      var fileInput = document.getElementById('cFileFoto');
+
+      var sendContactData = function(fileData, fileName, fileMime) {
+        var payload = { rowIndex: rowIndex, oldFotoUrl: oldFotoUrl, nama: nama, jabatan: jabatan, wilayah: wilayah, noHp: noHp, status: status, fileData: fileData || null, fileName: fileName || null, fileMime: fileMime || null };
+        google.script.run
+          .withSuccessHandler(function(res) {
+            Swal.close();
+            if (res.success) {
+              bootstrap.Modal.getInstance(document.getElementById('modalTambahContact')).hide();
+              document.getElementById('formContact').reset();
+              Swal.fire('Berhasil!', res.message, 'success');
+              loadData();
+            } else { Swal.fire('Gagal', res.message, 'error'); }
+          })
+          .withFailureHandler(function(err) { Swal.close(); Swal.fire('Gagal!', err.message, 'error'); })
+          .simpanDataContact(payload);
+      };
+
+      if (fileInput && fileInput.files.length > 0) {
+        var file = fileInput.files[0];
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+          var img = new Image();
+          img.src = evt.target.result;
+          img.onload = function() {
+            var canvas = document.createElement('canvas');
+            var MAX_WIDTH = 600;
+            var scaleSize = MAX_WIDTH / img.width;
+            canvas.width = scaleSize < 1 ? MAX_WIDTH : img.width;
+            canvas.height = scaleSize < 1 ? img.height * scaleSize : img.height;
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            sendContactData(canvas.toDataURL('image/jpeg', 0.7).split(',')[1], file.name, 'image/jpeg');
+          };
+        };
+        reader.readAsDataURL(file);
+      } else {
+        sendContactData(null, null, null);
+      }
+    }
+
+    function submitTransaksi(e) {
+      e.preventDefault();
+      Swal.fire({ title: 'Menyimpan transaksi...', didOpen: function() { Swal.showLoading(); } });
+
+      var payload = {
+        idTransaksi: document.getElementById('tIdTransaksi').value,
+        tglWaktu: document.getElementById('tTglWaktu').value,
+        setoranWarga: document.getElementById('tSetoranWarga').value,
+        setoranDlhk: document.getElementById('tSetoranDlhk').value,
+        jumlahMobil: document.getElementById('tJumlahMobil').value,
+        petugasDlhk: document.getElementById('tPetugasDlhk').value,
+        operator: document.getElementById('tOperator').value,
+        admin: document.getElementById('tAdmin').value,
+        coordinatorUmum: document.getElementById('tCoordinatorUmum').value,
+        ketuaTps: document.getElementById('tKetuaTps').value
+      };
+
+      var fileInput = document.getElementById('tFileEviden');
+      if (fileInput && fileInput.files.length > 0) {
+        var file = fileInput.files[0];
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+          var img = new Image();
+          img.src = evt.target.result;
+          img.onload = function() {
+            var canvas = document.createElement('canvas');
+            var MAX_WIDTH = 800;
+            var scaleSize = MAX_WIDTH / img.width;
+            canvas.width = scaleSize < 1 ? MAX_WIDTH : img.width;
+            canvas.height = scaleSize < 1 ? img.height * scaleSize : img.height;
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            payload.fileData = canvas.toDataURL('image/jpeg', 0.7).split(',')[1];
+            payload.fileName = file.name;
+            payload.fileMime = 'image/jpeg';
+            sendTrxServer(payload);
+          };
+        };
+        reader.readAsDataURL(file);
+      } else {
+        sendTrxServer(payload);
+      }
+    }
+
+    function sendTrxServer(payload) {
+      google.script.run
+        .withSuccessHandler(function(res) {
+          Swal.close();
+          if (res.status === "success" || res.success) {
+            bootstrap.Modal.getInstance(document.getElementById('modalTambahTransaksi')).hide();
+            Swal.fire('Berhasil!', res.message || 'Disimpan!', 'success'); loadData();
+          } else { Swal.fire('Gagal!', res.message, 'error'); }
+        })
+        .withFailureHandler(function(err) { Swal.close(); Swal.fire('Gagal!', err.message, 'error'); })
+        .simpanDataTransaksi(payload);
+    }
+
+    function applyUserRoleUI() {
+      var role = String(currentUserRole || "").trim().toLowerCase();
+      var btnSetting = document.getElementById('btnSettingHeader');
+      if (btnSetting) {
+        if (role === 'superadmin' || role === 'super admin' || role.indexOf('super') !== -1) {
+          btnSetting.style.display = 'inline-block';
+        } else {
+          btnSetting.style.display = 'none';
+        }
+      }
+    }
+
+    function openModalSettingHeader() {
+      var currentJudul = document.getElementById('navbarTitleText').innerText;
+      var currentRunning = document.getElementById('txtRunningText').innerText;
+      var imgEl = document.getElementById('navbarLogoImg');
+      var currentLogo = (imgEl && imgEl.style.display !== 'none') ? imgEl.src : "";
+
+      document.getElementById('setJudulApp').value = currentJudul;
+      document.getElementById('setRunningText').value = currentRunning;
+      document.getElementById('setOldLogoUrl').value = currentLogo;
+      document.getElementById('setFileLogo').value = "";
+
+      new bootstrap.Modal(document.getElementById('modalSettingHeader')).show();
+    }
+
+    function loadSavedHeaderSettings() {
+      if (appData && appData.setting) {
+        var s = appData.setting;
+        if (s.judul) {
+          var titleEl = document.getElementById('navbarTitleText');
+          if (titleEl) titleEl.innerText = s.judul;
+        }
+        if (s.runningText) {
+          var runEl = document.getElementById('txtRunningText');
+          if (runEl) runEl.innerText = s.runningText;
+        }
+        if (s.logoUrl !== undefined) {
+          var imgEl = document.getElementById('navbarLogoImg');
+          var iconEl = document.getElementById('navbarLogoIcon');
+          if (s.logoUrl !== "") {
+            if (imgEl) { imgEl.src = s.logoUrl; imgEl.style.display = 'inline-block'; }
+            if (iconEl) iconEl.style.display = 'none';
+          } else {
+            if (imgEl) imgEl.style.display = 'none';
+            if (iconEl) iconEl.style.display = 'inline-block';
+          }
+        }
+      }
+    }
+
+    function saveSettingHeader(e) {
+      e.preventDefault();
+      Swal.fire({ title: 'Menyimpan Pengaturan...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+
+      var newJudul = document.getElementById('setJudulApp').value.trim();
+      var newRunning = document.getElementById('setRunningText').value.trim();
+      var oldLogoUrl = document.getElementById('setOldLogoUrl').value;
+      var fileInput = document.getElementById('setFileLogo');
+
+      var sendPayload = function(fileData, fileName, fileMime) {
+        var payload = { judul: newJudul, runningText: newRunning, oldLogoUrl: oldLogoUrl, fileData: fileData || null, fileName: fileName || null, fileMime: fileMime || null };
+
+        google.script.run
+          .withSuccessHandler(function(res) {
+            Swal.close();
+            if (res.success) {
+              bootstrap.Modal.getInstance(document.getElementById('modalSettingHeader')).hide();
+              Swal.fire({ icon: 'success', title: 'Berhasil!', text: res.message, timer: 1500, showConfirmButton: false });
+              loadData();
+            } else {
+              Swal.fire('Gagal', res.message, 'error');
+            }
+          })
+          .withFailureHandler(function(err) {
+            Swal.close();
+            Swal.fire('Error', err.message, 'error');
+          })
+          .saveHeaderSettingServer(payload);
+      };
+
+      if (fileInput && fileInput.files.length > 0) {
+        var file = fileInput.files[0];
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+          var img = new Image();
+          img.src = evt.target.result;
+          img.onload = function() {
+            var canvas = document.createElement('canvas');
+            var MAX_WIDTH = 300;
+            var scaleSize = MAX_WIDTH / img.width;
+            canvas.width = scaleSize < 1 ? MAX_WIDTH : img.width;
+            canvas.height = scaleSize < 1 ? img.height * scaleSize : img.height;
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            var compressedData = canvas.toDataURL('image/png', 0.8);
+            sendPayload(compressedData.split(',')[1], file.name, 'image/png');
+          };
+        };
+        reader.readAsDataURL(file);
+      } else {
+        sendPayload(null, null, null);
+      }
+    }
+
+    function cekAkses(actionType) {
+      var role = String(currentUserRole || "").trim().toLowerCase();
+      if (role === 'superadmin' || role === 'super admin' || role.indexOf('super') !== -1) return true; 
+
+      if (actionType === 'tambah_kartu' || role === 'rt' || role === 'wilayah') {
+        Swal.fire({ icon: 'error', title: 'Akses Dibatasi', text: 'Maaf tidak dapat Ijin Akses.', confirmButtonColor: '#dc3545' });
+        return false;
+      }
+      if (role === 'admin' && (actionType === 'warga_tambah' || actionType === 'transaksi_tambah' || actionType === 'tambah')) return true;
+
+      if (actionType === 'delete' || actionType === 'warga_edit' || actionType === 'transaksi_edit' || actionType === 'edit' || actionType === 'cetak') {
+        Swal.fire({ icon: 'error', title: 'Akses Dibatasi', text: 'Maaf tidak dapat Ijin Akses.', confirmButtonColor: '#dc3545' });
+        return false;
+      }
+      return true;
+    }
+  
+    function editWarga(wJson) {
+      if (!cekAkses('edit')) return;
+      try {
+        var w = JSON.parse(decodeURIComponent(wJson));
+        document.getElementById('wIdWarga').value = w.rowIndex || "";
+        document.getElementById('wNama').value = w.namaLengkap || "";
+        document.getElementById('wNoRumah').value = w.noRumah || "";
+        document.getElementById('wRt').value = String(w.rt || "01").padStart(2, '0');
+        document.getElementById('wRw').value = String(w.rw || "04").padStart(2, '0');
+        document.getElementById('wKelurahan').value = w.kelurahan || "Ratu Jaya";
+        document.getElementById('wKecamatan').value = w.kecamatan || "Cipayung";
+        document.getElementById('wKota').value = w.kota || "Depok";
+        document.getElementById('wKatagori').value = w.katagori || "Rumah Tangga";
+        document.getElementById('wStatus').value = w.status || "Aktif";
+        document.getElementById('wOperator').value = w.operator || "";
+        document.getElementById('wCoor').value = w.coordinatorRt || "";
+        document.getElementById('wAdmin').value = w.admin || "";
+
+        document.getElementById('modalWargaTitle').innerText = "Edit Data Warga";
+        new bootstrap.Modal(document.getElementById('modalTambahWarga')).show();
+      } catch (err) {
+        Swal.fire("Error", "Gagal membuka data edit warga: " + err.message, "error");
+      }
+    }
+
+    function editPetugas(pJson) {
+      if (!cekAkses('edit')) return;
+      try {
+        var p = JSON.parse(decodeURIComponent(pJson));
+        document.getElementById('pIdPetugas').value = p.rowIndex || "";
+        document.getElementById('pIdPetugas').dataset.idVal = p.idPetugas || p["ID Petugas"] || "";
+        document.getElementById('pNama').value = p["Nama Lengkap"] || p["Nama Petugas"] || p["Nama"] || p.namaLengkap || p.nama || "";
+        document.getElementById('pRt').value = p["RT"] || p.rt || "04";
+        document.getElementById('pRw').value = p["RW"] || p.rw || "04";
+        document.getElementById('pJabatan').value = p["Jabatan"] || p.jabatan || "Operator";
+        document.getElementById('pStatus').value = p["Status"] || p.status || "Aktif";
+
+        document.getElementById('modalPetugasTitle').innerText = "Edit Data Petugas";
+        new bootstrap.Modal(document.getElementById('modalTambahPetugas')).show();
+      } catch (err) {
+        Swal.fire("Error", "Gagal membuka data edit petugas: " + err.message, "error");
+      }
+    }
+
+    function editTransaksi(transJson) {
+      if (!cekAkses('edit')) return;
+      try {
+        var t = JSON.parse(decodeURIComponent(transJson));
+        document.getElementById('tIdTransaksi').value = t["id Transaksi"] || "";
+        document.getElementById('tTglWaktu').value = t["Hari Tanggal"] || "";
+        document.getElementById('tSetoranWarga').value = t["Jumlah Iuran"] || 0;
+        document.getElementById('tSetoranDlhk').value = t["Biaya DLHK"] || 0;
+        document.getElementById('tJumlahMobil').value = String(t["Jumlah Mobil"] || "1").replace(" unit", "");
+        document.getElementById('tPetugasDlhk').value = t["PIC DLHK"] || "";
+        document.getElementById('tOperator').value = t["Operator"] || "";
+        document.getElementById('tAdmin').value = t["Admin"] || "";
+        document.getElementById('tCoordinatorUmum').value = t["Coordinator Umum"] || "";
+        document.getElementById('tKetuaTps').value = t["Ketua TPS"] || "";
+
+        document.getElementById('modalTransaksiTitle').innerText = "Edit Transaksi TPA";
+        new bootstrap.Modal(document.getElementById('modalTambahTransaksi')).show();
+      } catch (err) {
+        Swal.fire("Error", "Gagal membuka data edit transaksi: " + err.message, "error");
+      }
+    }
+
+    function loadDataBayarIuran() {
+      google.script.run.withSuccessHandler(function(res) {
+        var parsed = typeof res === 'string' ? JSON.parse(res) : res;
+        var dataList = Array.isArray(parsed) ? parsed : (parsed && parsed.data ? parsed.data : []);
+        var tbody = document.getElementById('bodyTabelBayarIuran');
+        if (!tbody) return;
+        tbody.innerHTML = '';
+        
+        if (dataList.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="8" class="text-center py-2 text-muted">Belum ada data pembayaran.</td></tr>';
+          return;
+        }
+
+        var isSuperAdmin = (typeof currentUserRole !== 'undefined' && currentUserRole.toLowerCase().indexOf('super') !== -1);
+
+        dataList.forEach(function(item, index) {
+          var badgeClass = item.status === 'Lunas' ? 'bg-success' : 'bg-warning';
+          var rowIndex = item.rowIndex || (index + 2);
+          var itemJson = encodeURIComponent(JSON.stringify({
+            rowIndex: rowIndex, idCard: item.idCard, tanggalKartu: item.tanggalKartu, nama: item.nama, rt: item.rt, rw: item.rw, noRumah: item.noRumah, jumlahIuran: item.jumlahIuran, bulanTahun: item.bulanTahun, status: item.status
+          }));
+
+          var actionButtons = 
+            '<button class="btn btn-sm btn-success py-0 px-1 me-1" onclick="if(cekAkses(\'lunas\')) { ubahStatus(' + rowIndex + ', \'Lunas\'); }">Lunas</button>' +
+            '<button class="btn btn-sm btn-warning py-0 px-1 me-2" onclick="if(cekAkses(\'belum\')) { ubahStatus(' + rowIndex + ', \'Belum Lunas\'); }">Belum</button>';
+
+          if (isSuperAdmin) {
+            actionButtons += 
+              '<button class="btn btn-sm btn-warning py-0 px-1 me-1 text-dark" onclick="editBayarIuran(\'' + itemJson + '\')"><i class="fa-solid fa-pen-to-square"></i></button>' +
+              '<button class="btn btn-sm btn-danger py-0 px-1" onclick="hapusBayarIuranRow(' + rowIndex + ')"><i class="fa-solid fa-trash"></i></button>';
+          }
+
+          var tr = '<tr>' +
+            '<td><b>' + (item.idCard || '') + '</b></td>' +
+            '<td>' + (item.tanggalKartu || '') + '</td>' +
+            '<td><b>' + (item.nama || '') + '</b></td>' +
+            '<td>RT ' + (item.rt || '') + ' / RW ' + (item.rw || '') + ' (No. ' + (item.noRumah || '') + ')</td>' +
+            '<td>Rp ' + Number(item.jumlahIuran || 0).toLocaleString('id-ID') + '</td>' +
+            '<td>' + (item.bulanTahun || '') + '</td>' +
+            '<td><span class="badge ' + badgeClass + '">' + (item.status || 'Belum Lunas') + '</span></td>' +
+            '<td class="text-center" style="white-space: nowrap;">' + actionButtons + '</td>' +
+          '</tr>';
+          tbody.innerHTML += tr;
+        });
+      }).getDataBayarIuran();
+    }
+
+    function editBayarIuran(itemJson) {
+      if (!cekAkses('edit')) return;
+      var d = JSON.parse(decodeURIComponent(itemJson));
+      
+      Swal.fire({
+        title: 'Edit Data Pembayaran',
+        html: 
+          '<form id="formEditBayar" style="text-align:left; font-size:12px;">' +
+            '<input type="hidden" id="ebRowIndex" value="' + d.rowIndex + '">' +
+            '<div class="mb-2"><label class="form-label fw-bold">ID Card (Unik)</label><input type="text" id="ebIdCard" class="form-control form-control-sm" value="' + d.idCard + '" required></div>' +
+            '<div class="mb-2"><label class="form-label fw-bold">Tanggal Kartu</label><input type="text" id="ebTanggal" class="form-control form-control-sm" value="' + d.tanggalKartu + '"></div>' +
+            '<div class="mb-2"><label class="form-label fw-bold">Nama Warga</label><input type="text" id="ebNama" class="form-control form-control-sm" value="' + d.nama + '" required></div>' +
+            '<div class="row g-2 mb-2">' +
+              '<div class="col-4"><label class="form-label fw-bold">RT</label><input type="text" id="ebRt" class="form-control form-control-sm" value="' + d.rt + '"></div>' +
+              '<div class="col-4"><label class="form-label fw-bold">RW</label><input type="text" id="ebRw" class="form-control form-control-sm" value="' + d.rw + '"></div>' +
+              '<div class="col-4"><label class="form-label fw-bold">No Rumah</label><input type="text" id="ebNoRumah" class="form-control form-control-sm" value="' + d.noRumah + '"></div>' +
+            '</div>' +
+            '<div class="mb-2"><label class="form-label fw-bold">Jumlah Iuran (Rp)</label><input type="number" id="ebJumlah" class="form-control form-control-sm" value="' + d.jumlahIuran + '" required></div>' +
+            '<div class="mb-2"><label class="form-label fw-bold">Bulan / Tahun</label><input type="text" id="ebBulan" class="form-control form-control-sm" value="' + d.bulanTahun + '" required></div>' +
+            '<div class="mb-2"><label class="form-label fw-bold">Status</label><select id="ebStatus" class="form-select form-select-sm"><option value="Lunas" ' + (d.status==='Lunas'?'selected':'') + '>Lunas</option><option value="Belum Lunas" ' + (d.status==='Belum Lunas'?'selected':'') + '>Belum Lunas</option></select></div>' +
+          '</form>',
+        showCancelButton: true,
+        confirmButtonText: 'Simpan Perubahan',
+        cancelButtonText: 'Batal',
+        confirmButtonColor: '#107b4d',
+        preConfirm: function() {
+          return {
+            rowIndex: document.getElementById('ebRowIndex').value,
+            idCard: document.getElementById('ebIdCard').value,
+            tanggalKartu: document.getElementById('ebTanggal').value,
+            nama: document.getElementById('ebNama').value,
+            rt: document.getElementById('ebRt').value,
+            rw: document.getElementById('ebRw').value,
+            noRumah: document.getElementById('ebNoRumah').value,
+            jumlahIuran: document.getElementById('ebJumlah').value,
+            bulanTahun: document.getElementById('ebBulan').value,
+            status: document.getElementById('ebStatus').value
+          };
+        }
+      }).then(function(result) {
+        if (result.isConfirmed) {
+          Swal.showLoading();
+          google.script.run.withSuccessHandler(function(res) {
+            if (res.success) {
+              Swal.fire('Berhasil!', res.message, 'success');
+              loadDataBayarIuran();
+            } else {
+              Swal.fire('Peringatan', res.message, 'warning');
+            }
+          }).simpanDataBayarIuranForm(result.value);
+        }
+      });
+    }
+
+    function hapusBayarIuranRow(rowIndex) {
+      if (!cekAkses('delete')) return;
+      Swal.fire({
+        title: 'Hapus Data Pembayaran?', text: 'Data ini akan dihapus secara permanen.', icon: 'warning',
+        showCancelButton: true, confirmButtonColor: '#d33', confirmButtonText: 'Ya, Hapus!', cancelButtonText: 'Batal'
+      }).then(function(result) {
+        if (result.isConfirmed) {
+          Swal.showLoading();
+          google.script.run.withSuccessHandler(function(res) {
+            if (res.success) {
+              Swal.fire('Terhapus!', res.message, 'success');
+              loadDataBayarIuran();
+            } else {
+              Swal.fire('Gagal', res.message, 'error');
+            }
+          }).hapusDataBayarIuran(rowIndex);
+        }
+      });
+    }
+
+    var daftarBulanTahun = [
+      "November 2026", "Desember 2026", "Januari 2027", "Februari 2027", "Maret 2027", "April 2027", 
+      "Mei 2027", "Juni 2027", "Juli 2027", "Agustus 2027", "September 2027", "Oktober 2027"
+    ];
+
+    function getBulanTahunOptions(selectedVal) {
+      return daftarBulanTahun.map(function(b) {
+        var sel = (b === selectedVal) ? 'selected' : '';
+        return '<option value="' + b + '" ' + sel + '>' + b + '</option>';
+      }).join('');
+    }
+
+    function bukaModalBayarIuran() {
+      google.script.run.withSuccessHandler(function(res) {
+        var data = typeof res === 'string' ? JSON.parse(res) : res;
+        cacheKartuIuran = data || [];
+
+        Swal.fire({
+          title: 'Input Pembayaran Iuran',
+          html: 
+            '<form id="formInputBayar" style="text-align:left; font-size:12px;">' +
+              '<div class="mb-2"><label class="form-label fw-bold">ID Card</label><input type="text" id="inpIdCard" class="form-control form-control-sm" placeholder="Contoh: TPS-DM-001" onblur="autofillDataPembayaran()" required></div>' +
+              '<div class="mb-2"><label class="form-label fw-bold">Tanggal Kartu</label><input type="text" id="inpTglKartu" class="form-control form-control-sm" value="' + new Date().toLocaleDateString('id-ID', {day: '2-digit', month: 'long', year: 'numeric'}) + '"></div>' +
+              '<div class="mb-2"><label class="form-label fw-bold">Nama Warga</label><input type="text" id="inpNamaWarga" class="form-control form-control-sm" required></div>' +
+              '<div class="row g-2 mb-2">' +
+                '<div class="col-4"><label class="form-label fw-bold">RT</label><input type="text" id="inpRt" class="form-control form-control-sm" value="04"></div>' +
+                '<div class="col-4"><label class="form-label fw-bold">RW</label><input type="text" id="inpRw" class="form-control form-control-sm" value="04"></div>' +
+                '<div class="col-4"><label class="form-label fw-bold">No Rumah</label><input type="text" id="inpNoRumah" class="form-control form-control-sm"></div>' +
+              '</div>' +
+              '<div class="mb-2"><label class="form-label fw-bold">Jumlah Iuran (Rp)</label><input type="number" id="ibJumlah" class="form-control form-control-sm" value="30000" required></div>' +
+              '<div class="mb-2"><label class="form-label fw-bold">Bulan / Tahun</label><select id="ibBulan" class="form-select form-select-sm">' + getBulanTahunOptions('November 2026') + '</select></div>' +
+              '<div class="mb-2"><label class="form-label fw-bold">Status</label><select id="ibStatus" class="form-select form-select-sm"><option value="Lunas">Lunas</option><option value="Belum Lunas">Belum Lunas</option></select></div>' +
+            '</form>',
+          showCancelButton: true,
+          confirmButtonText: 'Simpan Pembayaran',
+          cancelButtonText: 'Batal',
+          confirmButtonColor: '#107b4d',
+          preConfirm: function() {
+            var idCard = document.getElementById('inpIdCard').value;
+            var nama = document.getElementById('inpNamaWarga').value;
+            if (!idCard || !nama) {
+              Swal.showValidationMessage('ID Card dan Nama Warga wajib diisi!');
+              return false;
+            }
+            return {
+              idCard: idCard, tanggalKartu: document.getElementById('inpTglKartu').value, nama: nama,
+              rt: document.getElementById('inpRt').value, rw: document.getElementById('inpRw').value,
+              noRumah: document.getElementById('inpNoRumah').value, jumlahIuran: document.getElementById('ibJumlah').value,
+              bulanTahun: document.getElementById('ibBulan').value, status: document.getElementById('ibStatus').value
+            };
+          }
+        }).then(function(result) {
+          if (result.isConfirmed) {
+            Swal.fire({ title: 'Menyimpan Data...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+            google.script.run
+              .withSuccessHandler(function(res) {
+                if (res && res.success) {
+                  Swal.fire({ icon: 'success', title: 'Berhasil!', text: res.message, confirmButtonColor: '#107b4d' }).then(function() {
+                    loadDataBayarIuran();
+                  });
+                } else {
+                  Swal.fire('Gagal Menyimpan', (res ? res.message : 'Terjadi kesalahan sistem'), 'error');
+                }
+              })
+              .simpanDataBayarIuranForm(result.value);
+          }
+        });
+      }).getDataKartuIuran();
+    }
+
+    function ubahStatus(rowIndex, statusBaru) {
+      Swal.fire({ title: 'Memperbarui Status...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+      google.script.run
+        .withSuccessHandler(function(res) {
+          if (res && res.success) {
+            Swal.fire({ icon: 'success', title: 'Berhasil!', text: res.message, timer: 1500, showConfirmButton: false });
+            loadDataBayarIuran();
+          } else {
+            Swal.fire('Gagal', res ? res.message : 'Terjadi kesalahan', 'error');
+          }
+        })
+        .withFailureHandler(function(err) {
+          Swal.fire('Error', err.message || err.toString(), 'error');
+        })
+        .updateStatusBayarIuran(rowIndex, statusBaru);
+    }
+
+    function autofillDataPembayaran() {
+      var idCardInput = document.getElementById('inpIdCard');
+      if (!idCardInput) return;
+      var val = idCardInput.value.trim();
+      if (!val) {
+        document.getElementById('inpNamaWarga').value = '';
+        document.getElementById('inpNoRumah').value = '';
+        return;
+      }
+
+      var found = (typeof cacheKartuIuran !== 'undefined' ? cacheKartuIuran : []).find(function(item) {
+        var itemID = String(item.ID || item.id || item.idCard || "").trim().toLowerCase();
+        return itemID === val.toLowerCase();
+      });
+
+      if (found) {
+        document.getElementById('inpNamaWarga').value = found.Nama || found.nama || '';
+        document.getElementById('inpNoRumah').value = found["No Rumah"] || found.NoRumah || found.noRumah || '';
+        var alamatStr = String(found.Alamat || found.alamat || "");
+        var rtMatch = alamatStr.match(/RT\.?\s*(\d+)/i);
+        var rwMatch = alamatStr.match(/RW\.?\s*(\d+)/i);
+        document.getElementById('inpRt').value = rtMatch ? rtMatch[1] : '04';
+        document.getElementById('inpRw').value = rwMatch ? rwMatch[1] : '04';
+      } else {
+        document.getElementById('inpNamaWarga').value = '';
+        document.getElementById('inpNoRumah').value = '';
+        document.getElementById('inpRt').value = '04';
+        document.getElementById('inpRw').value = '04';
+      }
+    }
+
+    function cetakKartuWargaDirect(wJson) {
+      var w = {};
+      try {
+        if (wJson) {
+          w = typeof wJson === 'string' ? JSON.parse(decodeURIComponent(wJson)) : wJson;
+        }
+      } catch (err) { w = {}; }
+
+      var nama = (w.Nama || w.nama || 'Warga').toUpperCase();
+      var idWarga = (w.ID || w.id || w.idCard || 'TPS-DM-001').toUpperCase();
+      var rawAlamat = String(w.Alamat || w.alamat || 'Ratu Jaya').trim();
+      var noRumah = String(w.NoRumah || w.noRumah || w["No Rumah"] || '-').toUpperCase();
+      var status = String(w.Status || w.status || 'AKTIF').toUpperCase();
+      var fotoUrl = w.UrlFoto || w.urlFoto || w.FotoUrl || w.fotoUrl || '';
+
+      var rtVal = w.RT || w.rt || '';
+      var rwVal = w.RW || w.rw || '';
+
+      if (!rtVal) {
+        var matchRt = rawAlamat.match(/RT\.?\s*(\d+)/i);
+        rtVal = matchRt ? matchRt[1] : '';
+      }
+      if (!rwVal) {
+        var matchRw = rawAlamat.match(/RW\.?\s*(\d+)/i);
+        rwVal = matchRw ? matchRw[1] : '';
+      }
+
+      var cleanAlamat = rawAlamat.replace(/RT\.?\s*\d+/gi, '').replace(/RW\.?\s*\d+/gi, '').replace(/,\s*,/g, ',').trim();
+      if (cleanAlamat.endsWith(',')) cleanAlamat = cleanAlamat.slice(0, -1).trim();
+      if (!cleanAlamat) cleanAlamat = "Ratu Jaya";
+
+      var fullAlamat = cleanAlamat.toUpperCase();
+      if (rtVal) fullAlamat += ' RT. ' + String(rtVal).padStart(2, '0');
+      if (rwVal) fullAlamat += ' RW. ' + String(rwVal).padStart(2, '0');
+
+      var displayPhoto = (fotoUrl && fotoUrl.trim() !== '') ? fotoUrl : 'https://ui-avatars.com/api/?name=' + encodeURIComponent(nama) + '&background=107b4d&color=ffffff&bold=true&size=128';
+      var logoUrl = "https://lh3.googleusercontent.com/d/1fRso7wL4d0YVMxWpo7a1RgL4ZJrJOgf8";
+      var githubPagesUrl = "https://syamsco.github.io/tps-dipo-mawar-04/";
+      var qrText = encodeURIComponent(githubPagesUrl + "?id=" + idWarga);
+      var qrCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=" + qrText;   
+
+      var fotoDriveContact = "https://drive.google.com/file/d/1mOlaZ9rpoUJ1fqXJaUBu-t_d80ghjkff/view?usp=drive_link";
+      var waUrlContact = "https://wa.me/6281284697173?text=" + encodeURIComponent("Halo Contact Center TPS Dipo Mawar 04, saya ingin konfirmasi biodata/iuran warga.");
+      var qrCodeContactUrl = "https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=" + encodeURIComponent(waUrlContact);
+
+      var frontHtml = '<div style="width:420px; height:260px; border-radius:16px; background:#ffffff; margin:0 auto; box-sizing:border-box; font-family:\'Segoe UI\', Roboto, sans-serif; text-align:left; box-shadow:0 10px 28px rgba(0,0,0,0.18); border:1px solid #107b4d; display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; position:relative;">' +
+        '<div style="background:linear-gradient(135deg, #0b5936 0%, #107b4d 100%); padding:10px 14px; color:#ffffff; display:flex; align-items:center; justify-content:space-between; border-bottom:3px solid #ffc107;">' +
+          '<div style="display:flex; align-items:center; gap:10px;">' +
+            '<div style="width:40px; height:40px; background:#ffffff; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.2); flex-shrink:0;">' +
+              '<img src="' + logoUrl + '" style="width:28px; height:28px; object-fit:contain;" onerror="this.src=\'https://cdn-icons-png.flaticon.com/512/3135/3135715.png\';">' +
+            '</div>' +
+            '<div style="display:flex; flex-direction:column;">' +
+              '<span style="font-size:10px; text-transform:uppercase; font-weight:700; letter-spacing:1px; color:#a7f3d0;">TPS DIPO MAWAR RW 004</span>' +
+              '<span style="font-size:15px; font-weight:900; letter-spacing:0.5px; color:#ffffff; text-shadow:0 1px 2px rgba(0,0,0,0.3);">KARTU IURAN WARGA</span>' +
+            '</div>' +
+          '</div>' +
+          '<div style="text-align:right;"><span style="font-size:9px; background:rgba(255,255,255,0.2); padding:2px 8px; border-radius:12px; font-weight:700; color:#fff; border:1px solid rgba(255,255,255,0.3);">OFFICIAL CARD</span></div>' +
+        '</div>' +
+        '<div style="padding:10px 14px; display:grid; grid-template-columns:82px 1fr 82px; gap:10px; align-items:center; flex-grow:1; background:linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); position:relative;">' +
+          '<div style="text-align:center;"><img src="' + displayPhoto + '" style="width:80px; height:98px; border-radius:4px; border:1px solid #000000; object-fit:cover; box-shadow:0 2px 4px rgba(0,0,0,0.1);" crossorigin="anonymous"></div>' +
+          '<table style="width:100%; font-size:10px; color:#000000; border-collapse:collapse; line-height:1.35;">' +
+            '<tr><td style="font-weight:bold; color:#000000; width:65px; padding:2px 0;">NAMA</td><td style="padding:2px 0;">: <b style="color:#000000; font-size:11px; font-weight:bold;">' + nama + '</b></td></tr>' +
+            '<tr><td style="font-weight:bold; color:#000000; padding:2px 0;">ID CARD</td><td style="padding:2px 0;">: <b style="color:#000000; font-family:monospace; font-size:11.5px; font-weight:bold;">' + idWarga + '</b></td></tr>' +
+            '<tr><td style="font-weight:bold; color:#000000; padding:2px 0;">ALAMAT</td><td style="padding:2px 0;">: <span style="font-weight:bold; color:#000000;">' + fullAlamat + '</span></td></tr>' +
+            '<tr><td style="font-weight:bold; color:#000000; padding:2px 0;">NO. RUMAH</td><td style="padding:2px 0;">: <span style="font-weight:bold; color:#000000;">' + noRumah + '</span></td></tr>' +
+            '<tr><td style="font-weight:bold; color:#000000; padding:2px 0;">STATUS</td><td style="padding:2px 0;">: <span style="background-color:#16a34a; color:white; padding:2px 8px; border-radius:4px; font-size:9px; font-weight:800;">' + status + '</span></td></tr>' +
+          '</table>' +
+          '<div style="text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center;">' +
+            '<div style="padding:3px; background:#ffffff; border:1px solid #cbd5e1; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.08);"><img src="' + qrCodeUrl + '" style="width:76px; height:76px; display:block;"></div>' +
+            '<span style="font-size:7.5px; color:#64748b; font-weight:700; margin-top:4px;">SCAN QR</span>' +
+          '</div>' +
+        '</div>' +
+        '<div style="background:#f1f5f9; padding:5px 14px; font-size:8.5px; color:#475569; font-weight:700; display:flex; justify-content:space-between; align-items:center; border-top:1px solid #e2e8f0;">' +
+          '<span style="color:#107b4d;"><i class="fa fa-shield-halved me-1"></i> SCAN VIEW PAYMENT</span><span>UNTIL 2029</span>' +
+        '</div>' +
+      '</div>';
+
+      var backHtml = '<div style="width:420px; height:260px; border-radius:16px; background:#ffffff; margin:0 auto; box-sizing:border-box; font-family:\'Segoe UI\', Roboto, sans-serif; text-align:left; box-shadow:0 10px 28px rgba(0,0,0,0.18); border:1px solid #107b4d; display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; position:relative;">' +
+        '<div style="background:linear-gradient(135deg, #0b5936 0%, #107b4d 100%); padding:8px 14px; color:#ffffff; border-bottom:3px solid #ffc107;">' +
+          '<h3 style="margin:0; font-size:12px; font-weight:800; color:#ffffff; letter-spacing:0.5px; text-transform:uppercase;">RULE OF TERM CARD</h3>' +
+        '</div>' +
+        '<div style="padding:10px 14px; font-size:9.5px; color:#000000; display:flex; flex-direction:column; justify-content:space-between; flex-grow:1; background:#ffffff;">' +
+          '<ol style="margin:0; padding-left:16px; line-height:1.45; font-weight:bold; color:#000000;">' +
+            '<li style="margin-bottom:3px;">Kartu ini hanya berlaku sah untuk Warga lingkungan RW 004 Depok.</li>' +
+            '<li style="margin-bottom:3px;">Wajib ditunjukkan atau dipindai QR saat Pembayaran Iuran Bulanan.</li>' +
+            '<li style="margin-bottom:3px;">Jika Kartu Hilang, segera Lapor melalui Aplikasi atau Contact Center.</li>' +
+            '<li>Gunakan QR Code untuk Cek Riwayat Pembayaran secara Real-Time.</li>' +
+          '</ol>' +
+          '<div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:6px 10px; display:flex; justify-content:space-between; align-items:center; margin-top:6px;">' +
+            '<div>' +
+              '<div style="font-size:8px; color:#166534; font-weight:700; text-transform:uppercase;">HUNTING / CHAT (WHATSAPP)</div>' +
+              '<div style="font-weight:900; color:#107b4d; font-size:11px;">CONTACT CENTER</div>' +
+              '<div style="color:#000000; font-weight:bold; font-size:10px;">+62 812-8469-7173</div>' +
+              '<a href="' + fotoDriveContact + '" target="_blank" style="font-size:7.5px; color:#2563eb; text-decoration:underline; font-weight:600;">LOOK ME</a>' +
+            '</div>' +
+            '<div style="text-align:center;"><img src="' + qrCodeContactUrl + '" style="width:44px; height:44px; border:1px solid #cbd5e1; border-radius:4px; background:#fff; padding:2px;"><div style="font-size:6.5px; color:#166534; font-weight:800; margin-top:2px;">SCAN WA</div></div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="background:#f1f5f9; padding:5px 14px; font-size:8.5px; color:#475569; font-weight:700; display:flex; justify-content:space-between; align-items:center; border-top:1px solid #e2e8f0;">' +
+          '<span style="color:#107b4d;">TPS DIPO MAWAR 04</span><span>CARD CONTROL</span>' +
+        '</div>' +
+      '</div>';
+
+      Swal.fire({
+        title: 'Preview Cetak Kartu Iuran Warga',
+        html: '<div style="display:flex; flex-direction:column; align-items:center; gap:16px; width:100%; max-width:100%; max-height:78vh; overflow-y:auto; overflow-x:hidden; padding:4px; box-sizing:border-box;">' + 
+                '<div style="width:100%; display:flex; justify-content:center; transform:scale(0.85); transform-origin:top center;">' + frontHtml + '</div>' + 
+                '<div style="width:100%; display:flex; justify-content:center; transform:scale(0.85); transform-origin:top center;">' + backHtml + '</div>' + 
+              '</div>',
+        width: '95%',
+        padding: '0.5em',
+        showCancelButton: true,
+        confirmButtonText: '<i class="fa fa-print me-1"></i> Cetak Kartu Sekarang',
+        cancelButtonText: 'Tutup',
+        confirmButtonColor: '#107b4d'
+      }).then(function(res) {
+        if (res.isConfirmed) {
+          if (!cekAkses('cetak')) return;
+          var fullHtml = '<!DOCTYPE html><html><head><title>Cetak Kartu - ' + nama + '</title><style>body{background:#fff;margin:0;padding:0;display:flex;justify-content:center;align-items:center;flex-direction:column;}.print-page{display:flex;justify-content:center;align-items:center;width:100vw;height:100vh;page-break-after:always;}@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}.print-page{height:100vh;page-break-after:always;}}</style></head><body onload="setTimeout(function() { window.print(); window.close(); }, 800);"><div class="print-page">' + frontHtml + '</div><div class="print-page">' + backHtml + '</div></body></html>';
+          var blob = new Blob([fullHtml], { type: 'text/html' });
+          var blobUrl = URL.createObjectURL(blob);
+          window.open(blobUrl, '_blank');
+        }
+      });
     }
 
     function renderPetugas() {
@@ -1128,6 +2129,7 @@
       tbody.innerHTML = dataList.map(function(t, idx) {
         var idTrx = t["id Transaksi"] || t["col_0"] || "-";
         var tgl = t["Hari Tanggal "] || t["Hari Tanggal"] || t["col_1"] || "-";
+        
         var masuk = parseFloat(t["Jumlah Iuran"] || t["Masuk Iuran"] || t["col_2"] || 0);
         var keluar = parseFloat(t[" Biaya DLHK"] || t["Biaya DLHK"] || t["Keluar Iuran"] || t["col_3"] || 0);
         var saldo = masuk - keluar;
@@ -1166,93 +2168,487 @@
       if (sEl) sEl.innerText = "Rp " + (totalMasuk - totalKeluar).toLocaleString('id-ID');
     }
 
-    function renderContactCenter() {
-      var container = document.getElementById('contactGridContainer');
-      if (!container) return;
-      var searchEl = document.getElementById('searchContact');
-      var keyword = searchEl ? searchEl.value.toLowerCase().trim() : "";
-      var contacts = appData.contactCenter || [];
+   function renderContactCenter() {
+  var container = document.getElementById('contactGridContainer');
+  if (!container) return;
+  var searchEl = document.getElementById('searchContact');
+  var keyword = searchEl ? searchEl.value.toLowerCase().trim() : "";
+  var contacts = appData.contactCenter || [];
 
-      if (keyword !== "") {
-        contacts = contacts.filter(function(c) {
-          var nama = String(c["Nama"] || c["Nama Lengkap"] || c["col_1"] || "").toLowerCase();
-          var jabatan = String(c["Jabatan"] || c["col_2"] || "").toLowerCase();
-          var wilayah = String(c["Wilayah"] || c["col_3"] || "").toLowerCase();
-          return nama.indexOf(keyword) !== -1 || jabatan.indexOf(keyword) !== -1 || wilayah.indexOf(keyword) !== -1;
-        });
+  if (keyword !== "") {
+    contacts = contacts.filter(function(c) {
+      // Menyesuaikan dengan berbagai kemungkinan nama kolom header di Google Sheets
+      var nama = String(c["Nama"] || c["Nama Lengkap"] || c["col_1"] || "").toLowerCase();
+      var jabatan = String(c["Jabatan"] || c["col_2"] || "").toLowerCase();
+      var wilayah = String(c["Wilayah"] || c["col_3"] || "").toLowerCase();
+      return nama.indexOf(keyword) !== -1 || jabatan.indexOf(keyword) !== -1 || wilayah.indexOf(keyword) !== -1;
+    });
+  }
+
+  if (!contacts.length) {
+    container.innerHTML = '<div class="col-12 text-center text-muted py-4"><i class="fa-solid fa-address-book fs-1 mb-2 text-secondary"></i><p class="mb-0">Belum ada data kontak pengurus.</p></div>';
+    return;
+  }
+
+  container.innerHTML = contacts.map(function(c) {
+    var rowIndex = c.rowIndex || "";
+    // Menangkap berbagai variasi nama kolom dari Google Sheets
+    var nama = c["Nama"] || c["Nama Lengkap"] || c["col_1"] || "-";
+    var jabatan = c["Jabatan"] || c["col_2"] || "-";
+    var wilayah = c["Wilayah"] || c["col_3"] || "-";
+    var rawHp = String(c["No HP"] || c["NoHP"] || c["No. HP"] || c["col_4"] || "").replace(/[^0-9]/g, '');
+    var status = c["Status"] || c["col_5"] || "Aktif";
+    
+    // Penanganan URL Foto yang aman dari Google Drive / Link Eksternal
+    var fotoUrl = c["URL Foto"] || c["UrlFoto"] || c["urlFoto"] || c["FotoUrl"] || c["col_6"] || "";
+    if (fotoUrl && fotoUrl.indexOf("drive.google.com") !== -1) {
+      var fileIdMatch = fotoUrl.match(/\/d\/([a-zA-Z0-9_-]+)/) || fotoUrl.match(/id=([a-zA-Z0-9_-]+)/);
+      if (fileIdMatch) {
+        fotoUrl = "https://lh3.googleusercontent.com/d/" + fileIdMatch[1];
       }
+    }
+    
+    var waHp = rawHp.startsWith('0') ? '62' + rawHp.slice(1) : rawHp;
+    var cObj = { rowIndex: rowIndex, nama: nama, jabatan: jabatan, wilayah: wilayah, noHp: rawHp, status: status, fotoUrl: fotoUrl };
+    var cJson = encodeURIComponent(JSON.stringify(cObj));
 
-      if (!contacts.length) {
-        container.innerHTML = '<div class="col-12 text-center text-muted py-4"><i class="fa-solid fa-address-book fs-1 mb-2 text-secondary"></i><p class="mb-0">Belum ada data kontak pengurus.</p></div>';
-        return;
-      }
+    var waButtonHtml = rawHp ? '<a href="https://wa.me/' + waHp + '?text=Halo%20' + encodeURIComponent(nama) + '" target="_blank" class="btn-whatsapp-sm"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>' : '<span class="badge bg-secondary" style="font-size:0.6rem;">No HP Kosong</span>';
 
-      container.innerHTML = contacts.map(function(c) {
-        var rowIndex = c.rowIndex || "";
-        var nama = c["Nama"] || c["Nama Lengkap"] || c["col_1"] || "-";
-        var jabatan = c["Jabatan"] || c["col_2"] || "-";
-        var wilayah = c["Wilayah"] || c["col_3"] || "-";
-        var rawHp = String(c["No HP"] || c["NoHP"] || c["No. HP"] || c["col_4"] || "").replace(/[^0-9]/g, '');
-        var status = c["Status"] || c["col_5"] || "Aktif";
-        var fotoUrl = c["URL Foto"] || c["UrlFoto"] || c["urlFoto"] || c["FotoUrl"] || c["col_6"] || "";
-        
-        if (fotoUrl && fotoUrl.indexOf("drive.google.com") !== -1) {
-          var fileIdMatch = fotoUrl.match(/\/d\/([a-zA-Z0-9_-]+)/) || fotoUrl.match(/id=([a-zA-Z0-9_-]+)/);
-          if (fileIdMatch) fotoUrl = "https://lh3.googleusercontent.com/d/" + fileIdMatch[1];
-        }
-        
-        var waHp = rawHp.startsWith('0') ? '62' + rawHp.slice(1) : rawHp;
-        var cObj = { rowIndex: rowIndex, nama: nama, jabatan: jabatan, wilayah: wilayah, noHp: rawHp, status: status, fotoUrl: fotoUrl };
-        var cJson = encodeURIComponent(JSON.stringify(cObj));
-        var waButtonHtml = rawHp ? '<a href="https://wa.me/' + waHp + '?text=Halo%20' + encodeURIComponent(nama) + '" target="_blank" class="btn-whatsapp-sm"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>' : '<span class="badge bg-secondary" style="font-size:0.6rem;">No HP Kosong</span>';
-
-        return '<div class="col">' +
-          '<div class="contact-card">' +
-            '<div class="contact-card-body">' +
-              '<div class="contact-avatar-box">' +
-                '<img src="' + (fotoUrl || 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png') + '" class="contact-avatar-img" onerror="this.src=\'https://cdn-icons-png.flaticon.com/512/3135/3135715.png\'">' +
-              '</div>' +
-              '<div class="contact-info-box">' +
-                '<div class="contact-name" title="' + nama + '">NAMA : ' + nama + '</div>' +
-                '<div class="contact-jabatan">JABATAN : ' + jabatan + '</div>' +
-                '<div class="contact-wilayah"><i class="fa-solid fa-location-dot me-1 text-warning"></i>Wilayah : ' + wilayah + '</div>' +
-                '<div class="text-white-50" style="font-size: 0.62rem;"><i class="fa-solid fa-phone me-1"></i>HP: ' + (rawHp || '-') + '</div>' +
-              '</div>' +
-            '</div>' +
-            '<div class="contact-actions">' +
-              waButtonHtml +
-              '<div>' +
-                '<button class="btn btn-warning btn-sm py-0 px-1" style="font-size:0.65rem;" onclick="if(cekAkses(\'edit\')) { editContact(\'' + cJson + \'); }"><i class="fa-solid fa-pen-to-square"></i> Edit</button> ' +
-                '<button class="btn btn-danger btn-sm py-0 px-1" style="font-size:0.65rem;" onclick="hapusContact(' + rowIndex + ')"><i class="fa-solid fa-trash"></i> Delete</button>' +
-              '</div>' +
-            '</div>' +
+    return '<div class="col">' +
+      '<div class="contact-card">' +
+        '<div class="contact-card-body">' +
+          '<div class="contact-avatar-box">' +
+            '<img src="' + (fotoUrl || 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png') + '" class="contact-avatar-img" onerror="this.src=\'https://cdn-icons-png.flaticon.com/512/3135/3135715.png\'">' +
           '</div>' +
-        '</div>';
-      }).join('');
+          '<div class="contact-info-box">' +
+            '<div class="contact-name" title="' + nama + '">NAMA : ' + nama + '</div>' +
+            '<div class="contact-jabatan">JABATAN : ' + jabatan + '</div>' +
+            '<div class="contact-wilayah"><i class="fa-solid fa-location-dot me-1 text-warning"></i>Wilayah : ' + wilayah + '</div>' +
+            '<div class="text-white-50" style="font-size: 0.62rem;"><i class="fa-solid fa-phone me-1"></i>HP: ' + (rawHp || '-') + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="contact-actions">' +
+          waButtonHtml +
+          '<div>' +
+            '<button class="btn btn-warning btn-sm py-0 px-1" style="font-size:0.65rem;" onclick="if(cekAkses(\'edit\')) { editContact(\'' + cJson + '\'); }"><i class="fa-solid fa-pen-to-square"></i> Edit</button> ' +
+            '<button class="btn btn-danger btn-sm py-0 px-1" style="font-size:0.65rem;" onclick="hapusContact(' + rowIndex + ')"><i class="fa-solid fa-trash"></i> Delete</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+  </script>
+  <!-- Container Tampilan Verifikasi Riwayat Iuran -->
+<div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.98); z-index:9999; justify-content:center; align-items:center; padding: 15px; box-sizing: border-box;">
+    <div style="background:white; padding:20px; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.15); width:100%; max-width:450px; border-top:5px solid #107b4d; font-family: Arial, sans-serif; box-sizing: border-box;">
+        <h4 style="text-align:center; color:#107b4d; margin-bottom:15px; font-size: 1.1rem; font-weight: bold;">Verifikasi Riwayat Iuran</h4>
+        
+        <!-- Indikator Loading -->
+        <div id="v-loading" style="text-align:center; padding: 25px; color: #666; font-size: 0.9rem;">
+            <i class="fa-solid fa-spinner fa-spin fa-2x mb-2 text-success"></i><br>Memuat data verifikasi...
+        </div>
+
+        <!-- Konten Utama -->
+        <div id="v-content" style="display:none;">
+            <p style="margin: 5px 0; font-size: 0.85rem;"><strong>ID Card:</strong> <span id="v-id">-</span></p>
+            <p style="margin: 5px 0; font-size: 0.85rem;"><strong>Nama Warga:</strong> <span id="v-nama">-</span></p>
+            <p style="margin: 5px 0; font-size: 0.85rem;"><strong>Alamat:</strong> <span id="v-alamat">-</span></p>
+            
+            <div style="margin-top: 10px; border: 1px solid #ddd; border-radius: 6px; width: 100%; background: #fff; overflow: hidden;">
+                <table style="width:100%; border-collapse:collapse; text-align: left; font-size: 0.72rem; table-layout: fixed;">
+                    <thead>
+                        <tr style="background:#e8f5e9; color:#107b4d;">
+                            <th style="padding:6px 2px; border-bottom:1px solid #ddd; text-align:center; width:12%;">No</th>
+                            <th style="padding:6px 4px; border-bottom:1px solid #ddd; width:38%;">Bulan / Tahun</th>
+                            <th style="padding:6px 4px; border-bottom:1px solid #ddd; width:30%;">Jumlah</th>
+                            <th style="padding:6px 2px; border-bottom:1px solid #ddd; text-align:center; width:20%;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="v-tbody">
+                        <!-- Data dirender dinamis -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div style="text-align:center; margin-top:15px;">
+            <button onclick="bukaAplikasiUtama()" style="background:#107b4d; color:white; padding:10px 16px; border:none; border-radius:6px; cursor:pointer; width:100%; font-weight:bold; font-size:0.9rem;">Buka Aplikasi Utama</button>
+        </div>
+    </div>
+</div>
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // ==========================================
+    // 1. PENANGANAN VERIFIKASI WARGA (?id=...)
+    // ==========================================
+    const idParam = urlParams.get('id');
+    const verifContainer = document.getElementById('verifikasi-container');
+
+    if (idParam) {
+        const loginWrapper = document.getElementById('loginPageWrapper');
+        if (loginWrapper) loginWrapper.style.display = 'none';
+        
+        const appContent = document.getElementById('appContent');
+        if (appContent) appContent.style.display = 'none';
+
+        if (verifContainer) verifContainer.style.display = 'flex';
+
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec"; 
+
+        fetch(`${WEB_APP_URL}?id=${idParam}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('v-loading').style.display = 'none';
+                document.getElementById('v-content').style.display = 'block';
+
+                if (data && data.success && data.warga) {
+                    document.getElementById('v-id').innerText = data.warga.idCard || idParam;
+                    document.getElementById('v-nama').innerText = data.warga.nama || '-';
+                    
+                    let alamatLengkap = `RT ${data.warga.rt || '-'} / RW ${data.warga.rw || '-'} (No. ${data.warga.noRumah || '-'})`;
+                    document.getElementById('v-alamat').innerText = alamatLengkap;
+
+                    let tbody = document.getElementById('v-tbody');
+                    if (tbody && data.riwayat) {
+                        tbody.innerHTML = '';
+                        data.riwayat.forEach(function(item, index) {
+                            let statusStr = String(item.status || "Belum Lunas");
+                            let badgeColor = statusStr.toLowerCase() === 'lunas' ? '#198754' : '#dc3545';
+                            let jumlahFormatted = Number(item.jumlahIuran || 0).toLocaleString('id-ID');
+                            
+                            let tr = `<tr>
+                                <td style="padding:5px 2px; border-bottom:1px solid #eee; text-align:center; vertical-align:middle;">${index + 1}</td>
+                                <td style="padding:5px 4px; border-bottom:1px solid #eee; vertical-align:middle; word-break: break-word; font-size: 0.7rem;">${item.bulanTahun || '-'}</td>
+                                <td style="padding:5px 4px; border-bottom:1px solid #eee; vertical-align:middle; font-size: 0.7rem; white-space: nowrap;">Rp ${jumlahFormatted}</td>
+                                <td style="padding:5px 2px; border-bottom:1px solid #eee; text-align:center; vertical-align:middle;"><span style="background:${badgeColor}; color:white; padding:2px 4px; border-radius:3px; font-size:8.5px; font-weight:bold; white-space:nowrap; display:inline-block;">${statusStr.toUpperCase()}</span></td>
+                            </tr>`;
+                            tbody.innerHTML += tr;
+                        });
+                    }
+                } else {
+                    document.getElementById('v-content').innerHTML = `<p style="text-align:center; color:#dc3545; font-weight:bold; padding:15px 0;">${(data && data.message) ? data.message : "Data tidak ditemukan"}</p>`;
+                }
+            })
+            .catch(error => {
+                console.error('Gagal memuat data verifikasi:', error);
+                document.getElementById('v-loading').innerHTML = '<span style="color:#dc3545;">Gagal terhubung ke server. Periksa koneksi Anda.</span>';
+            });
+    } else {
+        if (verifContainer) verifContainer.style.display = 'none';
     }
 
-    function muatDataIdCard() {
-      var tbody = document.getElementById('tbodyIdCard');
-      if (!tbody) return;
-      tbody.innerHTML = '<tr><td colspan="7" class="text-center py-3 text-muted">Memuat data pengurus...</td></tr>';
+    // ==========================================
+    // 2. PENANGANAN ID CARD PETUGAS (?petugas=...)
+    // ==========================================
+    const petugasParam = urlParams.get('petugas');
+    const petugasContainer = document.getElementById('petugas-container');
 
-      google.script.run
+    if (petugasParam) {
+        const loginWrapper = document.getElementById('loginPageWrapper');
+        if (loginWrapper) loginWrapper.style.display = 'none';
+
+        const appContent = document.getElementById('appContent');
+        if (appContent) appContent.style.display = 'none';
+
+        if (petugasContainer) petugasContainer.style.display = 'flex';
+
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec";
+
+
+  fetch(`${WEB_APP_URL}?petugas=${petugasParam}`)
+              .then(response => response.json())
+              .then(data => {
+                  let loadingEl = document.getElementById('p-loading');
+                  let contentEl = document.getElementById('p-content');
+                  if (loadingEl) loadingEl.style.display = 'none';
+                  if (contentEl) contentEl.style.display = 'block';
+
+                  if (data && data.success && data.petugas) {
+                      document.getElementById('p-id').innerText = data.petugas.id || petugasParam;
+                      document.getElementById('p-nama').innerText = data.petugas.nama || '-';
+                      document.getElementById('p-nik').innerText = data.petugas.nik || '-';
+                      document.getElementById('p-alamat').innerText = data.petugas.alamat || '-';
+                      document.getElementById('p-rt').innerText = data.petugas.rt || '-';
+                      document.getElementById('p-rw').innerText = data.petugas.rw || '-';
+                      document.getElementById('p-kelurahan').innerText = data.petugas.kelurahan || '-';
+                      document.getElementById('p-kecamatan').innerText = data.petugas.kecamatan || '-';
+                      document.getElementById('p-kota').innerText = data.petugas.kota || '-';
+                      document.getElementById('p-jabatan').innerText = data.petugas.jabatan || '-';
+                      
+                      // Pastikan Barcode/QR Code terisi
+                      if (data.petugas.barcode) {
+                          document.getElementById('p-barcode').src = data.petugas.barcode;
+                      }
+
+                      // Pastikan Foto terisi dengan aman (dengan fallback jika kosong)
+                      if (data.petugas.foto && data.petugas.foto.trim() !== '') {
+                          document.getElementById('p-foto').src = data.petugas.foto;
+                      } else {
+                          document.getElementById('p-foto').src = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
+                      }
+                  } else {
+                      console.warn('Data petugas tidak ditemukan.');
+                  }
+              })
+              .catch(error => {
+                  console.error('Gagal memuat data ID Card:', error);
+              });
+
+  function bukaAplikasiUtama() {
+      window.location.href = window.location.origin + window.location.pathname;
+  }
+function tutupIdCard() {
+  // Menyembunyikan kontainer kartu agar kembali ke tabel utama tanpa reload/login ulang
+  const container = document.getElementById('petugas-container');
+  if (container) {
+    container.style.display = 'none';
+  }
+  
+  // Membersihkan parameter ?petugas=... di URL agar bersih kembali
+  if (window.history.replaceState) {
+    const cleanURL = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    window.history.replaceState({path: cleanURL}, '', cleanURL);
+  }
+}
+</script>
+</body>
+<!-- Container Tampilan Kartu Identitas Pengurus (Portrait / Vertikal Standar ATM/KTP) -->
+<div id="petugas-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,23,42,0.85); z-index:9999; justify-content:center; align-items:center; padding:20px; box-sizing:border-box; font-family:'Segoe UI', Roboto, sans-serif; backdrop-filter:blur(4px);">
+  
+  <div id="p-loading" style="background:white; padding:25px 35px; border-radius:12px; text-align:center; font-weight:bold; color:#0b5936; box-shadow:0 10px 25px rgba(0,0,0,0.3);">
+    <i class="fas fa-spinner fa-spin fa-2x" style="margin-bottom:10px;"></i><br>Memuat ID Card Pengurus...
+  </div>
+
+  <div id="p-content" style="display:none; width:320px; height:510px; background:#ffffff; border-radius:14px; border:2px solid #0b5936; box-shadow:0 15px 35px rgba(0,0,0,0.4); overflow:hidden; text-align:center; flex-direction:column; position:relative; box-sizing:border-box;">
+    
+    <!-- Header Instansi dengan Logo Daur Ulang -->
+    <div style="background:linear-gradient(135deg, #0b5936 0%, #107b4d 100%); padding:12px 10px; color:#ffffff; border-bottom:4px solid #ffc107; display:flex; align-items:center; justify-content:space-between;">
+      <div style="text-align:left;">
+        <div style="font-size:8.5px; font-weight:700; letter-spacing:1px; color:#a7f3d0; text-transform:uppercase;">PEMERINTAH KOTA DEPOK</div>
+        <div style="font-size:12px; font-weight:900; letter-spacing:0.5px; color:#ffffff; margin-top:1px;">TPS DIPO MAWAR RW. 04</div>
+        <div style="font-size:7px; letter-spacing:0.8px; color:#ffc107; font-weight:600; margin-top:2px;">— KARTU IDENTITAS PENGURUS —</div>
+      </div>
+      <div style="width:34px; height:34px; background:white; border-radius:50%; padding:3px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.2);">
+        <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/267b.png" style="width:100%; height:100%; object-fit:contain;" alt="Logo Daur Ulang">
+      </div>
+    </div>
+
+    <!-- Body Kartu -->
+    <div style="padding:12px 16px; background:#f8fafc; flex:1; display:flex; flex-direction:column; justify-content:space-between; text-align:left;">
+      
+      <!-- Foto & Identitas Utama -->
+      <div style="text-align:center;">
+        <div style="width:85px; height:105px; margin:0 auto 6px auto; border-radius:8px; background:#ffffff; padding:2px; border:2px solid #0b5936; box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+          <img id="p-foto" src="" style="width:100%; height:100%; object-fit:cover; border-radius:6px;" alt="Foto Petugas">
+        </div>
+        <div id="p-nama" style="font-size:12.5px; font-weight:900; color:#0f172a; text-transform:uppercase; letter-spacing:0.3px; line-height:1.2;">-</div>
+        <div id="p-jabatan" style="font-size:8px; font-weight:800; color:#0b5936; background:#d1e7dd; display:inline-block; padding:2px 8px; border-radius:10px; margin-top:3px; text-transform:uppercase; border:1px solid #badbcc;">-</div>
+      </div>
+
+      <!-- Detail Informasi (Alamat Rata Kiri / Left-Aligned) -->
+      <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:8px 10px; font-size:7.5px; color:#334155; line-height:1.4; text-align:left;">
+        <div style="margin-bottom:2px;"><strong>ID:</strong> <span id="p-id" style="font-family:monospace; color:#0b5936; font-weight:bold;">-</span></div>
+        <div style="margin-bottom:2px;"><strong>NIK:</strong> <span id="p-nik" style="font-family:monospace;">-</span></div>
+        <div><strong>Alamat:</strong> <span id="p-alamat">-</span></div>
+      </div>
+
+      <!-- Status & QR Code Otomatis -->
+      <div style="display:flex; align-items:center; justify-content:space-between; background:#ffffff; padding:6px 10px; border-radius:8px; border:1px solid #cbd5e1;">
+        <div>
+          <div style="background:#16a34a; color:#ffffff; padding:2px 6px; border-radius:10px; font-size:6.5px; font-weight:800; display:inline-block; margin-bottom:3px;">PENGURUS AKTIF</div>
+          <div style="font-size:6px; font-weight:800; color:#0b5936; text-transform:uppercase;">TERVERIFIKASI</div>
+          <div style="font-size:5.5px; color:#64748b;">Scan untuk validasi</div>
+        </div>
+        <div style="background:#ffffff; padding:2px; border:1px solid #cbd5e1; border-radius:4px;">
+          <img id="p-barcode" src="" style="width:46px; height:46px; display:block;" alt="QR Code">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer Strip Bawah -->
+    <div style="background:#e2e8f0; padding:4px 10px; font-size:6.5px; color:#475569; font-weight:700; display:flex; justify-content:space-between; align-items:center; border-top:1px solid #cbd5e1;">
+      <span>TPS DIPO MAWAR RW.04</span>
+      <span>SEKRETARIAT RESMI</span>
+    </div>
+
+    <!-- Tombol Aksi -->
+    <div style="padding:8px 12px; background:#f1f5f9; display:flex; gap:8px; border-top:1px solid #cbd5e1;">
+      <button onclick="window.print()" style="flex:1; background:#0b5936; color:white; border:none; padding:8px; border-radius:6px; font-weight:bold; font-size:9px; cursor:pointer; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+        <i class="fas fa-print"></i> CETAK / PDF
+      </button>
+      <button onclick="bukaAplikasiUtama()" style="flex:1; background:#64748b; color:white; border:none; padding:8px; border-radius:6px; font-weight:bold; font-size:9px; cursor:pointer;">
+        TUTUP
+      </button>
+    </div>
+
+  </div>
+</div>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // ==========================================
+    // 1. PENANGANAN VERIFIKASI WARGA (?id=...)
+    // ==========================================
+    const idParam = urlParams.get('id');
+    const verifContainer = document.getElementById('verifikasi-container');
+
+    if (idParam) {
+        const loginWrapper = document.getElementById('loginPageWrapper');
+        if (loginWrapper) loginWrapper.style.display = 'none';
+        
+        const appContent = document.getElementById('appContent');
+        if (appContent) appContent.style.display = 'none';
+
+        if (verifContainer) verifContainer.style.display = 'flex';
+
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec"; 
+
+        fetch(`${WEB_APP_URL}?id=${idParam}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('v-loading').style.display = 'none';
+                document.getElementById('v-content').style.display = 'block';
+
+                if (data && data.success && data.warga) {
+                    document.getElementById('v-id').innerText = data.warga.idCard || idParam;
+                    document.getElementById('v-nama').innerText = data.warga.nama || '-';
+                    
+                    let alamatLengkap = `RT ${data.warga.rt || '-'} / RW ${data.warga.rw || '-'} (No. ${data.warga.noRumah || '-'})`;
+                    document.getElementById('v-alamat').innerText = alamatLengkap;
+
+                    let tbody = document.getElementById('v-tbody');
+                    if (tbody && data.riwayat) {
+                        tbody.innerHTML = '';
+                        data.riwayat.forEach(function(item, index) {
+                            let statusStr = String(item.status || "Belum Lunas");
+                            let badgeColor = statusStr.toLowerCase() === 'lunas' ? '#198754' : '#dc3545';
+                            let jumlahFormatted = Number(item.jumlahIuran || 0).toLocaleString('id-ID');
+                            
+                            let tr = `<tr>
+                                <td style="padding:5px 2px; border-bottom:1px solid #eee; text-align:center; vertical-align:middle;">${index + 1}</td>
+                                <td style="padding:5px 4px; border-bottom:1px solid #eee; vertical-align:middle; word-break: break-word; font-size: 0.7rem;">${item.bulanTahun || '-'}</td>
+                                <td style="padding:5px 4px; border-bottom:1px solid #eee; vertical-align:middle; font-size: 0.7rem; white-space: nowrap;">Rp ${jumlahFormatted}</td>
+                                <td style="padding:5px 2px; border-bottom:1px solid #eee; text-align:center; vertical-align:middle;"><span style="background:${badgeColor}; color:white; padding:2px 4px; border-radius:3px; font-size:8.5px; font-weight:bold; white-space:nowrap; display:inline-block;">${statusStr.toUpperCase()}</span></td>
+                            </tr>`;
+                            tbody.innerHTML += tr;
+                        });
+                    }
+                } else {
+                    document.getElementById('v-content').innerHTML = `<p style="text-align:center; color:#dc3545; font-weight:bold; padding:15px 0;">${(data && data.message) ? data.message : "Data tidak ditemukan"}</p>`;
+                }
+            })
+            .catch(error => {
+                console.error('Gagal memuat data verifikasi:', error);
+                document.getElementById('v-loading').innerHTML = '<span style="color:#dc3545;">Gagal terhubung ke server. Periksa koneksi Anda.</span>';
+            });
+    } else {
+        if (verifContainer) verifContainer.style.display = 'none';
+    }
+
+  // ==========================================
+    // 2. PENANGANAN ID CARD PETUGAS (?petugas=...)
+    // ==========================================
+    const petugasParam = urlParams.get('petugas');
+    const petugasContainer = document.getElementById('petugas-container');
+
+    if (petugasParam) {
+        const loginWrapper = document.getElementById('loginPageWrapper');
+        if (loginWrapper) loginWrapper.style.display = 'none';
+
+        const appContent = document.getElementById('appContent');
+        if (appContent) appContent.style.display = 'none';
+
+        const verifContainer = document.getElementById('verifikasi-container');
+        if (verifContainer) verifContainer.style.display = 'none';
+
+        if (petugasContainer) petugasContainer.style.display = 'flex';
+
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec";
+
+        fetch(`${WEB_APP_URL}?petugas=${petugasParam}`)
+            .then(response => response.json())
+            .then(data => {
+                let loadingEl = document.getElementById('p-loading');
+                let contentEl = document.getElementById('p-content');
+                
+                if (loadingEl) loadingEl.style.display = 'none';
+                if (contentEl) contentEl.style.display = 'flex';
+
+                if (data && data.success && data.petugas) {
+                    let idPetugas = data.petugas.id || petugasParam;
+                    document.getElementById('p-id').innerText = idPetugas;
+                    document.getElementById('p-nama').innerText = data.petugas.nama || '-';
+                    document.getElementById('p-nik').innerText = data.petugas.nik || '-';
+                    document.getElementById('p-alamat').innerText = data.petugas.alamat || '-';
+                    document.getElementById('p-jabatan').innerText = data.petugas.jabatan || '-';
+                    
+                    // Generate QR Code otomatis berdasarkan ID Petugas
+                    let currentUrl = window.location.origin + window.location.pathname + "?petugas=" + encodeURIComponent(idPetugas);
+                    document.getElementById('p-barcode').src = "https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=" + encodeURIComponent(currentUrl);
+
+                    if (data.petugas.foto && data.petugas.foto.trim() !== '') {
+                        document.getElementById('p-foto').src = data.petugas.foto;
+                    } else {
+                        document.getElementById('p-foto').src = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
+                    }
+                } else {
+                    if (contentEl) {
+                        contentEl.innerHTML = `<p style="text-align:center; color:#dc3545; font-weight:bold; padding:20px;">${(data && data.message) ? data.message : "Data ID Card petugas tidak ditemukan"}</p>`;
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Gagal memuat data petugas:', error);
+                let loadingEl = document.getElementById('p-loading');
+                if (loadingEl) {
+                    loadingEl.innerHTML = '<span style="color:#dc3545;">Gagal terhubung ke server. Periksa koneksi Anda.</span>';
+                }
+            });
+    } else {
+        if (petugasContainer) petugasContainer.style.display = 'none';
+    }
+  function bukaAplikasiUtama() {
+      window.location.href = window.location.origin + window.location.pathname;
+  }
+  // Ambil URL dasar saat ini (misal: https://syamsco.github.io/tps-dipo-mawar-04/)
+  let baseURL = window.location.href.split('?')[0];
+  let urlTarget = baseURL + "?petugas=" + idPetugas;
+  
+  window.open(urlTarget, '_blank');
+}
+// Variabel global ID Card
+var dataIdCardList = [];
+
+// 1. Memuat Data ID Card dari Spreadsheet
+function muatDataIdCard() {
+    var tbody = document.getElementById('tbodyIdCard');
+    if (!tbody) return;
+    tbody.innerHTML = '<tr><td colspan="7" class="text-center py-3 text-muted">Memuat data pengurus...</td></tr>';
+
+    google.script.run
         .withSuccessHandler(function(data) {
-          dataIdCardList = Array.isArray(data) ? data : [];
-          renderIdCardTabel();
+            dataIdCardList = Array.isArray(data) ? data : [];
+            renderIdCardTabel();
         })
         .withFailureHandler(function(err) {
-          tbody.innerHTML = '<tr><td colspan="7" class="text-center text-danger py-3">Gagal memuat data: ' + err + '</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="7" class="text-center text-danger py-3">Gagal memuat data: ' + err + '</td></tr>';
         })
         .getDataIdCard();
-    }
+}
 
-    function renderIdCardTabel() {
-      var tbody = document.getElementById('tbodyIdCard');
-      if (!tbody) return;
-      var keyword = (document.getElementById('searchIdCard') ? document.getElementById('searchIdCard').value : "").toLowerCase().trim();
-      
-      var filtered = dataIdCardList.filter(function(item) {
+// 2. Render Tabel dengan Filter Pencarian Real-Time
+function renderIdCardTabel() {
+    var tbody = document.getElementById('tbodyIdCard');
+    if (!tbody) return;
+    
+    var keyword = (document.getElementById('searchIdCard') ? document.getElementById('searchIdCard').value : "").toLowerCase().trim();
+    
+    var filtered = dataIdCardList.filter(function(item) {
         if (!keyword) return true;
         var nama = String(item.nama || "").toLowerCase();
         var idCard = String(item.id || "").toLowerCase();
@@ -1260,269 +2656,198 @@
         var jabatan = String(item.jabatan || "").toLowerCase();
         var alamat = String(item.alamat || "").toLowerCase();
         return nama.includes(keyword) || idCard.includes(keyword) || nik.includes(keyword) || jabatan.includes(keyword) || alamat.includes(keyword);
-      });
+    });
 
-      if (filtered.length === 0) {
+    if (filtered.length === 0) {
         tbody.innerHTML = '<tr><td colspan="7" class="text-center py-3 text-muted">Data ID Card pengurus tidak ditemukan.</td></tr>';
         return;
-      }
-
-      tbody.innerHTML = filtered.map(function(item, idx) {
-        var itemJson = encodeURIComponent(JSON.stringify(item));
-        return '<tr>' +
-          '<td class="text-center">' + (idx + 1) + '</td>' +
-          '<td class="text-center fw-bold" style="color:#0f5132;">' + item.id + '</td>' +
-          '<td><div class="fw-bold">' + item.nama + '</div><small class="text-muted text-uppercase">' + (item.jabatan || '-') + '</small></td>' +
-          '<td>' + item.nik + '</td>' +
-          '<td>' + (item.alamat || '-') + '</td>' +
-          '<td class="text-center">' +
-              '<button class="btn btn-success btn-sm py-0 px-2" style="font-size: 0.75rem;" onclick="cetakIdCardPetugas(\'' + item.id + '\')"><i class="fa fa-print me-1"></i> Cetak Kartu</button>' +
-          '</td>' +
-          '<td class="no-print text-center">' +
-            '<button class="btn btn-warning btn-sm py-0 px-1 me-1" style="font-size:0.68rem;" onclick="editIdCard(\'' + itemJson + '\')"><i class="fa fa-pen-to-square"></i> Edit</button>' +
-            '<button class="btn btn-danger btn-sm py-0 px-1" style="font-size:0.68rem;" onclick="hapusIdCard(\'' + item.rowIndex + '\', \'' + item.nama + '\')"><i class="fa fa-trash"></i> Delete</button>' +
-          '</td>' +
-        '</tr>';
-      }).join('');
     }
 
-    function bukaModalIdCard() {
-      Swal.fire({ title: 'Memuat data petugas...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
-      
-      google.script.run.withSuccessHandler(function(listPetugas) {
+    var html = '';
+    filtered.forEach(function(item, idx) {
+        var itemJson = encodeURIComponent(JSON.stringify(item));
+        var actionButtons = 
+            '<button class="btn btn-warning btn-sm py-0 px-1 me-1" style="font-size:0.68rem;" onclick="editIdCard(\'' + itemJson + '\')"><i class="fa fa-pen-to-square"></i> Edit</button>' +
+            '<button class="btn btn-danger btn-sm py-0 px-1" style="font-size:0.68rem;" onclick="hapusIdCard(\'' + item.rowIndex + '\', \'' + item.nama + '\')"><i class="fa fa-trash"></i> Delete</button>';
+
+        html += '<tr>' +
+            '<td class="text-center">' + (idx + 1) + '</td>' +
+            '<td class="text-center fw-bold" style="color:#0f5132;">' + item.id + '</td>' +
+            '<td><div class="fw-bold">' + item.nama + '</div><small class="text-muted text-uppercase">' + (item.jabatan || '-') + '</small></td>' +
+            '<td>' + item.nik + '</td>' +
+            '<td>' + (item.alamat || '-') + '</td>' +
+            '<td class="text-center">' +
+                '<button class="btn btn-success btn-sm py-0 px-2" style="font-size: 0.75rem;" onclick="cetakIdCardPetugas(\'' + item.id + '\')"><i class="fa fa-print me-1"></i> Cetak Kartu</button>' +
+            '</td>' +
+            '<td class="no-print text-center">' + actionButtons + '</td>' +
+        '</tr>';
+    });
+    tbody.innerHTML = html;
+}
+
+// 3. Membuka Modal Input Data ID Card (Tarik Data Petugas & Upload Foto)
+function bukaModalIdCard() {
+    Swal.fire({ title: 'Memuat data petugas...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+    
+    google.script.run.withSuccessHandler(function(listPetugas) {
         var optionsHtml = '<option value="">-- Pilih Petugas / Pengurus --</option>';
         if (Array.isArray(listPetugas) && listPetugas.length > 0) {
-          listPetugas.forEach(function(p) {
-            optionsHtml += '<option value="' + p.nama + '" data-jabatan="' + p.jabatan + '" data-rt="' + p.rt + '" data-rw="' + p.rw + '">' + p.nama + (p.jabatan ? ' (' + p.jabatan + ')' : '') + '</option>';
-          });
+            listPetugas.forEach(function(p) {
+                optionsHtml += '<option value="' + p.nama + '" data-jabatan="' + p.jabatan + '" data-rt="' + p.rt + '" data-rw="' + p.rw + '">' + p.nama + (p.jabatan ? ' (' + p.jabatan + ')' : '') + '</option>';
+            });
         }
 
         Swal.fire({
-          title: 'Input Data ID Card Pengurus',
-          html: 
-            '<form id="formInputIdCard" style="text-align:left; font-size:12px;">' +
-              '<div class="mb-2"><label class="form-label fw-bold text-success">Tarik Data Petugas (Auto-Fill)</label>' +
-                  '<select id="icSelectPetugas" class="form-select form-select-sm" onchange="pilihPetugasOtomatis(this)">' + optionsHtml + '</select>' +
-              '</div>' +
-              '<div class="mb-2"><label class="form-label fw-bold">Nama Lengkap</label><input type="text" id="icNama" class="form-control form-control-sm" required></div>' +
-              '<div class="mb-2"><label class="form-label fw-bold">NIK KTP</label><input type="text" id="icNik" class="form-control form-control-sm" required placeholder="16 digit NIK"></div>' +
-              '<div class="mb-2"><label class="form-label fw-bold">Jabatan</label>' +
-                  '<select id="icJabatan" class="form-select form-select-sm">' +
-                      '<option value="OPERATOR">OPERATOR</option><option value="ADMIN">ADMIN</option>' +
-                      '<option value="COOR RT">COOR RT</option><option value="COOR UMUM">COOR UMUM</option>' +
-                      '<option value="KETUA">KETUA</option><option value="ADVISOR">ADVISOR</option>' +
-                  '</select>' +
-              '</div>' +
-              '<div class="mb-2"><label class="form-label fw-bold">Alamat Lengkap</label><input type="text" id="icAlamat" class="form-control form-control-sm" placeholder="Alamat lengkap" required></div>' +
-              '<div class="row g-2 mb-2">' +
-                  '<div class="col-4"><label class="form-label fw-bold">RT</label><input type="text" id="icRt" class="form-control form-control-sm" value="07"></div>' +
-                  '<div class="col-4"><label class="form-label fw-bold">RW</label><input type="text" id="icRw" class="form-control form-control-sm" value="04"></div>' +
-                  '<div class="col-4"><label class="form-label fw-bold">Kelurahan</label><input type="text" id="icKel" class="form-control form-control-sm" value="Ratu Jaya"></div>' +
-              '</div>' +
-              '<div class="row g-2 mb-2">' +
-                  '<div class="col-6"><label class="form-label fw-bold">Kecamatan</label><input type="text" id="icKec" class="form-control form-control-sm" value="Cipayung"></div>' +
-                  '<div class="col-6"><label class="form-label fw-bold">Kota</label><input type="text" id="icKota" class="form-control form-control-sm" value="Depok"></div>' +
-              '</div>' +
-              '<div class="mb-2"><label class="form-label fw-bold text-success">Upload Foto Pengurus</label>' +
-              '<input type="file" id="icFileFoto" class="form-control form-control-sm" accept="image/*" required></div>' +
-            '</form>',
-          showCancelButton: true,
-          confirmButtonText: 'Simpan Data',
-          cancelButtonText: 'Batal',
-          confirmButtonColor: '#107b4d',
-          preConfirm: function() {
-            var nama = document.getElementById('icNama').value;
-            var nik = document.getElementById('icNik').value;
-            var alamat = document.getElementById('icAlamat').value;
-            var fileInput = document.getElementById('icFileFoto');
-            if (!nama || !nik || !alamat) {
-              Swal.showValidationMessage('Nama, NIK, dan Alamat wajib diisi!');
-              return false;
-            }
-            return new Promise(function(resolve) {
-              var formData = {
-                nama: nama, nik: nik, jabatan: document.getElementById('icJabatan').value,
-                alamat: alamat, rt: document.getElementById('icRt').value, rw: document.getElementById('icRw').value,
-                kelurahan: document.getElementById('icKel').value, kecamatan: document.getElementById('icKec').value, kota: document.getElementById('icKota').value
-              };
-              if (fileInput && fileInput.files.length > 0) {
-                var file = fileInput.files[0];
-                var reader = new FileReader();
-                reader.onload = function(evt) {
-                  var img = new Image();
-                  img.src = evt.target.result;
-                  img.onload = function() {
-                    var canvas = document.createElement('canvas');
-                    var MAX_WIDTH = 500;
-                    var scaleSize = MAX_WIDTH / img.width;
-                    canvas.width = scaleSize < 1 ? MAX_WIDTH : img.width;
-                    canvas.height = scaleSize < 1 ? img.height * scaleSize : img.height;
-                    var ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                    formData.fileData = canvas.toDataURL('image/jpeg', 0.8).split(',')[1];
-                    formData.fileName = file.name;
-                    formData.fileMime = 'image/jpeg';
-                    resolve(formData);
-                  };
-                };
-                reader.readAsDataURL(file);
-              } else {
-                resolve(formData);
-              }
-            });
-          }
-        }).then(function(result) {
-          if (result.isConfirmed) {
-            Swal.fire({ title: 'Menyimpan data pengurus...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
-            google.script.run
-              .withSuccessHandler(function(res) {
-                if (res && res.success) {
-                  Swal.fire('Berhasil!', res.message, 'success');
-                  muatDataIdCard();
-                } else {
-                  Swal.fire('Gagal', (res ? res.message : 'Terjadi kesalahan'), 'error');
+            title: 'Input Data ID Card Pengurus',
+            html: 
+                '<form id="formInputIdCard" style="text-align:left; font-size:12px;">' +
+                    '<div class="mb-2"><label class="form-label fw-bold text-success">Tarik Data Petugas (Auto-Fill)</label>' +
+                        '<select id="icSelectPetugas" class="form-select form-select-sm" onchange="pilihPetugasOtomatis(this)">' + optionsHtml + '</select>' +
+                    '</div>' +
+                    '<div class="mb-2"><label class="form-label fw-bold">Nama Lengkap</label><input type="text" id="icNama" class="form-control form-control-sm" required></div>' +
+                    '<div class="mb-2"><label class="form-label fw-bold">NIK KTP</label><input type="text" id="icNik" class="form-control form-control-sm" required placeholder="16 digit NIK"></div>' +
+                    '<div class="mb-2"><label class="form-label fw-bold">Jabatan</label>' +
+                        '<select id="icJabatan" class="form-select form-select-sm">' +
+                            '<option value="OPERATOR">OPERATOR</option>' +
+                            '<option value="ADMIN">ADMIN</option>' +
+                            '<option value="COOR RT">COOR RT</option>' +
+                            '<option value="COOR UMUM">COOR UMUM</option>' +
+                            '<option value="KETUA">KETUA</option>' +
+                            '<option value="ADVISOR">ADVISOR</option>' +
+                        '</select>' +
+                    '</div>' +
+                    '<div class="mb-2"><label class="form-label fw-bold">Alamat Lengkap</label><input type="text" id="icAlamat" class="form-control form-control-sm" placeholder="Gg. Ramli 2 No.111 RT 07 RW 04 Kel. Ratu Jaya Kec. Cipayung Kota Depok" required></div>' +
+                    '<div class="row g-2 mb-2">' +
+                        '<div class="col-4"><label class="form-label fw-bold">RT</label><input type="text" id="icRt" class="form-control form-control-sm" value="07"></div>' +
+                        '<div class="col-4"><label class="form-label fw-bold">RW</label><input type="text" id="icRw" class="form-control form-control-sm" value="04"></div>' +
+                        '<div class="col-4"><label class="form-label fw-bold">Kelurahan</label><input type="text" id="icKel" class="form-control form-control-sm" value="Ratu Jaya"></div>' +
+                    '</div>' +
+                    '<div class="row g-2 mb-2">' +
+                        '<div class="col-6"><label class="form-label fw-bold">Kecamatan</label><input type="text" id="icKec" class="form-control form-control-sm" value="Cipayung"></div>' +
+                        '<div class="col-6"><label class="form-label fw-bold">Kota</label><input type="text" id="icKota" class="form-control form-control-sm" value="Depok"></div>' +
+                    '</div>' +
+                    '<div class="mb-2"><label class="form-label fw-bold text-success">Upload Foto Pengurus</label>' +
+                    '<input type="file" id="icFileFoto" class="form-control form-control-sm" accept="image/*" required></div>' +
+                '</form>',
+            showCancelButton: true,
+            confirmButtonText: 'Simpan Data',
+            cancelButtonText: 'Batal',
+            confirmButtonColor: '#107b4d',
+            preConfirm: function() {
+                var nama = document.getElementById('icNama').value;
+                var nik = document.getElementById('icNik').value;
+                var alamat = document.getElementById('icAlamat').value;
+                var fileInput = document.getElementById('icFileFoto');
+                if (!nama || !nik || !alamat) {
+                    Swal.showValidationMessage('Nama, NIK, dan Alamat wajib diisi!');
+                    return false;
                 }
-              })
-              .simpanDataIdCard(result.value);
-          }
-        });
-      }).getListPetugasForIdCard();
-    }
+                return new Promise(function(resolve) {
+                    var formData = {
+                        nama: nama, nik: nik,
+                        jabatan: document.getElementById('icJabatan').value,
+                        alamat: alamat, rt: document.getElementById('icRt').value,
+                        rw: document.getElementById('icRw').value,
+                        kelurahan: document.getElementById('icKel').value,
+                        kecamatan: document.getElementById('icKec').value,
+                        kota: document.getElementById('icKota').value
+                    };
 
-    function pilihPetugasOtomatis(selectEl) {
-      var opt = selectEl.options[selectEl.selectedIndex];
-      if (opt.value) {
+                    if (fileInput && fileInput.files.length > 0) {
+                        var file = fileInput.files[0];
+                        var reader = new FileReader();
+                        reader.onload = function(evt) {
+                            var img = new Image();
+                            img.src = evt.target.result;
+                            img.onload = function() {
+                                var canvas = document.createElement('canvas');
+                                var MAX_WIDTH = 500;
+                                var scaleSize = MAX_WIDTH / img.width;
+                                canvas.width = scaleSize < 1 ? MAX_WIDTH : img.width;
+                                canvas.height = scaleSize < 1 ? img.height * scaleSize : img.height;
+                                var ctx = canvas.getContext('2d');
+                                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                                
+                                formData.fileData = canvas.toDataURL('image/jpeg', 0.8).split(',')[1];
+                                formData.fileName = file.name;
+                                formData.fileMime = 'image/jpeg';
+                                resolve(formData);
+                            };
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        resolve(formData);
+                    }
+                });
+            }
+        }).then(function(result) {
+            if (result.isConfirmed) {
+                Swal.fire({ title: 'Menyimpan data pengurus...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+                google.script.run
+                    .withSuccessHandler(function(res) {
+                        if (res && res.success) {
+                            Swal.fire('Berhasil!', res.message, 'success');
+                            muatDataIdCard();
+                        } else {
+                            Swal.fire('Gagal', (res ? res.message : 'Terjadi kesalahan'), 'error');
+                        }
+                    })
+                    .simpanDataIdCard(result.value);
+            }
+        });
+    }).getListPetugasForIdCard();
+}
+
+// 4. Auto-Fill Petugas
+function pilihPetugasOtomatis(selectEl) {
+    var opt = selectEl.options[selectEl.selectedIndex];
+    if (opt.value) {
         document.getElementById('icNama').value = opt.value;
         var jabatan = (opt.getAttribute('data-jabatan') || "").toUpperCase().trim();
-        if (jabatan) document.getElementById('icJabatan').value = jabatan;
+        if (jabatan) { document.getElementById('icJabatan').value = jabatan; }
+        
         var rt = (opt.getAttribute('data-rt') || "07").replace(/\D/g, '');
         var rw = (opt.getAttribute('data-rw') || "04").replace(/\D/g, '');
         document.getElementById('icRt').value = ("0" + rt).slice(-2);
         document.getElementById('icRw').value = ("0" + rw).slice(-2);
-      }
     }
+}
 
-    function cetakIdCardPetugas(idPetugas) {
-      if (!idPetugas) return;
-      var baseURL = window.location.href.split('?')[0];
-      window.open(baseURL + "?petugas=" + idPetugas, '_blank');
-    }
+// 5. Cetak ID Card Petugas
+function cetakIdCardPetugas(idPetugas) {
+    if (!idPetugas) return;
+    var baseURL = window.location.href.split('?')[0];
+    window.open(baseURL + "?petugas=" + idPetugas, '_blank');
+}
 
-    function hapusIdCard(rowIndex, namaPetugas) {
-      if (!cekAkses('delete')) return;
-      Swal.fire({
-        title: 'Hapus ID Card?', text: 'Data untuk ' + namaPetugas + ' akan dihapus permanen.', icon: 'warning',
-        showCancelButton: true, confirmButtonColor: '#d33', cancelButtonColor: '#6c757d',
-        confirmButtonText: 'Ya, Hapus!', cancelButtonText: 'Batal'
-      }).then(function(result) {
-        if (result.isConfirmed) {
-          Swal.fire({ title: 'Menghapus...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
-          google.script.run.withSuccessHandler(function(res) {
-            Swal.close();
-            if (res && res.success) {
-              Swal.fire('Terhapus!', res.message, 'success');
-              muatDataIdCard();
-            } else {
-              Swal.fire('Gagal', res ? res.message : 'Terjadi kesalahan', 'error');
-            }
-          }).hapusDataIdCard(rowIndex);
-        }
-      });
-    }
-
-    function cetakKartuWargaDirect(wJson) {
-      var w = {};
-      try {
-        if (wJson) w = typeof wJson === 'string' ? JSON.parse(decodeURIComponent(wJson)) : wJson;
-      } catch (err) { w = {}; }
-
-      var nama = (w.Nama || w.nama || 'Warga').toUpperCase();
-      var idWarga = (w.ID || w.id || w.idCard || 'TPS-DM-001').toUpperCase();
-      var rawAlamat = String(w.Alamat || w.alamat || 'Ratu Jaya').trim();
-      var noRumah = String(w.NoRumah || w.noRumah || w["No Rumah"] || '-').toUpperCase();
-      var status = String(w.Status || w.status || 'AKTIF').toUpperCase();
-      var fotoUrl = w.UrlFoto || w.urlFoto || w.FotoUrl || w.fotoUrl || '';
-
-      var displayPhoto = (fotoUrl && fotoUrl.trim() !== '') ? fotoUrl : 'https://ui-avatars.com/api/?name=' + encodeURIComponent(nama) + '&background=107b4d&color=ffffff&bold=true&size=128';
-      var logoUrl = "https://lh3.googleusercontent.com/d/1fRso7wL4d0YVMxWpo7a1RgL4ZJrJOgf8";
-      var githubPagesUrl = "https://syamsco.github.io/tps-dipo-mawar-04/";
-      var qrText = encodeURIComponent(githubPagesUrl + "?id=" + idWarga);
-      var qrCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=" + qrText;   
-
-      var frontHtml = '<div style="width:420px; height:260px; border-radius:16px; background:#ffffff; margin:0 auto; box-sizing:border-box; font-family:\'Segoe UI\', Roboto, sans-serif; text-align:left; box-shadow:0 10px 28px rgba(0,0,0,0.18); border:1px solid #107b4d; display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; position:relative;">' +
-        '<div style="background:linear-gradient(135deg, #0b5936 0%, #107b4d 100%); padding:10px 14px; color:#ffffff; display:flex; align-items:center; justify-content:space-between; border-bottom:3px solid #ffc107;">' +
-          '<div style="display:flex; align-items:center; gap:10px;">' +
-            '<div style="width:40px; height:40px; background:#ffffff; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.2); flex-shrink:0;">' +
-              '<img src="' + logoUrl + '" style="width:28px; height:28px; object-fit:contain;" onerror="this.src=\'https://cdn-icons-png.flaticon.com/512/3135/3135715.png\';">' +
-            '</div>' +
-            '<div style="display:flex; flex-direction:column;">' +
-              '<span style="font-size:10px; text-transform:uppercase; font-weight:700; letter-spacing:1px; color:#a7f3d0;">TPS DIPO MAWAR RW 004</span>' +
-              '<span style="font-size:15px; font-weight:900; letter-spacing:0.5px; color:#ffffff;">KARTU IURAN WARGA</span>' +
-            '</div>' +
-          '</div>' +
-        '</div>' +
-        '<div style="padding:10px 14px; display:grid; grid-template-columns:82px 1fr 82px; gap:10px; align-items:center; flex-grow:1; background:#f8fafc;">' +
-          '<div style="text-align:center;"><img src="' + displayPhoto + '" style="width:80px; height:98px; border-radius:4px; border:1px solid #000; object-fit:cover;" crossorigin="anonymous"></div>' +
-          '<table style="width:100%; font-size:10px; color:#000; border-collapse:collapse; line-height:1.35;">' +
-            '<tr><td style="font-weight:bold; width:65px; padding:2px 0;">NAMA</td><td>: <b style="font-size:11px;">' + nama + '</b></td></tr>' +
-            '<tr><td style="font-weight:bold; padding:2px 0;">ID CARD</td><td>: <b style="font-family:monospace; font-size:11.5px;">' + idWarga + '</b></td></tr>' +
-            '<tr><td style="font-weight:bold; padding:2px 0;">ALAMAT</td><td>: <span>' + rawAlamat + '</span></td></tr>' +
-            '<tr><td style="font-weight:bold; padding:2px 0;">NO. RUMAH</td><td>: <span>' + noRumah + '</span></td></tr>' +
-            '<tr><td style="font-weight:bold; padding:2px 0;">STATUS</td><td>: <span style="background-color:#16a34a; color:white; padding:2px 8px; border-radius:4px; font-size:9px;">' + status + '</span></td></tr>' +
-          '</table>' +
-          '<div style="text-align:center;"><img src="' + qrCodeUrl + '" style="width:76px; height:76px; display:block;"></div>' +
-        '</div>' +
-      '</div>';
-
-      Swal.fire({
-        title: 'Preview Cetak Kartu',
-        html: '<div style="display:flex; justify-content:center; max-height:78vh; overflow:auto;">' + frontHtml + '</div>',
-        width: '95%',
+// 6. Hapus ID Card
+function hapusIdCard(rowIndex, namaPetugas) {
+    if (!cekAkses('delete')) return;
+    Swal.fire({
+        title: 'Hapus ID Card?',
+        text: 'Data untuk ' + namaPetugas + ' akan dihapus permanen.',
+        icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: '<i class="fa fa-print me-1"></i> Cetak Kartu Sekarang',
-        cancelButtonText: 'Tutup',
-        confirmButtonColor: '#107b4d'
-      }).then(function(res) {
-        if (res.isConfirmed) {
-          if (!cekAkses('cetak')) return;
-          var fullHtml = '<!DOCTYPE html><html><head><title>Cetak Kartu - ' + nama + '</title></head><body onload="window.print(); window.close();">' + frontHtml + '</body></html>';
-          var blob = new Blob([fullHtml], { type: 'text/html' });
-          window.open(URL.createObjectURL(blob), '_blank');
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Ya, Hapus!',
+        cancelButtonText: 'Batal'
+    }).then(function(result) {
+        if (result.isConfirmed) {
+            Swal.fire({ title: 'Menghapus...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+            google.script.run
+                .withSuccessHandler(function(res) {
+                    Swal.close();
+                    if (res && res.success) {
+                        Swal.fire('Terhapus!', res.message, 'success');
+                        muatDataIdCard();
+                    } else {
+                        Swal.fire('Gagal', res ? res.message : 'Terjadi kesalahan', 'error');
+                    }
+                })
+                .hapusDataIdCard(rowIndex);
         }
-      });
-    }
-
-    function applyUserRoleUI() {
-      var role = String(currentUserRole || "").trim().toLowerCase();
-      var btnSetting = document.getElementById('btnSettingHeader');
-      if (btnSetting) {
-        btnSetting.style.display = (role.indexOf('super') !== -1) ? 'inline-block' : 'none';
-      }
-    }
-
-    function loadSavedHeaderSettings() {
-      if (appData && appData.setting) {
-        var s = appData.setting;
-        if (s.judul) {
-          var titleEl = document.getElementById('navbarTitleText');
-          if (titleEl) titleEl.innerText = s.judul;
-        }
-        if (s.runningText) {
-          var runEl = document.getElementById('txtRunningText');
-          if (runEl) runEl.innerText = s.runningText;
-        }
-      }
-    }
-
-    function cekAkses(actionType) {
-      var role = String(currentUserRole || "").trim().toLowerCase();
-      if (role.indexOf('super') !== -1) return true; 
-      if (actionType === 'delete' || actionType === 'edit' || actionType === 'cetak') {
-        Swal.fire({ icon: 'error', title: 'Akses Dibatasi', text: 'Maaf Anda tidak memiliki izin akses.', confirmButtonColor: '#dc3545' });
-        return false;
-      }
-      return true;
-    }
-  </script>
-</body>
+    });
+}
+</script>
 </html>
