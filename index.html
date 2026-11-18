@@ -2638,8 +2638,7 @@ function muatDataIdCard() {
         })
         .getDataIdCard();
 }
-
-// 2. Fungsi membuka form Input Data ID Card
+// 2. Fungsi membuka form Input Data ID Card (Pastikan ditulis dengan benar tanpa tertimpa)
 function bukaModalIdCard() {
     Swal.fire({ title: 'Memuat data petugas...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
     
@@ -2670,7 +2669,7 @@ function bukaModalIdCard() {
                             '<option value="ADVISOR">ADVISOR</option>' +
                         '</select>' +
                     '</div>' +
-                    '<div class="mb-2"><label class="form-label fw-bold">Alamat Lengkap</label><input type="text" id="icAlamat" class="form-control form-control-sm" placeholder="Gg. Ramli 2 No.111 RT 07 RW 04 Kel. Ratu Jaya Kec. Cipayung Kota Depok" required></div>' +
+                    '<div class="mb-2"><label class="form-label fw-bold">Alamat Lengkap</label><input type="text" id="icAlamat" class="form-control form-control-sm" required></div>' +
                     '<div class="row g-2 mb-2">' +
                         '<div class="col-4"><label class="form-label fw-bold">RT</label><input type="text" id="icRt" class="form-control form-control-sm" value="07"></div>' +
                         '<div class="col-4"><label class="form-label fw-bold">RW</label><input type="text" id="icRw" class="form-control form-control-sm" value="04"></div>' +
@@ -2680,7 +2679,7 @@ function bukaModalIdCard() {
                         '<div class="col-6"><label class="form-label fw-bold">Kecamatan</label><input type="text" id="icKec" class="form-control form-control-sm" value="Cipayung"></div>' +
                         '<div class="col-6"><label class="form-label fw-bold">Kota</label><input type="text" id="icKota" class="form-control form-control-sm" value="Depok"></div>' +
                     '</div>' +
-                    '<div class="mb-2"><label class="form-label fw-bold text-success">Upload Foto Pengurus (Google Drive)</label>' +
+                    '<div class="mb-2"><label class="form-label fw-bold text-success">Upload Foto Pengurus</label>' +
                     '<input type="file" id="icFileFoto" class="form-control form-control-sm" accept="image/*" required></div>' +
                 '</form>',
             showCancelButton: true,
@@ -2698,11 +2697,9 @@ function bukaModalIdCard() {
                 }
                 return new Promise(function(resolve) {
                     var formData = {
-                        nama: nama,
-                        nik: nik,
+                        nama: nama, nik: nik,
                         jabatan: document.getElementById('icJabatan').value,
-                        alamat: alamat,
-                        rt: document.getElementById('icRt').value,
+                        alamat: alamat, rt: document.getElementById('icRt').value,
                         rw: document.getElementById('icRw').value,
                         kelurahan: document.getElementById('icKel').value,
                         kecamatan: document.getElementById('icKec').value,
@@ -2753,7 +2750,6 @@ function bukaModalIdCard() {
         });
     }).getListPetugasForIdCard();
 }
-
 // 3. Fungsi Auto-Fill Petugas
 function pilihPetugasOtomatis(selectEl) {
     var opt = selectEl.options[selectEl.selectedIndex];
@@ -2776,22 +2772,6 @@ function cetakKartuIdCard(idx) {
     var baseURL = window.location.href.split('?')[0];
     window.open(baseURL + "?petugas=" + item.id, '_blank');
 }
-window.bukaModalIdCard = function() {
-  if (typeof bukaModalIdCardReal === 'function') {
-    bukaModalIdCardReal();
-  } else if (typeof bukaModalIdCardOriginal === 'function') {
-    bukaModalIdCardOriginal();
-  } else {
-    // Jalankan langsung script modal form input di sini
-    Swal.fire({
-      title: 'Form ID Card Pengurus',
-      html: '<p style="text-align:left;">Silakan masukkan data pengurus baru.</p>',
-      showCancelButton: true,
-      confirmButtonText: 'Simpan',
-      confirmButtonColor: '#107b4d'
-    });
-  }
-};
 
 </script>
 </body>
