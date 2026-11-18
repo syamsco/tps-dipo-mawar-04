@@ -2645,5 +2645,77 @@
       }
     });
   </script>
+  <script>
+  // Perbaikan Tambahan untuk Fungsi yang Belum Terdaftar / Terlewat
+  
+  if (typeof renderPetugas === 'undefined') {
+    window.renderPetugas = function() {
+      var tbody = document.getElementById('tblPetugasBody');
+      if (!tbody) return;
+      var dataList = appData.petugas || [];
+      
+      var countOp = 0, countAdm = 0, countCord = 0, countKetua = 0, countAdv = 0;
+      dataList.forEach(function(p) {
+        var jab = String(p["Jabatan"] || p["col_4"] || "").toLowerCase();
+        if (jab.indexOf('operator') !== -1) countOp++;
+        else if (jab.indexOf('admin') !== -1) countAdm++;
+        else if (jab.indexOf('coordinator') !== -1 || jab.indexOf('cordinator') !== -1) countCord++;
+        else if (jab.indexOf('ketua') !== -1) countKetua++;
+        else if (jab.indexOf('advisor') !== -1) countAdv++;
+      });
+      
+      var setElText = function(id, val) { var el = document.getElementById(id); if (el) el.innerText = val; };
+      setElText('cardPtgOperator', countOp);
+      setElText('cardPtgAdmin', countAdm);
+      setElText('cardPtgCoordinator', countCord);
+      setElText('cardPtgKetua', countKetua);
+      setElText('cardPtgAdvisor', countAdv);
+
+      if (dataList.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="text-center py-2 text-muted">Belum ada data petugas.</td></tr>';
+        return;
+      }
+      
+      tbody.innerHTML = dataList.map(function(p, idx) {
+        var nama = p["Nama Lengkap"] || p["Nama Petugas"] || p["Nama"] || p["col_1"] || "-";
+        var rtRw = "RT " + (p["RT"] || p["col_2"] || "04") + " / RW " + (p["RW"] || p["col_3"] || "04");
+        var jabatan = p["Jabatan"] || p["col_4"] || "-";
+        var status = p["Status"] || p["col_5"] || "Aktif";
+        var rowIndex = p.rowIndex || (idx + 2);
+        var pJson = encodeURIComponent(JSON.stringify(p));
+
+        return '<tr>' +
+          '<td class="text-center">' + (idx + 1) + '</td>' +
+          '<td class="fw-bold">' + nama + '</td>' +
+          '<td>' + rtRw + '</td>' +
+          '<td>' + jabatan + '</td>' +
+          '<td><span class="badge bg-success">' + status + '</span></td>' +
+          '<td class="no-print text-center">' +
+            '<button class="btn btn-warning btn-sm py-0 px-1 me-1" style="font-size:0.68rem;" onclick="editPetugas(\'' + pJson + '\')"><i class="fa-solid fa-pen-to-square"></i> Edit</button>' +
+            '<button class="btn btn-danger btn-sm py-0 px-1" style="font-size:0.68rem;" onclick="hapusPetugas(' + rowIndex + ')"><i class="fa-solid fa-trash"></i> Delete</button>' +
+          '</td>' +
+        '</tr>';
+      }).join('');
+    };
+  }
+
+  if (typeof muatDataIdCard === 'undefined') {
+    window.muatDataIdCard = function() {
+      var tbody = document.getElementById('tbodyIdCard');
+      if (!tbody) return;
+      tbody.innerHTML = '<tr><td colspan="7" class="text-center py-3 text-muted">Memuat data pengurus...</td></tr>';
+
+      google.script.run
+        .withSuccessHandler(function(data) {
+          window.dataIdCardList = Array.isArray(data) ? data : [];
+          if (typeof renderIdCardTabel === 'function') renderIdCardTabel();
+        })
+        .withFailureHandler(function(err) {
+          tbody.innerHTML = '<tr><td colspan="7" class="text-center text-danger py-3">Gagal memuat data: ' + err + '</td></tr>';
+        })
+        .getDataIdCard();
+    };
+  }
+</script>
 </body>
 </html>
