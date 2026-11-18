@@ -2772,15 +2772,6 @@ function cetakKartuIdCard(idx) {
     var baseURL = window.location.href.split('?')[0];
     window.open(baseURL + "?petugas=" + item.id, '_blank');
 }
-
-// Pastikan fungsi utama diekspos secara global dengan benar ke window
-window.bukaModalIdCard = function() {
-    if (typeof bukaModalIdCard === 'function') {
-        // Memanggil fungsi asli baris 2643
-        return bukaModalIdCard();
-    }
-};
-
 </script>
 </body>
 </html>
