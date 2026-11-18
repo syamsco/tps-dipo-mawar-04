@@ -2390,7 +2390,13 @@ function tutupIdCard() {
 <!-- Container Tampilan Kartu Identitas Pengurus Resmi -->
 <div id="petugas-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,23,42,0.85); z-index:9999; justify-content:center; align-items:center; padding:20px; box-sizing:border-box; font-family:'Segoe UI', Roboto, sans-serif; backdrop-filter:blur(4px);">
   
-  <div style="width:340px; background:#ffffff; border-radius:16px; border:3px solid #0b5936; box-shadow:0 20px 40px rgba(0,0,0,0.3); overflow:hidden; text-align:center; display:flex; flex-direction:column; position:relative;">
+  <!-- 1. SISIPKAN ELEMEN LOADING DI SINI -->
+  <div id="p-loading" style="background:white; padding:20px; border-radius:12px; text-align:center; font-weight:bold; color:#0b5936; box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+    <i class="fas fa-spinner fa-spin fa-2x mb-2"></i><br>Memuat data ID Card...
+  </div>
+
+  <!-- 2. TAMBAHKAN id="p-content" PADA KARTU UTAMA (DI-SET display:none AWALNYA) -->
+  <div id="p-content" style="display:none; width:340px; background:#ffffff; border-radius:16px; border:3px solid #0b5936; box-shadow:0 20px 40px rgba(0,0,0,0.3); overflow:hidden; text-align:center; flex-direction:column; position:relative;">
     
     <!-- Header Kartu -->
     <div style="background:linear-gradient(135deg, #0b5936 0%, #107b4d 100%); padding:16px 12px; color:#ffffff; border-bottom:4px solid #ffc107;">
@@ -2398,7 +2404,6 @@ function tutupIdCard() {
       <div style="font-size:14px; font-weight:900; letter-spacing:0.5px; color:#ffffff; margin-top:2px;">TPS DIPO MAWAR RW. 04</div>
       <div style="font-size:8px; letter-spacing:1px; color:#ffc107; font-weight:600; margin-top:4px;">— KARTU IDENTITAS PENGURUS RESMI —</div>
     </div>
-
     <!-- Body Kartu -->
     <div style="padding:16px 20px; background:#f8fafc; text-align:left;">
       
