@@ -2777,23 +2777,7 @@ function cetakKartuIdCard(idx) {
     var baseURL = window.location.href.split('?')[0];
     window.open(baseURL + "?petugas=" + item.id, '_blank');
 }
-window.bukaModalIdCard = function() {
-  // Langsung panggil fungsi form input yang sebenarnya
-  if (typeof bukaModalIdCardReal === 'function') {
-    bukaModalIdCardReal();
-  } else if (typeof bukaModalIdCardOriginal === 'function') {
-    bukaModalIdCardOriginal();
-  } else {
-    // Jalankan langsung script modal form input di sini
-    Swal.fire({
-      title: 'Form ID Card Pengurus',
-      html: '<p style="text-align:left;">Silakan masukkan data pengurus baru.</p>',
-      showCancelButton: true,
-      confirmButtonText: 'Simpan',
-      confirmButtonColor: '#107b4d'
-    });
-  }
-};
+
 </script>
 </body>
 </html>
