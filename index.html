@@ -2543,22 +2543,22 @@ function muatDataIdCard() {
                 });
             }
         }).then(function(result) {
-            if (result.isConfirmed) {
-                Swal.fire({ title: 'Menyimpan data pengurus...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
-                google.script.run
-                    .withSuccessHandler(function(res) {
-                        if (res && res.success) {
-                            Swal.fire('Berhasil!', res.message, 'success');
-                            muatDataIdCard();
-                        } else {
-                            Swal.fire('Gagal', (res ? res.message : 'Terjadi kesalahan'), 'error');
-                        }
-                    })
-                    .simpanDataIdCard(result.value);
-            }
-        });
-    }).getListPetugasForIdCard(); // Memanggil daftar dari sheet Petugas
-}
+              if (result.isConfirmed) {
+                  Swal.fire({ title: 'Menyimpan data pengurus...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+                  google.script.run
+                      .withSuccessHandler(function(res) {
+                          if (res && res.success) {
+                              Swal.fire('Berhasil!', res.message, 'success');
+                              muatDataIdCard();
+                          } else {
+                              Swal.fire('Gagal', (res ? res.message : 'Terjadi kesalahan'), 'error');
+                          }
+                      })
+                      .simpanDataIdCard(result.value);
+              }
+          });
+      }); // <-- Tutup dari .then dan bukaModalIdCard yang benar
+  } // <-- Tutup fungsi bukaModalIdCard()
 
 // 3. Fungsi Auto-Fill saat nama petugas dipilih (Alamat dibiarkan kosong untuk diisi manual)
 function pilihPetugasOtomatis(selectEl) {
