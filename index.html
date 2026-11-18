@@ -413,6 +413,8 @@
           </div>
         </div>
       </div>
+
+      <!-- Halaman Menu Id Card Pengurus -->
     <!-- Halaman Menu Id Card Pengurus (Disamakan 100% dengan Kartu Iuran Warga) -->
       <div id="menu-idcard" class="menu-section d-none">
         <div class="d-flex justify-content-between align-items-center mb-3 px-1 flex-wrap gap-2 no-print">
@@ -2692,34 +2694,7 @@ function renderIdCardTabel() {
     });
     tbody.innerHTML = html;
 }
-function hapusIdCard(rowIndex, namaPetugas) {
-    if (!cekAkses('delete')) return;
-    Swal.fire({
-        title: 'Hapus ID Card?',
-        text: 'Data untuk ' + namaPetugas + ' akan dihapus permanen.',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#6c757d',
-        confirmButtonText: 'Ya, Hapus!',
-        cancelButtonText: 'Batal'
-    }).then(function(result) {
-        if (result.isConfirmed) {
-            Swal.fire({ title: 'Menghapus...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
-            google.script.run
-                .withSuccessHandler(function(res) {
-                    Swal.close();
-                    if (res && res.success) {
-                        Swal.fire('Terhapus!', res.message, 'success');
-                        muatDataIdCard();
-                    } else {
-                        Swal.fire('Gagal', res ? res.message : 'Terjadi kesalahan', 'error');
-                    }
-                })
-                .hapusDataIdCard(rowIndex);
-        }
-    });
-}
+// 2. Fungsi membuka form Input Data ID Card
 function bukaModalIdCard() {
     Swal.fire({ title: 'Memuat data petugas...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
     
@@ -2855,6 +2830,34 @@ function cetakKartuIdCard(idx) {
     if (!item) return;
     var baseURL = window.location.href.split('?')[0];
     window.open(baseURL + "?petugas=" + item.id, '_blank');
+}
+function hapusIdCard(rowIndex, namaPetugas) {
+    if (!cekAkses('delete')) return;
+    Swal.fire({
+        title: 'Hapus ID Card?',
+        text: 'Data untuk ' + namaPetugas + ' akan dihapus permanen.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Ya, Hapus!',
+        cancelButtonText: 'Batal'
+    }).then(function(result) {
+        if (result.isConfirmed) {
+            Swal.fire({ title: 'Menghapus...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+            google.script.run
+                .withSuccessHandler(function(res) {
+                    Swal.close();
+                    if (res && res.success) {
+                        Swal.fire('Terhapus!', res.message, 'success');
+                        muatDataIdCard();
+                    } else {
+                        Swal.fire('Gagal', res ? res.message : 'Terjadi kesalahan', 'error');
+                    }
+                })
+                .hapusDataIdCard(rowIndex);
+        }
+    });
 }
 </script>
 </html>
