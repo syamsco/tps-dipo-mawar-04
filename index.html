@@ -454,26 +454,25 @@
       </div>
     
     <!-- Tabel Data Id Card -->
-    <div class="table-responsive bg-white p-3 rounded shadow-sm">
-        <table class="table table-striped table-hover align-middle" style="font-size: 0.85rem;">
-            <thead style="background-color: #e8f5e9; color: #107b4d;">
-                <tr>
-                    <th>No</th>
-                    <th>ID</th>
-                    <th>Nama Lengkap</th>
-                    <th>NIK</th>
-                    <th>Alamat</th>
-                    <th>Kelurahan / Kecamatan</th>
-                    <th>Cetak Kartu</th>
-                </tr>
-            </thead>
-           <tbody id="tbodyIdCard">
-                <tr>
-                    <td colspan="7" style="text-align: center; color: #666; padding: 20px;">Memuat data...</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<div class="table-responsive bg-white p-3 rounded shadow-sm">
+    <table class="table table-striped table-hover align-middle" style="font-size: 0.85rem;">
+    <thead style="background-color: #e8f5e9; color: #107b4d;">
+        <tr>
+            <th>No</th>
+            <th>ID</th>
+            <th>Nama Lengkap</th>
+            <th>NIK</th>
+            <th>Alamat</th>
+            <th>Kelurahan / Kecamatan</th>
+            <th>Cetak Kartu</th>
+        </tr>
+    </thead>
+   <tbody id="tbodyIdCard">
+        <tr>
+            <td colspan="7" style="text-align: center; color: #666; padding: 20px;">Memuat data...</td>
+        </tr>
+    </tbody>
+    </table>
 </div>
 
       <div id="menuPetugas" class="menu-section d-none">
@@ -2616,28 +2615,20 @@ function tutupIdCard() {
   function bukaAplikasiUtama() {
       window.location.href = window.location.origin + window.location.pathname;
   }
-  
-// Fungsi untuk membuka pratinjau cetak kartu berdasarkan I
-  function cetakIdCardPetugas(idPetugas) {
-  if (!idPetugas || idPetugas === 'undefined') {
-    alert('ID Petugas tidak valid!');
-    return;
-  }
-  
   // Ambil URL dasar saat ini (misal: https://syamsco.github.io/tps-dipo-mawar-04/)
   let baseURL = window.location.href.split('?')[0];
   let urlTarget = baseURL + "?petugas=" + idPetugas;
   
   window.open(urlTarget, '_blank');
 }
-// Variabel penyimpan data ID Card sementara
+// Variabel global ID Card
 var dataIdCardList = [];
 
-// 1. Fungsi menampilkan data ke tabel Pencetakan ID Card Pengurus
+// 1. Memuat Data ID Card dari Spreadsheet
 function muatDataIdCard() {
     var tbody = document.getElementById('tbodyIdCard');
     if (!tbody) return;
-    tbody.innerHTML = '<tr><td colspan="7" class="text-center py-2 text-muted">Memuat data pengurus...</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7" class="text-center py-3 text-muted">Memuat data pengurus...</td></tr>';
 
     google.script.run
         .withSuccessHandler(function(data) {
@@ -2645,10 +2636,12 @@ function muatDataIdCard() {
             renderIdCardTabel();
         })
         .withFailureHandler(function(err) {
-            tbody.innerHTML = '<tr><td colspan="7" class="text-center text-danger py-2">Gagal memuat data: ' + err + '</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="7" class="text-center text-danger py-3">Gagal memuat data: ' + err + '</td></tr>';
         })
         .getDataIdCard();
 }
+
+// 2. Render Tabel dengan Filter Pencarian Real-Time
 function renderIdCardTabel() {
     var tbody = document.getElementById('tbodyIdCard');
     if (!tbody) return;
@@ -2672,10 +2665,7 @@ function renderIdCardTabel() {
 
     var html = '';
     filtered.forEach(function(item, idx) {
-        var rtFmt = item.rt ? ("0" + item.rt).slice(-2) : "07";
-        var rwFmt = item.rw ? ("0" + item.rw).slice(-2) : "04";
         var itemJson = encodeURIComponent(JSON.stringify(item));
-
         var actionButtons = 
             '<button class="btn btn-warning btn-sm py-0 px-1 me-1" style="font-size:0.68rem;" onclick="editIdCard(\'' + itemJson + '\')"><i class="fa fa-pen-to-square"></i> Edit</button>' +
             '<button class="btn btn-danger btn-sm py-0 px-1" style="font-size:0.68rem;" onclick="hapusIdCard(\'' + item.rowIndex + '\', \'' + item.nama + '\')"><i class="fa fa-trash"></i> Delete</button>';
@@ -2694,7 +2684,8 @@ function renderIdCardTabel() {
     });
     tbody.innerHTML = html;
 }
-// 2. Fungsi membuka form Input Data ID Card
+
+// 3. Membuka Modal Input Data ID Card (Tarik Data Petugas & Upload Foto)
 function bukaModalIdCard() {
     Swal.fire({ title: 'Memuat data petugas...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
     
@@ -2714,7 +2705,7 @@ function bukaModalIdCard() {
                         '<select id="icSelectPetugas" class="form-select form-select-sm" onchange="pilihPetugasOtomatis(this)">' + optionsHtml + '</select>' +
                     '</div>' +
                     '<div class="mb-2"><label class="form-label fw-bold">Nama Lengkap</label><input type="text" id="icNama" class="form-control form-control-sm" required></div>' +
-                    '<div class="mb-2"><label class="form-label fw-bold">NIK KTP</label><input type="text" id="icNik" class="form-control form-control-sm" required placeholder="Masukkan 16 digit NIK"></div>' +
+                    '<div class="mb-2"><label class="form-label fw-bold">NIK KTP</label><input type="text" id="icNik" class="form-control form-control-sm" required placeholder="16 digit NIK"></div>' +
                     '<div class="mb-2"><label class="form-label fw-bold">Jabatan</label>' +
                         '<select id="icJabatan" class="form-select form-select-sm">' +
                             '<option value="OPERATOR">OPERATOR</option>' +
@@ -2735,7 +2726,7 @@ function bukaModalIdCard() {
                         '<div class="col-6"><label class="form-label fw-bold">Kecamatan</label><input type="text" id="icKec" class="form-control form-control-sm" value="Cipayung"></div>' +
                         '<div class="col-6"><label class="form-label fw-bold">Kota</label><input type="text" id="icKota" class="form-control form-control-sm" value="Depok"></div>' +
                     '</div>' +
-                    '<div class="mb-2"><label class="form-label fw-bold text-success">Upload Foto Pengurus (Google Drive)</label>' +
+                    '<div class="mb-2"><label class="form-label fw-bold text-success">Upload Foto Pengurus</label>' +
                     '<input type="file" id="icFileFoto" class="form-control form-control-sm" accept="image/*" required></div>' +
                 '</form>',
             showCancelButton: true,
@@ -2753,11 +2744,9 @@ function bukaModalIdCard() {
                 }
                 return new Promise(function(resolve) {
                     var formData = {
-                        nama: nama,
-                        nik: nik,
+                        nama: nama, nik: nik,
                         jabatan: document.getElementById('icJabatan').value,
-                        alamat: alamat,
-                        rt: document.getElementById('icRt').value,
+                        alamat: alamat, rt: document.getElementById('icRt').value,
                         rw: document.getElementById('icRw').value,
                         kelurahan: document.getElementById('icKel').value,
                         kecamatan: document.getElementById('icKec').value,
@@ -2809,7 +2798,7 @@ function bukaModalIdCard() {
     }).getListPetugasForIdCard();
 }
 
-// 3. Fungsi Auto-Fill Petugas
+// 4. Auto-Fill Petugas
 function pilihPetugasOtomatis(selectEl) {
     var opt = selectEl.options[selectEl.selectedIndex];
     if (opt.value) {
@@ -2824,13 +2813,14 @@ function pilihPetugasOtomatis(selectEl) {
     }
 }
 
-// 4. Fungsi Cetak Kartu ID Card Pengurus
-function cetakKartuIdCard(idx) {
-    var item = dataIdCardList[idx];
-    if (!item) return;
+// 5. Cetak ID Card Petugas
+function cetakIdCardPetugas(idPetugas) {
+    if (!idPetugas) return;
     var baseURL = window.location.href.split('?')[0];
-    window.open(baseURL + "?petugas=" + item.id, '_blank');
+    window.open(baseURL + "?petugas=" + idPetugas, '_blank');
 }
+
+// 6. Hapus ID Card
 function hapusIdCard(rowIndex, namaPetugas) {
     if (!cekAkses('delete')) return;
     Swal.fire({
