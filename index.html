@@ -2249,11 +2249,13 @@
           var pJson = encodeURIComponent(JSON.stringify(p));
           var rtRw = (p.RT ? 'RT ' + String(p.RT).padStart(2, '0') : '') + (p.RW ? ' / RW ' + String(p.RW).padStart(2, '0') : '');
           var almFull = [p.Alamat, rtRw].filter(Boolean).join(' ');
+          var nikAsli = String(p.NIK || p.nik || '').trim();
+          var nikTampil = formatNikTampil(nikAsli);
           return '<tr>' +
             '<td class="text-center">' + (idx + 1) + '</td>' +
             '<td class="text-center fw-bold" style="color:#0f5132;">' + (p.ID || '-') + '</td>' +
             '<td class="fw-bold">' + (p.Nama || '-') + '</td>' +
-            '<td>' + (p.NIK || '-') + '</td>' +
+            '<td>' + (nikTampil || '-') + '</td>' +
             '<td><span class="badge bg-primary">' + (p.Jabatan || '-') + '</span></td>' +
             '<td>' + (almFull || '-') + '</td>' +
             '<td class="text-center">' +
@@ -2723,6 +2725,43 @@
   function bukaAplikasiUtama() {
       window.location.href = window.location.origin + window.location.pathname;
   }
+  function isSuperAdminRole() {
+    // Cek dari variabel global, storage, atau teks badge role di header jika ada
+    const badgeEl = document.querySelector('[id*="role" i], [class*="role" i]');
+    const badgeText = badgeEl ? String(badgeEl.innerText || '') : '';
+
+    const rawRole =
+        (window.currentUser && (window.currentUser.role || window.currentUser.Role)) ||
+        window.userRole ||
+        sessionStorage.getItem('userRole') ||
+        sessionStorage.getItem('role') ||
+        localStorage.getItem('userRole') ||
+        localStorage.getItem('role') ||
+        badgeText ||
+        '';
+
+    return String(rawRole).toUpperCase().indexOf('SUPERADMIN') !== -1;
+}
+
+function formatNikTampil(nikValue) {
+    const cleanNik = String(nikValue ?? '').trim();
+    if (!cleanNik || cleanNik === '-') return '-';
+
+    // Jika SUPERADMIN yang login, tampilkan NIK penuh
+    if (isSuperAdminRole()) {
+        return cleanNik;
+    }
+
+    // Jika bukan SUPERADMIN: tampilkan 4 awal + 'xxx' + 1 akhir (contoh: 32760001 -> 3276xxx1)
+    if (cleanNik.length <= 5) {
+        if (cleanNik.length <= 2) return cleanNik[0] + 'xxx';
+        return cleanNik.slice(0, 2) + 'xxx' + cleanNik.slice(-1);
+    }
+
+    const depan = cleanNik.slice(0, 4);
+    const belakang = cleanNik.slice(-1);
+    return depan + 'xxx' + belakang;
+}
 </script>
 </body>
 </html>
