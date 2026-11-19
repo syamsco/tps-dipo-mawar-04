@@ -2564,7 +2564,7 @@
 
   </script>
 <!-- Container Tampilan Verifikasi Riwayat Iuran / ID Card -->
-<div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); z-index:9999; justify-content:center; align-items:center;">
+<div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(255,255,255,0.97); z-index:100000; justify-content:center; align-items:center; padding:15px;">
     <div style="background:white; padding:25px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.15); width:100%; max-width:500px; border-top:5px solid #107b4d; font-family: Arial, sans-serif;">
         <h3 id="v-title" style="text-align:center; color:#107b4d; margin-bottom:20px;">Verifikasi Riwayat Iuran</h3>
         <p style="margin: 8px 0;"><strong>ID Card:</strong> <span id="v-id">-</span></p>
@@ -2581,9 +2581,7 @@
                         <th style="padding:10px; border:1px solid #ddd; text-align:center;">Status</th>
                     </tr>
                 </thead>
-                <tbody id="v-tbody">
-                    <!-- Data akan dirender secara dinamis -->
-                </tbody>
+                <tbody id="v-tbody"></tbody>
             </table>
         </div>
 
@@ -2594,17 +2592,28 @@
 </div>
 
 <script>
-  window.addEventListener('DOMContentLoaded', function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const idParam = urlParams.get('id');
+  (function() {
+      function terapkanModeVerifikasi() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const idParam = urlParams.get('id');
+          const verifEl = document.getElementById('verifikasi-container');
+          const loginEl = document.getElementById('loginPageWrapper');
+          const appEl = document.getElementById('appContent');
 
-      if (idParam) {
-          const mainContent = document.querySelector('.card') || document.querySelector('form');
-          if (mainContent) mainContent.style.display = 'none';
+          if (!verifEl) return;
 
-          document.getElementById('verifikasi-container').style.display = 'flex';
+          if (!idParam) {
+              verifEl.style.display = 'none';
+              return;
+          }
 
-          const isIdCardPrefix = String(idParam).trim().toUpperCase().indexOf('PTG-DM-') === 0;
+          if (loginEl) loginEl.style.display = 'none';
+          if (appEl) appEl.style.display = 'none';
+          verifEl.style.display = 'flex';
+
+          const cleanId = String(idParam).trim().toUpperCase();
+          const isIdCardPrefix = cleanId.indexOf('PTG-DM-') === 0 || cleanId.indexOf('PG-DM-') === 0;
+
           if (isIdCardPrefix) {
               document.getElementById('v-title').innerText = 'Verifikasi ID Card';
               document.getElementById('v-label-nama').innerText = 'Nama:';
@@ -2614,8 +2623,23 @@
                   '<th style="padding:10px; border:1px solid #ddd;">NIK</th>' +
                   '<th style="padding:10px; border:1px solid #ddd; text-align:center;">Status</th>';
           }
+      }
 
-          const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec"; 
+      window.addEventListener('DOMContentLoaded', function() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const idParam = urlParams.get('id');
+          if (!idParam) {
+              const verifEl = document.getElementById('verifikasi-container');
+              if (verifEl) verifEl.style.display = 'none';
+              return;
+          }
+
+          terapkanModeVerifikasi();
+          setTimeout(terapkanModeVerifikasi, 100);
+
+          const cleanId = String(idParam).trim().toUpperCase();
+          const isIdCardPrefix = cleanId.indexOf('PTG-DM-') === 0 || cleanId.indexOf('PG-DM-') === 0;
+          const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec";
 
           fetch(`${WEB_APP_URL}?id=${encodeURIComponent(idParam)}&format=json`)
               .then(response => response.json())
@@ -2668,10 +2692,8 @@
               .catch(error => {
                   console.error('Gagal memuat data verifikasi:', error);
               });
-      } else {
-          document.getElementById('verifikasi-container').style.display = 'none';
-      }
-  });
+      });
+  })();
 
   function bukaAplikasiUtama() {
       window.location.href = window.location.origin + window.location.pathname;
