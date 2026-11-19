@@ -2563,7 +2563,7 @@
     }
 
   </script>
-<!-- Container Tampilan Verifikasi Riwayat Iuran -->
+<!-- Container Tampilan Verifikasi Riwayat Iuran / Kartu Anggota -->
 <div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); z-index:99999; justify-content:center; align-items:center;">
     <div style="background:white; padding:25px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.15); width:100%; max-width:500px; border-top:5px solid #107b4d; font-family: Arial, sans-serif;">
         <h3 id="v-title" style="text-align:center; color:#107b4d; margin-bottom:20px;">Verifikasi Riwayat Iuran</h3>
@@ -2626,6 +2626,16 @@
       return parts.length > 0 ? parts.join(', ') : '-';
   }
 
+  function terapkanHeaderKartuAnggota() {
+      document.getElementById('v-title').innerText = 'Verifikasi Kartu Anggota';
+      document.getElementById('v-label-nama').innerText = 'Nama:';
+      document.getElementById('v-thead-row').innerHTML =
+          '<th style="padding:10px; border:1px solid #ddd; text-align:center;">No</th>' +
+          '<th style="padding:10px; border:1px solid #ddd;">Jabatan / Keterangan</th>' +
+          '<th style="padding:10px; border:1px solid #ddd;">NIK / ID</th>' +
+          '<th style="padding:10px; border:1px solid #ddd; text-align:center;">Status</th>';
+  }
+
   window.addEventListener('DOMContentLoaded', function() {
       const urlParams = new URLSearchParams(window.location.search);
       const rawId = urlParams.get('id');
@@ -2642,16 +2652,14 @@
 
           if (verifContainer) verifContainer.style.setProperty('display', 'flex', 'important');
 
-          const isIdCard = cleanId.indexOf('PTG-DM-') === 0 || cleanId.indexOf('PG-DM-') === 0;
+          const isKartuAnggota =
+              cleanId.indexOf('PTS-DM-') === 0 ||
+              cleanId.indexOf('PTG-DM-') === 0 ||
+              cleanId.indexOf('PGS-DM-') === 0 ||
+              cleanId.indexOf('PG-DM-') === 0;
 
-          if (isIdCard) {
-              document.getElementById('v-title').innerText = 'Verifikasi ID Card';
-              document.getElementById('v-label-nama').innerText = 'Nama:';
-              document.getElementById('v-thead-row').innerHTML =
-                  '<th style="padding:10px; border:1px solid #ddd; text-align:center;">No</th>' +
-                  '<th style="padding:10px; border:1px solid #ddd;">Jabatan</th>' +
-                  '<th style="padding:10px; border:1px solid #ddd;">NIK</th>' +
-                  '<th style="padding:10px; border:1px solid #ddd; text-align:center;">Status</th>';
+          if (isKartuAnggota) {
+              terapkanHeaderKartuAnggota();
           }
 
           const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec";
@@ -2661,6 +2669,11 @@
               .then(data => {
                   if (loginWrapper) loginWrapper.style.setProperty('display', 'none', 'important');
                   if (verifContainer) verifContainer.style.setProperty('display', 'flex', 'important');
+
+                  const isAnggotaData = isKartuAnggota || (data && (data.tipe === 'id_card' || data.isIdCard === true));
+                  if (isAnggotaData) {
+                      terapkanHeaderKartuAnggota();
+                  }
 
                   const info = (data && (data.warga || data.idCard || data.data)) || {};
                   const idTampil = info.idCard || info.ID || (data.warga && data.warga.idCard) || cleanId;
@@ -2677,9 +2690,10 @@
                   const rows = Array.isArray(data.riwayat) ? data.riwayat : [];
                   rows.forEach(function(item, idx) {
                       const statusText = String(item.status || item.Status || 'AKTIF');
-                      const badgeColor = (statusText.toUpperCase() === 'LUNAS' || statusText.toUpperCase() === 'AKTIF') ? '#198754' : '#dc3545';
+                      const statusUpper = statusText.toUpperCase();
+                      const badgeColor = (statusUpper === 'LUNAS' || statusUpper === 'AKTIF') ? '#198754' : '#dc3545';
 
-                      if (isIdCard) {
+                      if (isAnggotaData) {
                           const col2 = item.jabatan || item.Jabatan || info.jabatan || info.Jabatan || item.bulanTahun || '-';
                           const col3 = item.nik || item.NIK || info.nik || info.NIK || item.jumlah || '-';
                           tbody.innerHTML += `<tr>
