@@ -2564,7 +2564,7 @@
 
   </script>
 <!-- Container Tampilan Verifikasi Riwayat Iuran / ID Card -->
-<div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(255,255,255,0.97); z-index:100000; justify-content:center; align-items:center; padding:15px;">
+<div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(255,255,255,0.98); z-index:2147483647; justify-content:center; align-items:center; padding:15px;">
     <div style="background:white; padding:25px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.15); width:100%; max-width:500px; border-top:5px solid #107b4d; font-family: Arial, sans-serif;">
         <h3 id="v-title" style="text-align:center; color:#107b4d; margin-bottom:20px;">Verifikasi Riwayat Iuran</h3>
         <p style="margin: 8px 0;"><strong>ID Card:</strong> <span id="v-id">-</span></p>
@@ -2603,13 +2603,13 @@
           if (!verifEl) return;
 
           if (!idParam) {
-              verifEl.style.display = 'none';
+              verifEl.style.setProperty('display', 'none', 'important');
               return;
           }
 
-          if (loginEl) loginEl.style.display = 'none';
-          if (appEl) appEl.style.display = 'none';
-          verifEl.style.display = 'flex';
+          if (loginEl) loginEl.style.setProperty('display', 'none', 'important');
+          if (appEl) appEl.style.setProperty('display', 'none', 'important');
+          verifEl.style.setProperty('display', 'flex', 'important');
 
           const cleanId = String(idParam).trim().toUpperCase();
           const isIdCardPrefix = cleanId.indexOf('PTG-DM-') === 0 || cleanId.indexOf('PG-DM-') === 0;
@@ -2625,74 +2625,77 @@
           }
       }
 
-      window.addEventListener('DOMContentLoaded', function() {
-          const urlParams = new URLSearchParams(window.location.search);
-          const idParam = urlParams.get('id');
-          if (!idParam) {
-              const verifEl = document.getElementById('verifikasi-container');
-              if (verifEl) verifEl.style.display = 'none';
-              return;
-          }
-
+      terapkanModeVerifikasi();
+      document.addEventListener('DOMContentLoaded', function() {
           terapkanModeVerifikasi();
           setTimeout(terapkanModeVerifikasi, 100);
+          setTimeout(terapkanModeVerifikasi, 400);
+      });
+      window.addEventListener('load', function() {
+          terapkanModeVerifikasi();
+          setTimeout(terapkanModeVerifikasi, 200);
+      });
 
-          const cleanId = String(idParam).trim().toUpperCase();
-          const isIdCardPrefix = cleanId.indexOf('PTG-DM-') === 0 || cleanId.indexOf('PG-DM-') === 0;
-          const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec";
+      const urlParams = new URLSearchParams(window.location.search);
+      const idParam = urlParams.get('id');
+      if (!idParam) return;
 
-          fetch(`${WEB_APP_URL}?id=${encodeURIComponent(idParam)}&format=json`)
-              .then(response => response.json())
-              .then(data => {
-                  const isIdCardData = isIdCardPrefix || data.tipe === 'id_card' || data.isIdCard === true;
+      const cleanId = String(idParam).trim().toUpperCase();
+      const isIdCardPrefix = cleanId.indexOf('PTG-DM-') === 0 || cleanId.indexOf('PG-DM-') === 0;
+      const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec";
+
+      fetch(`${WEB_APP_URL}?id=${encodeURIComponent(idParam)}&format=json`)
+          .then(response => response.json())
+          .then(data => {
+              terapkanModeVerifikasi();
+              const isIdCardData = isIdCardPrefix || data.tipe === 'id_card' || data.isIdCard === true;
+
+              if (isIdCardData) {
+                  document.getElementById('v-title').innerText = 'Verifikasi ID Card';
+                  document.getElementById('v-label-nama').innerText = 'Nama:';
+                  document.getElementById('v-thead-row').innerHTML =
+                      '<th style="padding:10px; border:1px solid #ddd; text-align:center;">No</th>' +
+                      '<th style="padding:10px; border:1px solid #ddd;">Jabatan</th>' +
+                      '<th style="padding:10px; border:1px solid #ddd;">NIK</th>' +
+                      '<th style="padding:10px; border:1px solid #ddd; text-align:center;">Status</th>';
+              }
+
+              const info = (data && (data.warga || data.idCard || data.data)) || {};
+              document.getElementById('v-id').innerText = info.idCard || info.ID || idParam;
+              document.getElementById('v-nama').innerText = info.nama || info.Nama || '-';
+              document.getElementById('v-alamat').innerText = info.alamat || info.Alamat || '-';
+
+              let tbody = document.getElementById('v-tbody');
+              tbody.innerHTML = '';
+
+              const rows = Array.isArray(data.riwayat) ? data.riwayat : (Array.isArray(data.items) ? data.items : []);
+              rows.forEach(function(item, idx) {
+                  const statusText = String(item.status || item.Status || 'AKTIF');
+                  const statusUpper = statusText.toUpperCase();
+                  const badgeColor = (statusUpper === 'LUNAS' || statusUpper === 'AKTIF') ? '#198754' : '#dc3545';
 
                   if (isIdCardData) {
-                      document.getElementById('v-title').innerText = 'Verifikasi ID Card';
-                      document.getElementById('v-label-nama').innerText = 'Nama:';
-                      document.getElementById('v-thead-row').innerHTML =
-                          '<th style="padding:10px; border:1px solid #ddd; text-align:center;">No</th>' +
-                          '<th style="padding:10px; border:1px solid #ddd;">Jabatan</th>' +
-                          '<th style="padding:10px; border:1px solid #ddd;">NIK</th>' +
-                          '<th style="padding:10px; border:1px solid #ddd; text-align:center;">Status</th>';
+                      const jabatanVal = item.jabatan || item.Jabatan || info.jabatan || info.Jabatan || item.bulanTahun || '-';
+                      const nikVal = item.nik || item.NIK || info.nik || info.NIK || item.jumlah || '-';
+                      tbody.innerHTML += `<tr>
+                          <td style="padding:8px; border:1px solid #ddd; text-align:center;">${item.no || (idx + 1)}</td>
+                          <td style="padding:8px; border:1px solid #ddd;">${jabatanVal}</td>
+                          <td style="padding:8px; border:1px solid #ddd;">${nikVal}</td>
+                          <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${statusText}</span></td>
+                      </tr>`;
+                  } else {
+                      tbody.innerHTML += `<tr>
+                          <td style="padding:8px; border:1px solid #ddd; text-align:center;">${item.no || (idx + 1)}</td>
+                          <td style="padding:8px; border:1px solid #ddd;">${item.bulanTahun || '-'}</td>
+                          <td style="padding:8px; border:1px solid #ddd;">${item.jumlah || '-'}</td>
+                          <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${statusText}</span></td>
+                      </tr>`;
                   }
-
-                  const info = (data && (data.warga || data.idCard || data.data)) || {};
-                  document.getElementById('v-id').innerText = info.idCard || info.ID || idParam;
-                  document.getElementById('v-nama').innerText = info.nama || info.Nama || '-';
-                  document.getElementById('v-alamat').innerText = info.alamat || info.Alamat || '-';
-
-                  let tbody = document.getElementById('v-tbody');
-                  tbody.innerHTML = '';
-
-                  const rows = Array.isArray(data.riwayat) ? data.riwayat : (Array.isArray(data.items) ? data.items : []);
-                  rows.forEach(function(item, idx) {
-                      const statusText = String(item.status || item.Status || 'AKTIF');
-                      const statusUpper = statusText.toUpperCase();
-                      const badgeColor = (statusUpper === 'LUNAS' || statusUpper === 'AKTIF') ? '#198754' : '#dc3545';
-
-                      if (isIdCardData) {
-                          const jabatanVal = item.jabatan || item.Jabatan || info.jabatan || info.Jabatan || item.bulanTahun || '-';
-                          const nikVal = item.nik || item.NIK || info.nik || info.NIK || item.jumlah || '-';
-                          tbody.innerHTML += `<tr>
-                              <td style="padding:8px; border:1px solid #ddd; text-align:center;">${item.no || (idx + 1)}</td>
-                              <td style="padding:8px; border:1px solid #ddd;">${jabatanVal}</td>
-                              <td style="padding:8px; border:1px solid #ddd;">${nikVal}</td>
-                              <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${statusText}</span></td>
-                          </tr>`;
-                      } else {
-                          tbody.innerHTML += `<tr>
-                              <td style="padding:8px; border:1px solid #ddd; text-align:center;">${item.no || (idx + 1)}</td>
-                              <td style="padding:8px; border:1px solid #ddd;">${item.bulanTahun || '-'}</td>
-                              <td style="padding:8px; border:1px solid #ddd;">${item.jumlah || '-'}</td>
-                              <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${statusText}</span></td>
-                          </tr>`;
-                      }
-                  });
-              })
-              .catch(error => {
-                  console.error('Gagal memuat data verifikasi:', error);
               });
-      });
+          })
+          .catch(error => {
+              console.error('Gagal memuat data verifikasi:', error);
+          });
   })();
 
   function bukaAplikasiUtama() {
