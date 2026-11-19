@@ -2640,14 +2640,21 @@
           '<th style="padding:10px; border:1px solid #ddd; text-align:center;">Status</th>';
   }
 
-  window.addEventListener('DOMContentLoaded', function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const rawId = urlParams.get('id');
-      const verifContainer = document.getElementById('verifikasi-container');
-      const loginWrapper = document.getElementById('loginPageWrapper');
+ window.addEventListener('DOMContentLoaded', function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  let rawId = null;
+  for (const [key, value] of urlParams.entries()) {
+    if (key.toLowerCase() === 'id') {
+      rawId = value;
+      break;
+    }
+  }
 
-      if (rawId && String(rawId).trim() !== '') {
-          const cleanId = String(rawId).trim().toUpperCase();
+  const verifContainer = document.getElementById('verifikasi-container');
+  const loginWrapper = document.getElementById('loginPageWrapper');
+
+  if (rawId && String(rawId).trim() !== '') {
+    const cleanId = String(rawId).trim().toUpperCase();
 
           if (loginWrapper) loginWrapper.style.setProperty('display', 'none', 'important');
 
