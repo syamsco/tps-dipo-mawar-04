@@ -2588,7 +2588,7 @@
         </div>
 
         <div style="text-align:center; margin-top:25px;">
-            <button onclick="bukaAplikasiUtama()" style="background:#107b4d; color:white; padding:12px 20px; border:none; border-radius:5px; cursor:pointer; width:100%; font-weight:bold; font-size:14px;">Buka Aplikasi Utama</button>
+            <button onclick="bukaAplikasiUtama()" style="background:#107b4d; color:white; padding:12px 20px; border:none; border:none; border-radius:5px; cursor:pointer; width:100%; font-weight:bold; font-size:14px;">Buka Aplikasi Utama</button>
         </div>
     </div>
 </div>
@@ -2597,15 +2597,16 @@
   window.addEventListener('DOMContentLoaded', function() {
       const urlParams = new URLSearchParams(window.location.search);
       const idParam = urlParams.get('id');
+      const verifContainer = document.getElementById('verifikasi-container');
+      const loginWrapper = document.getElementById('loginPageWrapper');
 
       if (idParam) {
-          const loginWrapper = document.getElementById('loginPageWrapper');
-          if (loginWrapper) loginWrapper.style.display = 'none';
+          if (loginWrapper) loginWrapper.style.setProperty('display', 'none', 'important');
 
           const mainContent = document.querySelector('.card') || document.querySelector('form');
-          if (mainContent) mainContent.style.display = 'none';
+          if (mainContent) mainContent.style.setProperty('display', 'none', 'important');
 
-          document.getElementById('verifikasi-container').style.display = 'flex';
+          if (verifContainer) verifContainer.style.setProperty('display', 'flex', 'important');
 
           const cleanId = String(idParam).trim().toUpperCase();
           const isIdCard = cleanId.indexOf('PTG-DM-') === 0 || cleanId.indexOf('PG-DM-') === 0;
@@ -2625,30 +2626,46 @@
           fetch(`${WEB_APP_URL}?id=${encodeURIComponent(idParam)}&format=json`)
               .then(response => response.json())
               .then(data => {
-                  if (loginWrapper) loginWrapper.style.display = 'none';
-                  document.getElementById('v-id').innerText = data.warga.idCard || idParam;
-                  document.getElementById('v-nama').innerText = data.warga.nama;
-                  document.getElementById('v-alamat').innerText = data.warga.alamat;
+                  if (loginWrapper) loginWrapper.style.setProperty('display', 'none', 'important');
+                  if (verifContainer) verifContainer.style.setProperty('display', 'flex', 'important');
+
+                  const info = (data && (data.warga || data.idCard || data.data)) || {};
+                  document.getElementById('v-id').innerText = info.idCard || data.warga?.idCard || idParam;
+                  document.getElementById('v-nama').innerText = info.nama || data.warga?.nama || '-';
+                  document.getElementById('v-alamat').innerText = info.alamat || data.warga?.alamat || '-';
 
                   let tbody = document.getElementById('v-tbody');
                   tbody.innerHTML = '';
 
-                  data.riwayat.forEach(function(item) {
-                      let badgeColor = item.status.toUpperCase() === 'LUNAS' || item.status.toUpperCase() === 'AKTIF' ? '#198754' : '#dc3545';
-                      let tr = `<tr>
-                          <td style="padding:8px; border:1px solid #ddd; text-align:center;">${item.no}</td>
-                          <td style="padding:8px; border:1px solid #ddd;">${item.bulanTahun}</td>
-                          <td style="padding:8px; border:1px solid #ddd;">${item.jumlah}</td>
-                          <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${item.status}</span></td>
-                      </tr>`;
-                      tbody.innerHTML += tr;
+                  const rows = Array.isArray(data.riwayat) ? data.riwayat : [];
+                  rows.forEach(function(item, idx) {
+                      const statusText = String(item.status || 'AKTIF');
+                      const badgeColor = (statusText.toUpperCase() === 'LUNAS' || statusText.toUpperCase() === 'AKTIF') ? '#198754' : '#dc3545';
+
+                      if (isIdCard) {
+                          const col2 = item.jabatan || info.jabatan || item.bulanTahun || '-';
+                          const col3 = item.nik || info.nik || item.jumlah || '-';
+                          tbody.innerHTML += `<tr>
+                              <td style="padding:8px; border:1px solid #ddd; text-align:center;">${item.no || (idx + 1)}</td>
+                              <td style="padding:8px; border:1px solid #ddd;">${col2}</td>
+                              <td style="padding:8px; border:1px solid #ddd;">${col3}</td>
+                              <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${statusText}</span></td>
+                          </tr>`;
+                      } else {
+                          tbody.innerHTML += `<tr>
+                              <td style="padding:8px; border:1px solid #ddd; text-align:center;">${item.no || (idx + 1)}</td>
+                              <td style="padding:8px; border:1px solid #ddd;">${item.bulanTahun}</td>
+                              <td style="padding:8px; border:1px solid #ddd;">${item.jumlah}</td>
+                              <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${statusText}</span></td>
+                          </tr>`;
+                      }
                   });
               })
               .catch(error => {
                   console.error('Gagal memuat data verifikasi:', error);
               });
-      } else {
-          document.getElementById('verifikasi-container').style.display = 'none';
+      } else if (verifContainer) {
+          verifContainer.style.setProperty('display', 'none', 'important');
       }
   });
 
