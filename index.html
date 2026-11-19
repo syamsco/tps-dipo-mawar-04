@@ -2588,19 +2588,53 @@
         </div>
 
         <div style="text-align:center; margin-top:25px;">
-            <button onclick="bukaAplikasiUtama()" style="background:#107b4d; color:white; padding:12px 20px; border:none; border:none; border-radius:5px; cursor:pointer; width:100%; font-weight:bold; font-size:14px;">Buka Aplikasi Utama</button>
+            <button onclick="bukaAplikasiUtama()" style="background:#107b4d; color:white; padding:12px 20px; border:none; border-radius:5px; cursor:pointer; width:100%; font-weight:bold; font-size:14px;">Buka Aplikasi Utama</button>
         </div>
     </div>
 </div>
 
 <script>
+  function ambilNilaiAlamat(data, info) {
+      const candidates = [
+          info.alamat, info.Alamat, info.ALAMAT,
+          info.alamatLengkap, info.alamat_lengkap,
+          data && data.alamat, data && data.Alamat,
+          data && data.warga && data.warga.alamat,
+          data && data.warga && data.warga.Alamat,
+          data && data.idCard && data.idCard.alamat,
+          data && data.idCard && data.idCard.Alamat
+      ];
+      for (let i = 0; i < candidates.length; i++) {
+          if (candidates[i] !== undefined && candidates[i] !== null && String(candidates[i]).trim() !== '') {
+              return String(candidates[i]).trim();
+          }
+      }
+
+      const parts = [];
+      const rt = info.rt || info.RT || (data && data.warga && data.warga.rt) || '';
+      const rw = info.rw || info.RW || (data && data.warga && data.warga.rw) || '';
+      const kel = info.kelurahan || info.Kelurahan || (data && data.warga && data.warga.kelurahan) || '';
+      const kec = info.kecamatan || info.Kecamatan || (data && data.warga && data.warga.kecamatan) || '';
+      const kota = info.kota || info.Kota || (data && data.warga && data.warga.kota) || '';
+
+      if (rt) parts.push('RT ' + String(rt).trim());
+      if (rw) parts.push('RW ' + String(rw).trim());
+      if (kel) parts.push(String(kel).trim());
+      if (kec) parts.push(String(kec).trim());
+      if (kota) parts.push(String(kota).trim());
+
+      return parts.length > 0 ? parts.join(', ') : '-';
+  }
+
   window.addEventListener('DOMContentLoaded', function() {
       const urlParams = new URLSearchParams(window.location.search);
-      const idParam = urlParams.get('id');
+      const rawId = urlParams.get('id');
       const verifContainer = document.getElementById('verifikasi-container');
       const loginWrapper = document.getElementById('loginPageWrapper');
 
-      if (idParam) {
+      if (rawId && String(rawId).trim() !== '') {
+          const cleanId = String(rawId).trim().toUpperCase();
+
           if (loginWrapper) loginWrapper.style.setProperty('display', 'none', 'important');
 
           const mainContent = document.querySelector('.card') || document.querySelector('form');
@@ -2608,7 +2642,6 @@
 
           if (verifContainer) verifContainer.style.setProperty('display', 'flex', 'important');
 
-          const cleanId = String(idParam).trim().toUpperCase();
           const isIdCard = cleanId.indexOf('PTG-DM-') === 0 || cleanId.indexOf('PG-DM-') === 0;
 
           if (isIdCard) {
@@ -2623,28 +2656,32 @@
 
           const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec";
 
-          fetch(`${WEB_APP_URL}?id=${encodeURIComponent(idParam)}&format=json`)
+          fetch(`${WEB_APP_URL}?id=${encodeURIComponent(cleanId)}&format=json`)
               .then(response => response.json())
               .then(data => {
                   if (loginWrapper) loginWrapper.style.setProperty('display', 'none', 'important');
                   if (verifContainer) verifContainer.style.setProperty('display', 'flex', 'important');
 
                   const info = (data && (data.warga || data.idCard || data.data)) || {};
-                  document.getElementById('v-id').innerText = info.idCard || data.warga?.idCard || idParam;
-                  document.getElementById('v-nama').innerText = info.nama || data.warga?.nama || '-';
-                  document.getElementById('v-alamat').innerText = info.alamat || data.warga?.alamat || '-';
+                  const idTampil = info.idCard || info.ID || (data.warga && data.warga.idCard) || cleanId;
+                  const namaTampil = info.nama || info.Nama || (data.warga && data.warga.nama) || '-';
+                  const alamatTampil = ambilNilaiAlamat(data, info);
+
+                  document.getElementById('v-id').innerText = String(idTampil).toUpperCase();
+                  document.getElementById('v-nama').innerText = namaTampil;
+                  document.getElementById('v-alamat').innerText = alamatTampil;
 
                   let tbody = document.getElementById('v-tbody');
                   tbody.innerHTML = '';
 
                   const rows = Array.isArray(data.riwayat) ? data.riwayat : [];
                   rows.forEach(function(item, idx) {
-                      const statusText = String(item.status || 'AKTIF');
+                      const statusText = String(item.status || item.Status || 'AKTIF');
                       const badgeColor = (statusText.toUpperCase() === 'LUNAS' || statusText.toUpperCase() === 'AKTIF') ? '#198754' : '#dc3545';
 
                       if (isIdCard) {
-                          const col2 = item.jabatan || info.jabatan || item.bulanTahun || '-';
-                          const col3 = item.nik || info.nik || item.jumlah || '-';
+                          const col2 = item.jabatan || item.Jabatan || info.jabatan || info.Jabatan || item.bulanTahun || '-';
+                          const col3 = item.nik || item.NIK || info.nik || info.NIK || item.jumlah || '-';
                           tbody.innerHTML += `<tr>
                               <td style="padding:8px; border:1px solid #ddd; text-align:center;">${item.no || (idx + 1)}</td>
                               <td style="padding:8px; border:1px solid #ddd;">${col2}</td>
@@ -2654,8 +2691,8 @@
                       } else {
                           tbody.innerHTML += `<tr>
                               <td style="padding:8px; border:1px solid #ddd; text-align:center;">${item.no || (idx + 1)}</td>
-                              <td style="padding:8px; border:1px solid #ddd;">${item.bulanTahun}</td>
-                              <td style="padding:8px; border:1px solid #ddd;">${item.jumlah}</td>
+                              <td style="padding:8px; border:1px solid #ddd;">${item.bulanTahun || '-'}</td>
+                              <td style="padding:8px; border:1px solid #ddd;">${item.jumlah || '-'}</td>
                               <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${statusText}</span></td>
                           </tr>`;
                       }
