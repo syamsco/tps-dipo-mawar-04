@@ -2563,8 +2563,8 @@
     }
 
   </script>
-<!-- Container Tampilan Verifikasi Riwayat Iuran / ID Card -->
-<div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(255,255,255,0.98); z-index:2147483647; justify-content:center; align-items:center; padding:15px;">
+<!-- Container Tampilan Verifikasi Riwayat Iuran -->
+<div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); z-index:99999; justify-content:center; align-items:center;">
     <div style="background:white; padding:25px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.15); width:100%; max-width:500px; border-top:5px solid #107b4d; font-family: Arial, sans-serif;">
         <h3 id="v-title" style="text-align:center; color:#107b4d; margin-bottom:20px;">Verifikasi Riwayat Iuran</h3>
         <p style="margin: 8px 0;"><strong>ID Card:</strong> <span id="v-id">-</span></p>
@@ -2581,7 +2581,9 @@
                         <th style="padding:10px; border:1px solid #ddd; text-align:center;">Status</th>
                     </tr>
                 </thead>
-                <tbody id="v-tbody"></tbody>
+                <tbody id="v-tbody">
+                    <!-- Data akan dirender secara dinamis -->
+                </tbody>
             </table>
         </div>
 
@@ -2592,29 +2594,23 @@
 </div>
 
 <script>
-  (function() {
-      function terapkanModeVerifikasi() {
-          const urlParams = new URLSearchParams(window.location.search);
-          const idParam = urlParams.get('id');
-          const verifEl = document.getElementById('verifikasi-container');
-          const loginEl = document.getElementById('loginPageWrapper');
-          const appEl = document.getElementById('appContent');
+  window.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const idParam = urlParams.get('id');
 
-          if (!verifEl) return;
+      if (idParam) {
+          const loginWrapper = document.getElementById('loginPageWrapper');
+          if (loginWrapper) loginWrapper.style.display = 'none';
 
-          if (!idParam) {
-              verifEl.style.setProperty('display', 'none', 'important');
-              return;
-          }
+          const mainContent = document.querySelector('.card') || document.querySelector('form');
+          if (mainContent) mainContent.style.display = 'none';
 
-          if (loginEl) loginEl.style.setProperty('display', 'none', 'important');
-          if (appEl) appEl.style.setProperty('display', 'none', 'important');
-          verifEl.style.setProperty('display', 'flex', 'important');
+          document.getElementById('verifikasi-container').style.display = 'flex';
 
           const cleanId = String(idParam).trim().toUpperCase();
-          const isIdCardPrefix = cleanId.indexOf('PTG-DM-') === 0 || cleanId.indexOf('PG-DM-') === 0;
+          const isIdCard = cleanId.indexOf('PTG-DM-') === 0 || cleanId.indexOf('PG-DM-') === 0;
 
-          if (isIdCardPrefix) {
+          if (isIdCard) {
               document.getElementById('v-title').innerText = 'Verifikasi ID Card';
               document.getElementById('v-label-nama').innerText = 'Nama:';
               document.getElementById('v-thead-row').innerHTML =
@@ -2623,80 +2619,38 @@
                   '<th style="padding:10px; border:1px solid #ddd;">NIK</th>' +
                   '<th style="padding:10px; border:1px solid #ddd; text-align:center;">Status</th>';
           }
-      }
 
-      terapkanModeVerifikasi();
-      document.addEventListener('DOMContentLoaded', function() {
-          terapkanModeVerifikasi();
-          setTimeout(terapkanModeVerifikasi, 100);
-          setTimeout(terapkanModeVerifikasi, 400);
-      });
-      window.addEventListener('load', function() {
-          terapkanModeVerifikasi();
-          setTimeout(terapkanModeVerifikasi, 200);
-      });
+          const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec";
 
-      const urlParams = new URLSearchParams(window.location.search);
-      const idParam = urlParams.get('id');
-      if (!idParam) return;
+          fetch(`${WEB_APP_URL}?id=${encodeURIComponent(idParam)}&format=json`)
+              .then(response => response.json())
+              .then(data => {
+                  if (loginWrapper) loginWrapper.style.display = 'none';
+                  document.getElementById('v-id').innerText = data.warga.idCard || idParam;
+                  document.getElementById('v-nama').innerText = data.warga.nama;
+                  document.getElementById('v-alamat').innerText = data.warga.alamat;
 
-      const cleanId = String(idParam).trim().toUpperCase();
-      const isIdCardPrefix = cleanId.indexOf('PTG-DM-') === 0 || cleanId.indexOf('PG-DM-') === 0;
-      const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec";
+                  let tbody = document.getElementById('v-tbody');
+                  tbody.innerHTML = '';
 
-      fetch(`${WEB_APP_URL}?id=${encodeURIComponent(idParam)}&format=json`)
-          .then(response => response.json())
-          .then(data => {
-              terapkanModeVerifikasi();
-              const isIdCardData = isIdCardPrefix || data.tipe === 'id_card' || data.isIdCard === true;
-
-              if (isIdCardData) {
-                  document.getElementById('v-title').innerText = 'Verifikasi ID Card';
-                  document.getElementById('v-label-nama').innerText = 'Nama:';
-                  document.getElementById('v-thead-row').innerHTML =
-                      '<th style="padding:10px; border:1px solid #ddd; text-align:center;">No</th>' +
-                      '<th style="padding:10px; border:1px solid #ddd;">Jabatan</th>' +
-                      '<th style="padding:10px; border:1px solid #ddd;">NIK</th>' +
-                      '<th style="padding:10px; border:1px solid #ddd; text-align:center;">Status</th>';
-              }
-
-              const info = (data && (data.warga || data.idCard || data.data)) || {};
-              document.getElementById('v-id').innerText = info.idCard || info.ID || idParam;
-              document.getElementById('v-nama').innerText = info.nama || info.Nama || '-';
-              document.getElementById('v-alamat').innerText = info.alamat || info.Alamat || '-';
-
-              let tbody = document.getElementById('v-tbody');
-              tbody.innerHTML = '';
-
-              const rows = Array.isArray(data.riwayat) ? data.riwayat : (Array.isArray(data.items) ? data.items : []);
-              rows.forEach(function(item, idx) {
-                  const statusText = String(item.status || item.Status || 'AKTIF');
-                  const statusUpper = statusText.toUpperCase();
-                  const badgeColor = (statusUpper === 'LUNAS' || statusUpper === 'AKTIF') ? '#198754' : '#dc3545';
-
-                  if (isIdCardData) {
-                      const jabatanVal = item.jabatan || item.Jabatan || info.jabatan || info.Jabatan || item.bulanTahun || '-';
-                      const nikVal = item.nik || item.NIK || info.nik || info.NIK || item.jumlah || '-';
-                      tbody.innerHTML += `<tr>
-                          <td style="padding:8px; border:1px solid #ddd; text-align:center;">${item.no || (idx + 1)}</td>
-                          <td style="padding:8px; border:1px solid #ddd;">${jabatanVal}</td>
-                          <td style="padding:8px; border:1px solid #ddd;">${nikVal}</td>
-                          <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${statusText}</span></td>
+                  data.riwayat.forEach(function(item) {
+                      let badgeColor = item.status.toUpperCase() === 'LUNAS' || item.status.toUpperCase() === 'AKTIF' ? '#198754' : '#dc3545';
+                      let tr = `<tr>
+                          <td style="padding:8px; border:1px solid #ddd; text-align:center;">${item.no}</td>
+                          <td style="padding:8px; border:1px solid #ddd;">${item.bulanTahun}</td>
+                          <td style="padding:8px; border:1px solid #ddd;">${item.jumlah}</td>
+                          <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${item.status}</span></td>
                       </tr>`;
-                  } else {
-                      tbody.innerHTML += `<tr>
-                          <td style="padding:8px; border:1px solid #ddd; text-align:center;">${item.no || (idx + 1)}</td>
-                          <td style="padding:8px; border:1px solid #ddd;">${item.bulanTahun || '-'}</td>
-                          <td style="padding:8px; border:1px solid #ddd;">${item.jumlah || '-'}</td>
-                          <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${statusText}</span></td>
-                      </tr>`;
-                  }
+                      tbody.innerHTML += tr;
+                  });
+              })
+              .catch(error => {
+                  console.error('Gagal memuat data verifikasi:', error);
               });
-          })
-          .catch(error => {
-              console.error('Gagal memuat data verifikasi:', error);
-          });
-  })();
+      } else {
+          document.getElementById('verifikasi-container').style.display = 'none';
+      }
+  });
 
   function bukaAplikasiUtama() {
       window.location.href = window.location.origin + window.location.pathname;
