@@ -2563,18 +2563,18 @@
     }
 
   </script>
-  <!-- Container Tampilan Verifikasi Riwayat Iuran -->
-<div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); z-index:9999; display:flex; justify-content:center; align-items:center;">
+<!-- Container Tampilan Verifikasi Riwayat Iuran / ID Card -->
+<div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); z-index:9999; justify-content:center; align-items:center;">
     <div style="background:white; padding:25px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.15); width:100%; max-width:500px; border-top:5px solid #107b4d; font-family: Arial, sans-serif;">
-        <h3 style="text-align:center; color:#107b4d; margin-bottom:20px;">Verifikasi Riwayat Iuran</h3>
+        <h3 id="v-title" style="text-align:center; color:#107b4d; margin-bottom:20px;">Verifikasi Riwayat Iuran</h3>
         <p style="margin: 8px 0;"><strong>ID Card:</strong> <span id="v-id">-</span></p>
-        <p style="margin: 8px 0;"><strong>Nama Warga:</strong> <span id="v-nama">-</span></p>
+        <p style="margin: 8px 0;"><strong id="v-label-nama">Nama Warga:</strong> <span id="v-nama">-</span></p>
         <p style="margin: 8px 0;"><strong>Alamat:</strong> <span id="v-alamat">-</span></p>
         
         <div style="max-height: 250px; overflow-y: auto; margin-top: 15px;">
             <table style="width:100%; border-collapse:collapse; text-align: left;">
                 <thead>
-                    <tr style="background:#e8f5e9; color:#107b4d;">
+                    <tr id="v-thead-row" style="background:#e8f5e9; color:#107b4d;">
                         <th style="padding:10px; border:1px solid #ddd; text-align:center;">No</th>
                         <th style="padding:10px; border:1px solid #ddd;">Bulan / Tahun</th>
                         <th style="padding:10px; border:1px solid #ddd;">Jumlah</th>
@@ -2599,35 +2599,70 @@
       const idParam = urlParams.get('id');
 
       if (idParam) {
-          // Sembunyikan elemen login utama pada halaman
           const mainContent = document.querySelector('.card') || document.querySelector('form');
           if (mainContent) mainContent.style.display = 'none';
 
-          // Tampilkan kotak verifikasi
           document.getElementById('verifikasi-container').style.display = 'flex';
 
-          // URL Deployment Web App Google Apps Script Anda
+          const isIdCardPrefix = String(idParam).trim().toUpperCase().indexOf('PTG-DM-') === 0;
+          if (isIdCardPrefix) {
+              document.getElementById('v-title').innerText = 'Verifikasi ID Card';
+              document.getElementById('v-label-nama').innerText = 'Nama:';
+              document.getElementById('v-thead-row').innerHTML =
+                  '<th style="padding:10px; border:1px solid #ddd; text-align:center;">No</th>' +
+                  '<th style="padding:10px; border:1px solid #ddd;">Jabatan</th>' +
+                  '<th style="padding:10px; border:1px solid #ddd;">NIK</th>' +
+                  '<th style="padding:10px; border:1px solid #ddd; text-align:center;">Status</th>';
+          }
+
           const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrxSGsBEezBPDaTSnPi_g21d2cEyNmOnzY3ik4CU8ACEnf-IsZ4IImLPpB29rU7hVQ/exec"; 
 
-         fetch(`${WEB_APP_URL}?id=${idParam}&format=json`)
+          fetch(`${WEB_APP_URL}?id=${encodeURIComponent(idParam)}&format=json`)
               .then(response => response.json())
               .then(data => {
-                  document.getElementById('v-id').innerText = data.warga.idCard || idParam;
-                  document.getElementById('v-nama').innerText = data.warga.nama;
-                  document.getElementById('v-alamat').innerText = data.warga.alamat;
+                  const isIdCardData = isIdCardPrefix || data.tipe === 'id_card' || data.isIdCard === true;
+
+                  if (isIdCardData) {
+                      document.getElementById('v-title').innerText = 'Verifikasi ID Card';
+                      document.getElementById('v-label-nama').innerText = 'Nama:';
+                      document.getElementById('v-thead-row').innerHTML =
+                          '<th style="padding:10px; border:1px solid #ddd; text-align:center;">No</th>' +
+                          '<th style="padding:10px; border:1px solid #ddd;">Jabatan</th>' +
+                          '<th style="padding:10px; border:1px solid #ddd;">NIK</th>' +
+                          '<th style="padding:10px; border:1px solid #ddd; text-align:center;">Status</th>';
+                  }
+
+                  const info = (data && (data.warga || data.idCard || data.data)) || {};
+                  document.getElementById('v-id').innerText = info.idCard || info.ID || idParam;
+                  document.getElementById('v-nama').innerText = info.nama || info.Nama || '-';
+                  document.getElementById('v-alamat').innerText = info.alamat || info.Alamat || '-';
 
                   let tbody = document.getElementById('v-tbody');
                   tbody.innerHTML = '';
-                  
-                  data.riwayat.forEach(function(item) {
-                      let badgeColor = item.status.toUpperCase() === 'LUNAS' ? '#198754' : '#dc3545';
-                      let tr = `<tr>
-                          <td style="padding:8px; border:1px solid #ddd; text-align:center;">${item.no}</td>
-                          <td style="padding:8px; border:1px solid #ddd;">${item.bulanTahun}</td>
-                          <td style="padding:8px; border:1px solid #ddd;">${item.jumlah}</td>
-                          <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${item.status}</span></td>
-                      </tr>`;
-                      tbody.innerHTML += tr;
+
+                  const rows = Array.isArray(data.riwayat) ? data.riwayat : (Array.isArray(data.items) ? data.items : []);
+                  rows.forEach(function(item, idx) {
+                      const statusText = String(item.status || item.Status || 'AKTIF');
+                      const statusUpper = statusText.toUpperCase();
+                      const badgeColor = (statusUpper === 'LUNAS' || statusUpper === 'AKTIF') ? '#198754' : '#dc3545';
+
+                      if (isIdCardData) {
+                          const jabatanVal = item.jabatan || item.Jabatan || info.jabatan || info.Jabatan || item.bulanTahun || '-';
+                          const nikVal = item.nik || item.NIK || info.nik || info.NIK || item.jumlah || '-';
+                          tbody.innerHTML += `<tr>
+                              <td style="padding:8px; border:1px solid #ddd; text-align:center;">${item.no || (idx + 1)}</td>
+                              <td style="padding:8px; border:1px solid #ddd;">${jabatanVal}</td>
+                              <td style="padding:8px; border:1px solid #ddd;">${nikVal}</td>
+                              <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${statusText}</span></td>
+                          </tr>`;
+                      } else {
+                          tbody.innerHTML += `<tr>
+                              <td style="padding:8px; border:1px solid #ddd; text-align:center;">${item.no || (idx + 1)}</td>
+                              <td style="padding:8px; border:1px solid #ddd;">${item.bulanTahun || '-'}</td>
+                              <td style="padding:8px; border:1px solid #ddd;">${item.jumlah || '-'}</td>
+                              <td style="padding:8px; border:1px solid #ddd; text-align:center;"><span style="background:${badgeColor}; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight:bold;">${statusText}</span></td>
+                          </tr>`;
+                      }
                   });
               })
               .catch(error => {
