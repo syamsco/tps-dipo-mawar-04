@@ -2487,9 +2487,10 @@
     ? fotoUrl
     : 'https://ui-avatars.com/api/?name=' + encodeURIComponent(nama) + '&background=107b4d&color=ffffff&bold=true&size=128';
   var logoUrl = "https://lh3.googleusercontent.com/d/1fRso7wL4d0YVMxWpo7a1RgL4ZJrJ0gf8";
-  var qrData = encodeURIComponent("PENGURUS:" + idCard + "|" + nama + "|" + jabatan);
-  var qrCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=" + qrData;
-  var qrFallbackUrl = "https://quickchart.io/qr?size=140&text=" + qrData;
+  var qrPayload = "PENGURUS:" + idCard + "|" + nama + "|" + jabatan;
+  var qrData = encodeURIComponent(qrPayload);
+  var qrCodeUrl = "https://quickchart.io/qr?size=160&text=" + qrData;
+  var qrFallbackUrl = "https://api.qrserver.com/v1/create-qr-code/?size=160x160&ecc=M&data=" + qrData;
 
   var frontHtml =
     '<div style="width:420px; height:260px; border-radius:16px; background:#ffffff; margin:0 auto; box-sizing:border-box; font-family:\'Segoe UI\', Roboto, sans-serif; text-align:left; box-shadow:0 10px 28px rgba(0,0,0,0.18); border:1px solid #107b4d; display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; position:relative;">' +
@@ -2566,14 +2567,7 @@
   }).then(function(res) {
     if (res.isConfirmed) {
       if (!cekAkses('cetak')) return;
-      var printScript = '<script>(function(){function goPrint(){setTimeout(function(){window.print();},300);}var imgs=Array.from(document.images);if(!imgs.length){goPrint();return;}var done=0,triggered=false;function check(){done++;if(done>=imgs.length&&!triggered){triggered=true;goPrint();}}imgs.forEach(function(img){if(img.complete){check();}else{img.addEventListener("load",check);img.addEventListener("error",check);}});setTimeout(function(){if(!triggered){triggered=true;goPrint();}},1800);})();<\/script>';
-      var fullHtml = '<!DOCTYPE html><html><head><title>Cetak ID Card - ' + nama + '</title><style>body{background:#fff;margin:0;padding:0;display:flex;justify-content:center;align-items:center;flex-direction:column;}.print-page{display:flex;justify-content:center;align-items:center;width:100vw;height:100vh;page-break-after:always;}@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}.print-page{height:100vh;page-break-after:always;}}</style></head><body><div class="print-page">' + frontHtml + '</div><div class="print-page">' + backHtml + '</div>' + printScript + '</body></html>';
-      var blob = new Blob([fullHtml], { type: 'text/html' });
-      var blobUrl = URL.createObjectURL(blob);
-      window.open(blobUrl, '_blank');
-    }
-  });
-}
+   var printScript = '<script>(function(){var printed=false;function triggerPrint(){if(printed)return;printed=true;setTimeout(function(){try{window.focus();window.print();}catch(e){window.print();}},150);}if(document.readyState==="complete"){setTimeout(triggerPrint,250);}else{window.addEventListener("load",function(){setTimeout(triggerPrint,250);});}setTimeout(triggerPrint,900);})();<\/script>';
   </script>
 <!-- Container Tampilan Verifikasi Riwayat Iuran / Kartu Anggota -->
 <div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); z-index:99999; justify-content:center; align-items:center;">
