@@ -2470,7 +2470,8 @@
       });
     }
 
-    function cetakIdCardDirect(pJson) {
+    
+   function cetakIdCardDirect(pJson) {
   var p = {};
   try { p = typeof pJson === 'string' ? JSON.parse(decodeURIComponent(pJson)) : (pJson || {}); } catch(e) { p = {}; }
 
@@ -2567,39 +2568,15 @@
   }).then(function(res) {
     if (res.isConfirmed) {
       if (!cekAkses('cetak')) return;
-   var printScript = '<script>(function(){var printed=false;function triggerPrint(){if(printed)return;printed=true;setTimeout(function(){try{window.focus();window.print();}catch(e){window.print();}},150);}if(document.readyState==="complete"){setTimeout(triggerPrint,250);}else{window.addEventListener("load",function(){setTimeout(triggerPrint,250);});}setTimeout(triggerPrint,900);})();<\/script>';
-  </script>
-<!-- Container Tampilan Verifikasi Riwayat Iuran / Kartu Anggota -->
-<div id="verifikasi-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); z-index:99999; justify-content:center; align-items:center;">
-    <div style="background:white; padding:25px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.15); width:100%; max-width:500px; border-top:5px solid #107b4d; font-family: Arial, sans-serif;">
-        <h3 id="v-title" style="text-align:center; color:#107b4d; margin-bottom:20px;">Verifikasi Riwayat Iuran</h3>
-        <p style="margin: 8px 0;"><strong>ID Card:</strong> <span id="v-id">-</span></p>
-        <p style="margin: 8px 0;"><strong id="v-label-nama">Nama Warga:</strong> <span id="v-nama">-</span></p>
-        <p style="margin: 8px 0;"><strong>Alamat:</strong> <span id="v-alamat">-</span></p>
-        
-        <div style="max-height: 250px; overflow-y: auto; margin-top: 15px;">
-            <table style="width:100%; border-collapse:collapse; text-align: left;">
-                <thead>
-                    <tr id="v-thead-row" style="background:#e8f5e9; color:#107b4d;">
-                        <th style="padding:10px; border:1px solid #ddd; text-align:center;">No</th>
-                        <th style="padding:10px; border:1px solid #ddd;">Bulan / Tahun</th>
-                        <th style="padding:10px; border:1px solid #ddd;">Jumlah</th>
-                        <th style="padding:10px; border:1px solid #ddd; text-align:center;">Status</th>
-                    </tr>
-                </thead>
-                <tbody id="v-tbody">
-                    <!-- Data akan dirender secara dinamis -->
-                </tbody>
-            </table>
-        </div>
-
-        <div style="text-align:center; margin-top:25px;">
-            <button onclick="bukaAplikasiUtama()" style="background:#107b4d; color:white; padding:12px 20px; border:none; border-radius:5px; cursor:pointer; width:100%; font-weight:bold; font-size:14px;">Buka Aplikasi Utama</button>
-        </div>
-    </div>
-</div>
-
-<script>
+      var printScript = '<script>(function(){var printed=false;function triggerPrint(){if(printed)return;printed=true;setTimeout(function(){try{window.focus();window.print();}catch(e){window.print();}},150);}if(document.readyState==="complete"){setTimeout(triggerPrint,250);}else{window.addEventListener("load",function(){setTimeout(triggerPrint,250);});}setTimeout(triggerPrint,900);})();<\/script>';
+      var fullHtml = '<!DOCTYPE html><html><head><title>Cetak ID Card - ' + nama + '</title><style>body{background:#fff;margin:0;padding:0;display:flex;justify-content:center;align-items:center;flex-direction:column;}.print-page{display:flex;justify-content:center;align-items:center;width:100vw;height:100vh;page-break-after:always;}@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}.print-page{height:100vh;page-break-after:always;}}</style></head><body><div class="print-page">' + frontHtml + '</div><div class="print-page">' + backHtml + '</div>' + printScript + '</body></html>';
+      var blob = new Blob([fullHtml], { type: 'text/html' });
+      var blobUrl = URL.createObjectURL(blob);
+      window.open(blobUrl, '_blank');
+    }
+  });
+}
+</script>
   function ambilNilaiAlamat(data, info) {
       const candidates = [
           info.alamat, info.Alamat, info.ALAMAT,
